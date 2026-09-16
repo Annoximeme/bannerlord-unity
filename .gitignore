@@ -1,0 +1,13 @@
+# Build output
+bin/
+obj/
+*.user
+*.suo
+
+# Local reference assemblies (fetched via tools/apiscan README)
+/refasm/
+*.nupkg
+
+# OS
+.DS_Store
+Thumbs.db

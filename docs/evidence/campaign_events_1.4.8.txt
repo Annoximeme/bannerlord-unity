@@ -1,0 +1,834 @@
+===== CampaignEvents (all campaign events) =====
+class TaleWorlds.CampaignSystem.CampaignEvents : TaleWorlds.CampaignSystem.CampaignEventReceiver
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onPlayerBodyPropertiesChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.BarterSystem.BarterData> _barterablesRequested
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, bool> _heroLevelledUp
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyComponents.BanditPartyComponent, TaleWorlds.CampaignSystem.Settlements.Hideout> _onHomeHideoutChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.SkillObject, int, bool> _heroGainedSkill
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onCharacterCreationIsOverEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, bool> _onHeroCreated
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero/CharacterStates> _onHeroActivatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Occupation> _heroOccupationChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _onHeroWounded
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.BarterSystem.Barterables.Barterable>> _onBarterAcceptedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.BarterSystem.Barterables.Barterable>> _onBarterCanceledEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, int, bool, TaleWorlds.CampaignSystem.Actions.ChangeRelationAction/ChangeRelationDetail, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _heroRelationChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.QuestBase, bool> _questLogAddedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase, bool> _issueLogAddedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, bool> _clanTierIncrease
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Actions.ChangeKingdomAction/ChangeKingdomActionDetail, bool> _clanChangedKingdom
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> _onClanDefected
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, bool> _onClanCreatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.MobileParty> _onHeroJoinedPartyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<int, string>, bool> _heroOrPartyTradedGold
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, TaleWorlds.Core.ItemRosterElement, bool> _heroOrPartyGaveItem
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _banditPartyRecruited
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Election.KingdomDecision, bool> _kingdomDecisionAdded
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Election.KingdomDecision, bool> _kingdomDecisionCancelled
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Election.KingdomDecision, TaleWorlds.CampaignSystem.Election.DecisionOutcome, bool> _kingdomDecisionConcluded
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _partyAttachedParty
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _nearbyPartyAddedToPlayerMapEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Army> _armyCreated
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem.Army/ArmyDispersionReason, bool> _armyDispersed
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem.Map.IMapPoint> _armyGathered
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject> _perkOpenedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject> _perkResetEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterDevelopment.TraitObject, int> _playerTraitChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem.Settlements.Village/VillageStates, TaleWorlds.CampaignSystem.Settlements.Village/VillageStates, TaleWorlds.CampaignSystem.Party.MobileParty> _villageStateChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero> _settlementEntered
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero> _afterSettlementEntered
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero> _beforeSettlementEntered
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject> _mercenaryTroopChangedInTown
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town, int, int> _mercenaryNumberChangedInTown
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _alleyOwnerChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem.Roster.TroopRoster> _alleyOccupiedByPlayer
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Alley> _alleyClearedByPlayer
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Romance/RomanceLevelEnum> _romanticStateChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, bool> _beforeHeroesMarried
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<int, TaleWorlds.CampaignSystem.Settlements.Town> _playerEliminatedFromTournament
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town> _playerStartedTournamentMatch
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town> _tournamentStarted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.DeclareWarAction/DeclareWarDetail> _warDeclared
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Library.MBReadOnlyList<TaleWorlds.CampaignSystem.CharacterObject>, TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.Core.ItemObject> _tournamentFinished
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town> _tournamentCancelled
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, object, bool> _battleStarted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Clan> _rebellionFinished
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town, bool> _townRebelliousStateChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Clan> _rebelliousClanDisbandedAtSettlement
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.ItemRoster> _itemsLooted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Party.PartyBase> _mobilePartyDestroyed
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _mobilePartyCreated
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Map.IInteractablePoint> _mapInteractableCreated
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Map.IInteractablePoint> _mapInteractableDestroyed
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, bool> _mobilePartyQuestStatusChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> _heroKilled
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> _onBeforeHeroKilled
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, int> _childEducationCompleted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _heroComesOfAge
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _heroGrowsOutOfInfancyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _heroReachesTeenAgeEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _characterDefeated
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Clan> _rulingClanChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Hero> _heroPrisonerTaken
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.EndCaptivityDetail, bool> _heroPrisonerReleased
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, bool> _characterBecameFugitiveEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _playerMetHero
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _playerLearnsAboutHero
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, int, bool> _renownGained
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.IFaction, float> _crimeRatingChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _newCompanionAdded
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.IMission> _afterMissionStarted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs> _gameMenuOpened
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs> _afterGameMenuInitializedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs> _beforeGameMenuOpenedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.MakePeaceAction/MakePeaceDetail> _makePeace
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom> _kingdomDestroyed
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Kingdom, bool> _canKingdomBeDiscontinued
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom> _kingdomCreated
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Village> _villageBecomeNormal
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Village> _villageBeingRaided
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Village> _villageLooted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.RemoveCompanionAction/RemoveCompanionDetail> _companionRemoved
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.IAgent> _onAgentJoinedConversationEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Collections.Generic.IEnumerable<TaleWorlds.CampaignSystem.CharacterObject>> _onConversationEnded
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.MapEvents.MapEvent> _mapEventEnded
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase> _mapEventStarted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem.Hero, bool> _prisonersChangeInSettlement
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, Helpers.BoardGameHelper/BoardGameState> _onPlayerBoardGameOver
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _onRansomOfferedToPlayer
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _onRansomOfferCancelled
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.IFaction, int, int> _onPeaceOfferedToPlayer
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> _onTradeAgreementSignedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.IFaction> _onPeaceOfferResolved
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _onMarriageOfferedToPlayerEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _onMarriageOfferCanceledEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom> _onVassalOrMercenaryServiceOfferedToPlayerEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom> _onVassalOrMercenaryServiceOfferCanceledEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Actions.StartMercenaryServiceAction/StartMercenaryServiceActionDetails> _onMercenaryServiceStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Actions.EndMercenaryServiceAction/EndMercenaryServiceActionDetails> _onMercenaryServiceEndedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.IMission> _onMissionStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _beforeMissionOpenedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> _onPartyRemovedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> _onPartySizeChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, bool, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.ChangeOwnerOfSettlementAction/ChangeOwnerOfSettlementDetail> _onSettlementOwnerChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _onGovernorChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement> _onSettlementLeftEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _weeklyTickEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _dailyTickEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _dailyTickPartyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town> _dailyTickTownEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement> _dailyTickSettlementEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _dailyTickHeroEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan> _dailyTickClanEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Collections.Generic.List<TaleWorlds.CampaignSystem.CampaignTutorial>> _collectAvailableTutorialsEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<string> _onTutorialCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.Settlements.Buildings.Building, int> _onBuildingLevelChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _hourlyTickEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _quarterHourlyTickEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _hourlyTickPartyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement> _hourlyTickSettlementEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan> _hourlyTickClanEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<float> _tickEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> _onSessionLaunchedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> _onAfterSessionLaunchedEvent
+  FIELD   public       static int OnNewGameCreatedPartialFollowUpEventMaxIndex
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> _onNewGameCreatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter, int> _onNewGameCreatedPartialFollowUpEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> _onNewGameCreatedPartialFollowUpEndEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> _onGameEarlyLoadedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> _onGameLoadedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onGameLoadFinishedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.PartyThinkParams> _aiHourlyTickEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _tickPartialHourlyAiEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onPartyJoinedArmyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onPartyRemovedFromArmyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onPlayerArmyLeaderChangedBehaviorEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.IMission> _onMissionEndedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onQuarterDailyPartyTick
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.MapEvents.MapEvent> _onPlayerBattleEndEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterObject, int> _onUnitRecruitedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _onChildConceived
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.Hero>, int> _onGivenBirthEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<float> _missionTickEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _armyOverlaySetDirty
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<int> _playerDesertedBattle
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> _partyVisibilityChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Track> _trackDetectedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Track> _trackLostEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Collections.Generic.Dictionary<string, int>> _locationCharactersAreReadyToSpawn
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.Library.MatrixFrame> _onBeforePlayerAgentSpawn
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onPlayerAgentSpawned
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _locationCharactersSimulatedSpawned
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject, int> _playerUpgradedTroopsEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.Core.WeaponComponentData, bool, int> _onHeroCombatHitEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterObject> _characterPortraitPopUpOpenedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.CampaignTimeControlMode _timeControlModeBeforePopUpOpened
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _characterPortraitPopUpClosedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _playerStartTalkFromMenu
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.GameMenus.GameMenu, TaleWorlds.CampaignSystem.GameMenus.GameMenuOption> _gameMenuOptionSelectedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterObject> _playerStartRecruitmentEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _onBeforePlayerCharacterChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.MobileParty, bool> _onPlayerCharacterChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> _onClanLeaderChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> _onSiegeEventStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onPlayerSiegeStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> _onSiegeEventEndedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Actions.SiegeAftermathAction/SiegeAftermath, TaleWorlds.CampaignSystem.Clan, System.Collections.Generic.Dictionary<TaleWorlds.CampaignSystem.Party.MobileParty, float>> _siegeAftermathAppliedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType, TaleWorlds.CampaignSystem.Siege.SiegeBombardTargets> _onSiegeBombardmentHitEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType, bool> _onSiegeBombardmentWallHitEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType> _onSiegeEngineDestroyedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Collections.Generic.List<TaleWorlds.CampaignSystem.TradeRumor>, TaleWorlds.CampaignSystem.Settlements.Settlement> _onTradeRumorIsTakenEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _onCheckForIssueEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase, TaleWorlds.CampaignSystem.Issues.IssueBase/IssueUpdateDetails, TaleWorlds.CampaignSystem.Hero> _onIssueUpdatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.TroopRoster> _onTroopsDesertedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterObject, int> _onTroopRecruitedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Roster.TroopRoster> _onTroopGivenToSettlementEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.Core.ItemRosterElement, int, TaleWorlds.CampaignSystem.Settlements.Settlement> _onItemSoldEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Town, System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.EquipmentElement, int>>> _onCaravanTransactionCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.TroopRoster> _onPrisonerSoldEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onPartyDisbandStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement> _onPartyDisbandedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onPartyDisbandCanceledEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase> _hideoutSpottedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement> _hideoutDeactivatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, float> _heroSharedFoodWithAnotherHeroEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.ItemRosterElement, int>>, System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.ItemRosterElement, int>>, bool> _playerInventoryExchangeEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Roster.ItemRoster> _onItemsDiscardedByPlayerEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Tuple<TaleWorlds.CampaignSystem.Conversation.Persuasion.PersuasionOptionArgs, TaleWorlds.CampaignSystem.Conversation.Persuasion.PersuasionOptionResult>> _persuasionProgressCommittedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.QuestBase, TaleWorlds.CampaignSystem.QuestBase/QuestCompleteDetails> _onQuestCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.QuestBase> _onQuestStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Settlements.Settlement, int> _itemProducedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Settlements.Settlement, int> _itemConsumedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onPartyConsumedFoodEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> _onBeforeMainCharacterDiedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase> _onNewIssueCreatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase, TaleWorlds.CampaignSystem.Hero> _onIssueOwnerChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onGameOverEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, bool, TaleWorlds.CampaignSystem.MapEvents.MapEvent/BattleTypes> _siegeCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, bool, TaleWorlds.CampaignSystem.MapEvents.MapEvent/BattleTypes> _afterSiegeCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType> _siegeEngineBuiltEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.RaidEventComponent> _raidCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.ForceVolunteersEventComponent> _forceVolunteersCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.ForceSuppliesEventComponent> _forceSuppliesCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent, TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent/HideoutBattleEndState> _hideoutBattleCompletedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan> _onClanDestroyedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.ItemObject, TaleWorlds.Core.ItemModifier, bool> _onNewItemCraftedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.CraftingPiece> _craftingPartUnlockedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop> _onWorkshopInitializedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop, TaleWorlds.CampaignSystem.Hero> _onWorkshopOwnerChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop> _onWorkshopTypeChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onBeforeSaveEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onSaveStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<bool, string> _onSaveOverEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, string>>> _collectMetadataEntriesEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster> _onPrisonerTakenEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster> _onPrisonerReleasedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster> _onMainPartyPrisonerRecruitedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem.Settlements.Settlement> _onPrisonerDonatedToSettlementEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.EquipmentElement> _onEquipmentSmeltedByHero
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<int> _onPlayerTradeProfit
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Clan> _onHeroChangedClan
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.HeroGetsBusyReasons> _onHeroGetsBusy
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.ItemRoster> _onCollectLootItems
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.ItemRoster> _onLootDistributedToPartyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Actions.TeleportHeroAction/TeleportationDetail> _onHeroTeleportationRequestedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onPartyLeaderChangeOfferCanceledEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Hero> _onPartyLeaderChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, float> _onClanInfluenceChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterObject> _onPlayerPartyKnockedOrKilledTroopEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.GameComponents.DefaultClanFinanceModel/AssetIncomeType, int> _onPlayerEarnedGoldFromAssetEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.IFaction> _onClanEarnedGoldFromTributeEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onMainPartyStarving
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town, bool> _onPlayerJoinedTournamentEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _onHeroUnregisteredEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent _onConfigChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.CraftingSystem.CraftingOrder, TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Hero> _onCraftingOrderCompleted
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.Crafting/RefiningFormula> _onItemsRefined
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<System.Collections.Generic.Dictionary<TaleWorlds.CampaignSystem.Hero, int>> _onHeirSelectionRequested
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Hero> _onHeirSelectionOver
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onMobilePartyRaftStateChanged
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreationManager> _onCharacterCreationInitialized
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Actions.DestroyShipAction/ShipDestroyDetail> _onShipDestroyedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Actions.ChangeShipOwnerAction/ShipOwnerChangeDetail> _onShipOwnerChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Settlements.Settlement> _onShipRepairedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Settlements.Settlement> _onShipCreatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Naval.Figurehead> _onFigureheadUnlockedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Army> _onPartyLeftArmyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> _onPartyAddedToMapEventEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Incidents.Incident> _onIncidentResolvedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onMobilePartyNavigationStateChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onMobilePartyJoinedToSiegeEventEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> _onMobilePartyLeftSiegeEventEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> _onBlockadeActivatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> _onBlockadeDeactivatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Map.MapMarker> _onMapMarkerCreatedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Map.MapMarker> _onMapMarkerRemovedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> _onAllianceStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> _onAllianceEndedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> _onCallToWarAgreementStartedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> _onCallToWarAgreementEndedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canHeroLeadPartyEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canMarryEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canHeroEquipmentBeChangedEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canBeGovernorOrHavePartyRoleEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> _canHeroDieEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canPlayerMeetWithHeroAfterConversationEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canHeroBecomePrisonerEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canMoveToSettlementEvent
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Hero, bool> _canHaveCampaignIssues
+  FIELD   private      TaleWorlds.CampaignSystem.ReferenceMBEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, object, int> _isSettlementBusy
+  FIELD   private      TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.CampaignSystem.IFaction> _onMapEventContinuityNeedsUpdate
+  PROP    TaleWorlds.CampaignSystem.CampaignEvents Instance {get:private/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnPlayerBodyPropertiesChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.BarterSystem.BarterData> BarterablesRequested {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, bool> HeroLevelledUp {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyComponents.BanditPartyComponent, TaleWorlds.CampaignSystem.Settlements.Hideout> OnHomeHideoutChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.SkillObject, int, bool> HeroGainedSkill {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnCharacterCreationIsOverEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, bool> HeroCreated {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero/CharacterStates> OnHeroActivatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Occupation> HeroOccupationChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> HeroWounded {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.BarterSystem.Barterables.Barterable>> OnBarterAcceptedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.BarterSystem.Barterables.Barterable>> OnBarterCanceledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, int, bool, TaleWorlds.CampaignSystem.Actions.ChangeRelationAction/ChangeRelationDetail, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> HeroRelationChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.QuestBase, bool> QuestLogAddedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase, bool> IssueLogAddedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, bool> ClanTierIncrease {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Actions.ChangeKingdomAction/ChangeKingdomActionDetail, bool> OnClanChangedKingdomEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> OnClanDefectedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, bool> OnClanCreatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.MobileParty> OnHeroJoinedPartyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<int, string>, bool> HeroOrPartyTradedGold {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, TaleWorlds.Core.ItemRosterElement, bool> HeroOrPartyGaveItem {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> BanditPartyRecruited {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Election.KingdomDecision, bool> KingdomDecisionAdded {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Election.KingdomDecision, bool> KingdomDecisionCancelled {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Election.KingdomDecision, TaleWorlds.CampaignSystem.Election.DecisionOutcome, bool> KingdomDecisionConcluded {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> PartyAttachedAnotherParty {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> NearbyPartyAddedToPlayerMapEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Army> ArmyCreated {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem.Army/ArmyDispersionReason, bool> ArmyDispersed {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem.Map.IMapPoint> ArmyGathered {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject> PerkOpenedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject> PerkResetEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterDevelopment.TraitObject, int> PlayerTraitChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem.Settlements.Village/VillageStates, TaleWorlds.CampaignSystem.Settlements.Village/VillageStates, TaleWorlds.CampaignSystem.Party.MobileParty> VillageStateChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero> SettlementEntered {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero> AfterSettlementEntered {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero> BeforeSettlementEnteredEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject> MercenaryTroopChangedInTown {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town, int, int> MercenaryNumberChangedInTown {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> AlleyOwnerChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem.Roster.TroopRoster> AlleyOccupiedByPlayer {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Alley> AlleyClearedByPlayer {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Romance/RomanceLevelEnum> RomanticStateChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, bool> BeforeHeroesMarried {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<int, TaleWorlds.CampaignSystem.Settlements.Town> PlayerEliminatedFromTournament {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town> PlayerStartedTournamentMatch {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town> TournamentStarted {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.DeclareWarAction/DeclareWarDetail> WarDeclared {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Library.MBReadOnlyList<TaleWorlds.CampaignSystem.CharacterObject>, TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.Core.ItemObject> TournamentFinished {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town> TournamentCancelled {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, object, bool> BattleStarted {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Clan> RebellionFinished {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town, bool> TownRebelliosStateChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Clan> RebelliousClanDisbandedAtSettlement {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.ItemRoster> ItemsLooted {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Party.PartyBase> MobilePartyDestroyed {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> MobilePartyCreated {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Map.IInteractablePoint> MapInteractableCreated {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Map.IInteractablePoint> MapInteractableDestroyed {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, bool> MobilePartyQuestStatusChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> HeroKilledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> BeforeHeroKilledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, int> ChildEducationCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> HeroComesOfAgeEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> HeroGrowsOutOfInfancyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> HeroReachesTeenAgeEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> CharacterDefeated {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Clan> RulingClanChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Hero> HeroPrisonerTaken {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.EndCaptivityDetail, bool> HeroPrisonerReleased {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, bool> CharacterBecameFugitiveEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnPlayerMetHeroEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnPlayerLearnsAboutHeroEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, int, bool> RenownGained {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.IFaction, float> CrimeRatingChanged {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> NewCompanionAdded {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.IMission> AfterMissionStarted {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs> GameMenuOpened {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs> AfterGameMenuInitializedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs> BeforeGameMenuOpenedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.MakePeaceAction/MakePeaceDetail> MakePeace {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom> KingdomDestroyedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Kingdom, bool> CanKingdomBeDiscontinuedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom> KingdomCreatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Village> VillageBecomeNormal {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Village> VillageBeingRaided {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Village> VillageLooted {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.RemoveCompanionAction/RemoveCompanionDetail> CompanionRemoved {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.IAgent> OnAgentJoinedConversationEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Collections.Generic.IEnumerable<TaleWorlds.CampaignSystem.CharacterObject>> ConversationEnded {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.MapEvents.MapEvent> MapEventEnded {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase> MapEventStarted {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem.Hero, bool> PrisonersChangeInSettlement {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, Helpers.BoardGameHelper/BoardGameState> OnPlayerBoardGameOverEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnRansomOfferedToPlayerEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnRansomOfferCancelledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.IFaction, int, int> OnPeaceOfferedToPlayerEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> OnTradeAgreementSignedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.IFaction> OnPeaceOfferResolvedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> OnMarriageOfferedToPlayerEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> OnMarriageOfferCanceledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom> OnVassalOrMercenaryServiceOfferedToPlayerEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom> OnVassalOrMercenaryServiceOfferCanceledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Actions.StartMercenaryServiceAction/StartMercenaryServiceActionDetails> OnMercenaryServiceStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Actions.EndMercenaryServiceAction/EndMercenaryServiceActionDetails> OnMercenaryServiceEndedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.IMission> OnMissionStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent BeforeMissionOpenedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> OnPartyRemovedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> OnPartySizeChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, bool, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.ChangeOwnerOfSettlementAction/ChangeOwnerOfSettlementDetail> OnSettlementOwnerChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> OnGovernorChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement> OnSettlementLeftEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent WeeklyTickEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent DailyTickEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> DailyTickPartyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town> DailyTickTownEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement> DailyTickSettlementEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> DailyTickHeroEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan> DailyTickClanEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Collections.Generic.List<TaleWorlds.CampaignSystem.CampaignTutorial>> CollectAvailableTutorialsEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<string> OnTutorialCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.Settlements.Buildings.Building, int> OnBuildingLevelChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent HourlyTickEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent QuarterHourlyTickEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> HourlyTickPartyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement> HourlyTickSettlementEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan> HourlyTickClanEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<float> TickEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> OnSessionLaunchedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> OnAfterSessionLaunchedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> OnNewGameCreatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter, int> OnNewGameCreatedPartialFollowUpEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> OnNewGameCreatedPartialFollowUpEndEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> OnGameEarlyLoadedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CampaignGameStarter> OnGameLoadedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnGameLoadFinishedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.PartyThinkParams> AiHourlyTickEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> TickPartialHourlyAiEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnPartyJoinedArmyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> PartyRemovedFromArmyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnPlayerArmyLeaderChangedBehaviorEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.IMission> OnMissionEndedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnQuarterDailyPartyTick {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.MapEvents.MapEvent> OnPlayerBattleEndEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterObject, int> OnUnitRecruitedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnChildConceivedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.Hero>, int> OnGivenBirthEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<float> MissionTickEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent ArmyOverlaySetDirtyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<int> PlayerDesertedBattleEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> PartyVisibilityChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Track> TrackDetectedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Track> TrackLostEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Collections.Generic.Dictionary<string, int>> LocationCharactersAreReadyToSpawnEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.Library.MatrixFrame> BeforePlayerAgentSpawnEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent PlayerAgentSpawned {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent LocationCharactersSimulatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject, int> PlayerUpgradedTroopsEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.Core.WeaponComponentData, bool, int> OnHeroCombatHitEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterObject> CharacterPortraitPopUpOpenedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent CharacterPortraitPopUpClosedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> PlayerStartTalkFromMenu {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.GameMenus.GameMenu, TaleWorlds.CampaignSystem.GameMenus.GameMenuOption> GameMenuOptionSelectedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterObject> PlayerStartRecruitmentEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> OnBeforePlayerCharacterChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.MobileParty, bool> OnPlayerCharacterChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero> OnClanLeaderChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> OnSiegeEventStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnPlayerSiegeStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> OnSiegeEventEndedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Actions.SiegeAftermathAction/SiegeAftermath, TaleWorlds.CampaignSystem.Clan, System.Collections.Generic.Dictionary<TaleWorlds.CampaignSystem.Party.MobileParty, float>> OnSiegeAftermathAppliedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType, TaleWorlds.CampaignSystem.Siege.SiegeBombardTargets> OnSiegeBombardmentHitEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType, bool> OnSiegeBombardmentWallHitEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType> OnSiegeEngineDestroyedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Collections.Generic.List<TaleWorlds.CampaignSystem.TradeRumor>, TaleWorlds.CampaignSystem.Settlements.Settlement> OnTradeRumorIsTakenEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnCheckForIssueEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase, TaleWorlds.CampaignSystem.Issues.IssueBase/IssueUpdateDetails, TaleWorlds.CampaignSystem.Hero> OnIssueUpdatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.TroopRoster> OnTroopsDesertedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterObject, int> OnTroopRecruitedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Roster.TroopRoster> OnTroopGivenToSettlementEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.Core.ItemRosterElement, int, TaleWorlds.CampaignSystem.Settlements.Settlement> OnItemSoldEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Town, System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.EquipmentElement, int>>> OnCaravanTransactionCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.TroopRoster> OnPrisonerSoldEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnPartyDisbandStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement> OnPartyDisbandedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnPartyDisbandCanceledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase> OnHideoutSpottedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement> OnHideoutDeactivatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, float> OnHeroSharedFoodWithAnotherHeroEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.ItemRosterElement, int>>, System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.ItemRosterElement, int>>, bool> PlayerInventoryExchangeEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Roster.ItemRoster> OnItemsDiscardedByPlayerEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Tuple<TaleWorlds.CampaignSystem.Conversation.Persuasion.PersuasionOptionArgs, TaleWorlds.CampaignSystem.Conversation.Persuasion.PersuasionOptionResult>> PersuasionProgressCommittedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.QuestBase, TaleWorlds.CampaignSystem.QuestBase/QuestCompleteDetails> OnQuestCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.QuestBase> OnQuestStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Settlements.Settlement, int> OnItemProducedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Settlements.Settlement, int> OnItemConsumedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnPartyConsumedFoodEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> OnBeforeMainCharacterDiedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase> OnNewIssueCreatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Issues.IssueBase, TaleWorlds.CampaignSystem.Hero> OnIssueOwnerChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnGameOverEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, bool, TaleWorlds.CampaignSystem.MapEvents.MapEvent/BattleTypes> SiegeCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, bool, TaleWorlds.CampaignSystem.MapEvents.MapEvent/BattleTypes> AfterSiegeCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType> SiegeEngineBuiltEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.RaidEventComponent> RaidCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.ForceVolunteersEventComponent> ForceVolunteersCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.ForceSuppliesEventComponent> ForceSuppliesCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.MbEvent<TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent, TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent/HideoutBattleEndState> OnHideoutBattleCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan> OnClanDestroyedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.ItemObject, TaleWorlds.Core.ItemModifier, bool> OnNewItemCraftedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.Core.CraftingPiece> CraftingPartUnlockedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop> WorkshopInitializedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop, TaleWorlds.CampaignSystem.Hero> WorkshopOwnerChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop> WorkshopTypeChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnBeforeSaveEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnSaveStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<bool, string> OnSaveOverEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, string>>> CollectMetadataEntriesEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster> OnPrisonerTakenEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster> OnPrisonerReleasedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster> OnMainPartyPrisonerRecruitedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem.Settlements.Settlement> OnPrisonerDonatedToSettlementEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.EquipmentElement> OnEquipmentSmeltedByHeroEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<int> OnPlayerTradeProfitEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Clan> OnHeroChangedClanEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.HeroGetsBusyReasons> OnHeroGetsBusyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.ItemRoster> OnCollectLootsItemsEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.ItemRoster> OnLootDistributedToPartyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Actions.TeleportHeroAction/TeleportationDetail> OnHeroTeleportationRequestedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnPartyLeaderChangeOfferCanceledEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Hero> OnPartyLeaderChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, float> OnClanInfluenceChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterObject> OnPlayerPartyKnockedOrKilledTroopEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.GameComponents.DefaultClanFinanceModel/AssetIncomeType, int> OnPlayerEarnedGoldFromAssetEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.IFaction> OnClanEarnedGoldFromTributeEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnMainPartyStarvingEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town, bool> OnPlayerJoinedTournamentEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnHeroUnregisteredEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent OnConfigChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.CraftingSystem.CraftingOrder, TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Hero> OnCraftingOrderCompletedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.Crafting/RefiningFormula> OnItemsRefinedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<System.Collections.Generic.Dictionary<TaleWorlds.CampaignSystem.Hero, int>> OnHeirSelectionRequestedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Hero> OnHeirSelectionOverEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreationManager> OnCharacterCreationInitializedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnMobilePartyRaftStateChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Actions.DestroyShipAction/ShipDestroyDetail> OnShipDestroyedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Actions.ChangeShipOwnerAction/ShipOwnerChangeDetail> OnShipOwnerChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Settlements.Settlement> OnShipRepairedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Settlements.Settlement> OnShipCreatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Naval.Figurehead> OnFigureheadUnlockedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Army> OnPartyLeftArmyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.PartyBase> OnPartyAddedToMapEventEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Incidents.Incident> OnIncidentResolvedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnMobilePartyNavigationStateChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnMobilePartyJoinedToSiegeEventEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Party.MobileParty> OnMobilePartyLeftSiegeEventEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> OnBlockadeActivatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Siege.SiegeEvent> OnBlockadeDeactivatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Map.MapMarker> OnMapMarkerCreatedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Map.MapMarker> OnMapMarkerRemovedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> OnAllianceStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> OnAllianceEndedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> OnCallToWarAgreementStartedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom> OnCallToWarAgreementEndedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanHeroLeadPartyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanHeroMarryEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanHeroEquipmentBeChangedEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanBeGovernorOrHavePartyRoleEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool> CanHeroDieEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanPlayerMeetWithHeroAfterConversationEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanHeroBecomePrisonerEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanMoveToSettlementEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Hero, bool> CanHaveCampaignIssuesEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.ReferenceIMBEvent<TaleWorlds.CampaignSystem.Settlements.Settlement, object, int> IsSettlementBusyEvent {get:public/static}
+  PROP    TaleWorlds.CampaignSystem.IMbEvent<TaleWorlds.CampaignSystem.IFaction> OnMapEventContinuityNeedsUpdateEvent {get:public/static}
+  METHOD  public       virtual void RemoveListeners(object)
+  METHOD  public       virtual void OnPlayerBodyPropertiesChanged()
+  METHOD  public       virtual void OnBarterablesRequested(TaleWorlds.CampaignSystem.BarterSystem.BarterData)
+  METHOD  public       virtual void OnHeroLevelledUp(TaleWorlds.CampaignSystem.Hero, bool)
+  METHOD  public       virtual void OnHomeHideoutChanged(TaleWorlds.CampaignSystem.Party.PartyComponents.BanditPartyComponent, TaleWorlds.CampaignSystem.Settlements.Hideout)
+  METHOD  public       virtual void OnHeroGainedSkill(TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.SkillObject, int, bool)
+  METHOD  public       virtual void OnCharacterCreationIsOver()
+  METHOD  public       virtual void OnHeroCreated(TaleWorlds.CampaignSystem.Hero, bool)
+  METHOD  public       virtual void OnHeroActivated(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero/CharacterStates)
+  METHOD  public       virtual void OnHeroOccupationChanged(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Occupation)
+  METHOD  public       virtual void OnHeroWounded(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnBarterAccepted(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.BarterSystem.Barterables.Barterable>)
+  METHOD  public       virtual void OnBarterCanceled(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.BarterSystem.Barterables.Barterable>)
+  METHOD  public       virtual void OnHeroRelationChanged(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, int, bool, TaleWorlds.CampaignSystem.Actions.ChangeRelationAction/ChangeRelationDetail, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnQuestLogAdded(TaleWorlds.CampaignSystem.QuestBase, bool)
+  METHOD  public       virtual void OnIssueLogAdded(TaleWorlds.CampaignSystem.Issues.IssueBase, bool)
+  METHOD  public       virtual void OnClanTierChanged(TaleWorlds.CampaignSystem.Clan, bool)
+  METHOD  public       virtual void OnClanChangedKingdom(TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Actions.ChangeKingdomAction/ChangeKingdomActionDetail, bool)
+  METHOD  public       virtual void OnClanDefected(TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnClanCreated(TaleWorlds.CampaignSystem.Clan, bool)
+  METHOD  public       virtual void OnHeroJoinedParty(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnHeroOrPartyTradedGold(System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<int, string>, bool)
+  METHOD  public       virtual void OnHeroOrPartyGaveItem(System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, System.ValueTuple<TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase>, TaleWorlds.Core.ItemRosterElement, bool)
+  METHOD  public       virtual void OnBanditPartyRecruited(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnKingdomDecisionAdded(TaleWorlds.CampaignSystem.Election.KingdomDecision, bool)
+  METHOD  public       virtual void OnKingdomDecisionCancelled(TaleWorlds.CampaignSystem.Election.KingdomDecision, bool)
+  METHOD  public       virtual void OnKingdomDecisionConcluded(TaleWorlds.CampaignSystem.Election.KingdomDecision, TaleWorlds.CampaignSystem.Election.DecisionOutcome, bool)
+  METHOD  public       virtual void OnPartyAttachedAnotherParty(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnNearbyPartyAddedToPlayerMapEvent(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnArmyCreated(TaleWorlds.CampaignSystem.Army)
+  METHOD  public       virtual void OnArmyDispersed(TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem.Army/ArmyDispersionReason, bool)
+  METHOD  public       virtual void OnArmyGathered(TaleWorlds.CampaignSystem.Army, TaleWorlds.CampaignSystem.Map.IMapPoint)
+  METHOD  public       virtual void OnPerkOpened(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)
+  METHOD  public       virtual void OnPerkReset(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject)
+  METHOD  public       virtual void OnPlayerTraitChanged(TaleWorlds.CampaignSystem.CharacterDevelopment.TraitObject, int)
+  METHOD  public       virtual void OnVillageStateChanged(TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem.Settlements.Village/VillageStates, TaleWorlds.CampaignSystem.Settlements.Village/VillageStates, TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnSettlementEntered(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnAfterSettlementEntered(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnBeforeSettlementEntered(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnMercenaryTroopChangedInTown(TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject)
+  METHOD  public       virtual void OnMercenaryNumberChangedInTown(TaleWorlds.CampaignSystem.Settlements.Town, int, int)
+  METHOD  public       virtual void OnAlleyOccupiedByPlayer(TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem.Roster.TroopRoster)
+  METHOD  public       virtual void OnAlleyOwnerChanged(TaleWorlds.CampaignSystem.Settlements.Alley, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnAlleyClearedByPlayer(TaleWorlds.CampaignSystem.Settlements.Alley)
+  METHOD  public       virtual void OnRomanticStateChanged(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Romance/RomanceLevelEnum)
+  METHOD  public       virtual void OnBeforeHeroesMarried(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, bool)
+  METHOD  public       virtual void OnPlayerEliminatedFromTournament(int, TaleWorlds.CampaignSystem.Settlements.Town)
+  METHOD  public       virtual void OnPlayerStartedTournamentMatch(TaleWorlds.CampaignSystem.Settlements.Town)
+  METHOD  public       virtual void OnTournamentStarted(TaleWorlds.CampaignSystem.Settlements.Town)
+  METHOD  public       virtual void OnWarDeclared(TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.DeclareWarAction/DeclareWarDetail)
+  METHOD  public       virtual void OnTournamentFinished(TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.Library.MBReadOnlyList<TaleWorlds.CampaignSystem.CharacterObject>, TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.Core.ItemObject)
+  METHOD  public       virtual void OnTournamentCancelled(TaleWorlds.CampaignSystem.Settlements.Town)
+  METHOD  public       virtual void OnStartBattle(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, object, bool)
+  METHOD  public       virtual void OnRebellionFinished(TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual void TownRebelliousStateChanged(TaleWorlds.CampaignSystem.Settlements.Town, bool)
+  METHOD  public       virtual void OnRebelliousClanDisbandedAtSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual void OnItemsLooted(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.ItemRoster)
+  METHOD  public       virtual void OnMobilePartyDestroyed(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       virtual void OnMobilePartyCreated(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnMapInteractableCreated(TaleWorlds.CampaignSystem.Map.IInteractablePoint)
+  METHOD  public       virtual void OnMapInteractableDestroyed(TaleWorlds.CampaignSystem.Map.IInteractablePoint)
+  METHOD  public       virtual void OnMobilePartyQuestStatusChanged(TaleWorlds.CampaignSystem.Party.MobileParty, bool)
+  METHOD  public       virtual void OnHeroKilled(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool)
+  METHOD  public       virtual void OnBeforeHeroKilled(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool)
+  METHOD  public       virtual void OnChildEducationCompleted(TaleWorlds.CampaignSystem.Hero, int)
+  METHOD  public       virtual void OnHeroComesOfAge(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnHeroGrowsOutOfInfancy(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnHeroReachesTeenAge(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnCharacterDefeated(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnRulingClanChanged(TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual void OnHeroPrisonerTaken(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnHeroPrisonerReleased(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.EndCaptivityDetail, bool)
+  METHOD  public       virtual void OnCharacterBecameFugitive(TaleWorlds.CampaignSystem.Hero, bool)
+  METHOD  public       virtual void OnPlayerMetHero(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnPlayerLearnsAboutHero(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnRenownGained(TaleWorlds.CampaignSystem.Hero, int, bool)
+  METHOD  public       virtual void OnCrimeRatingChanged(TaleWorlds.CampaignSystem.IFaction, float)
+  METHOD  public       virtual void OnNewCompanionAdded(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnAfterMissionStarted(TaleWorlds.Core.IMission)
+  METHOD  public       virtual void OnGameMenuOpened(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs)
+  METHOD  public       virtual void AfterGameMenuInitialized(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs)
+  METHOD  public       virtual void BeforeGameMenuOpened(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs)
+  METHOD  public       virtual void OnMakePeace(TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.IFaction, TaleWorlds.CampaignSystem.Actions.MakePeaceAction/MakePeaceDetail)
+  METHOD  public       virtual void OnKingdomDestroyed(TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void CanKingdomBeDiscontinued(TaleWorlds.CampaignSystem.Kingdom, bool&)
+  METHOD  public       virtual void OnKingdomCreated(TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnVillageBecomeNormal(TaleWorlds.CampaignSystem.Settlements.Village)
+  METHOD  public       virtual void OnVillageBeingRaided(TaleWorlds.CampaignSystem.Settlements.Village)
+  METHOD  public       virtual void OnVillageLooted(TaleWorlds.CampaignSystem.Settlements.Village)
+  METHOD  public       virtual void OnCompanionRemoved(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.RemoveCompanionAction/RemoveCompanionDetail)
+  METHOD  public       virtual void OnAgentJoinedConversation(TaleWorlds.Core.IAgent)
+  METHOD  public       virtual void OnConversationEnded(System.Collections.Generic.IEnumerable<TaleWorlds.CampaignSystem.CharacterObject>)
+  METHOD  public       virtual void OnMapEventEnded(TaleWorlds.CampaignSystem.MapEvents.MapEvent)
+  METHOD  public       virtual void OnMapEventStarted(TaleWorlds.CampaignSystem.MapEvents.MapEvent, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       virtual void OnPrisonersChangeInSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem.Hero, bool)
+  METHOD  public       virtual void OnPlayerBoardGameOver(TaleWorlds.CampaignSystem.Hero, Helpers.BoardGameHelper/BoardGameState)
+  METHOD  public       virtual void OnRansomOfferedToPlayer(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnRansomOfferCancelled(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnPeaceOfferedToPlayer(TaleWorlds.CampaignSystem.IFaction, int, int)
+  METHOD  public       virtual void OnTradeAgreementSigned(TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnPeaceOfferResolved(TaleWorlds.CampaignSystem.IFaction)
+  METHOD  public       virtual void OnMarriageOfferedToPlayer(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnMarriageOfferCanceled(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnVassalOrMercenaryServiceOfferedToPlayer(TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnVassalOrMercenaryServiceOfferCanceled(TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnMercenaryServiceStarted(TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Actions.StartMercenaryServiceAction/StartMercenaryServiceActionDetails)
+  METHOD  public       virtual void OnMercenaryServiceEnded(TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.Actions.EndMercenaryServiceAction/EndMercenaryServiceActionDetails)
+  METHOD  public       virtual void OnMissionStarted(TaleWorlds.Core.IMission)
+  METHOD  public       virtual void BeforeMissionOpened()
+  METHOD  public       virtual void OnPartyRemoved(TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       virtual void OnPartySizeChanged(TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       virtual void OnSettlementOwnerChanged(TaleWorlds.CampaignSystem.Settlements.Settlement, bool, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.ChangeOwnerOfSettlementAction/ChangeOwnerOfSettlementDetail)
+  METHOD  public       virtual void OnGovernorChanged(TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnSettlementLeft(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void WeeklyTick()
+  METHOD  public       virtual void DailyTick()
+  METHOD  public       virtual void DailyTickParty(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void DailyTickTown(TaleWorlds.CampaignSystem.Settlements.Town)
+  METHOD  public       virtual void DailyTickSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void DailyTickHero(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void DailyTickClan(TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual void CollectAvailableTutorials(System.Collections.Generic.List<TaleWorlds.CampaignSystem.CampaignTutorial>&)
+  METHOD  public       virtual void OnTutorialCompleted(string)
+  METHOD  public       virtual void OnBuildingLevelChanged(TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.Settlements.Buildings.Building, int)
+  METHOD  public       virtual void HourlyTick()
+  METHOD  public       virtual void QuarterHourlyTick()
+  METHOD  public       virtual void HourlyTickParty(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void HourlyTickSettlement(TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void HourlyTickClan(TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual void Tick(float)
+  METHOD  public       virtual void OnSessionStart(TaleWorlds.CampaignSystem.CampaignGameStarter)
+  METHOD  public       virtual void OnAfterSessionStart(TaleWorlds.CampaignSystem.CampaignGameStarter)
+  METHOD  public       virtual void OnNewGameCreated(TaleWorlds.CampaignSystem.CampaignGameStarter)
+  METHOD  public       virtual void OnGameEarlyLoaded(TaleWorlds.CampaignSystem.CampaignGameStarter)
+  METHOD  public       virtual void OnGameLoaded(TaleWorlds.CampaignSystem.CampaignGameStarter)
+  METHOD  public       virtual void OnGameLoadFinished()
+  METHOD  public       virtual void AiHourlyTick(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.PartyThinkParams)
+  METHOD  public       virtual void TickPartialHourlyAi(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnPartyJoinedArmy(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnPartyRemovedFromArmy(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnPlayerArmyLeaderChangedBehavior()
+  METHOD  public       virtual void OnMissionEnded(TaleWorlds.Core.IMission)
+  METHOD  public       virtual void QuarterDailyPartyTick(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnPlayerBattleEnd(TaleWorlds.CampaignSystem.MapEvents.MapEvent)
+  METHOD  public       virtual void OnUnitRecruited(TaleWorlds.CampaignSystem.CharacterObject, int)
+  METHOD  public       virtual void OnChildConceived(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnGivenBirth(TaleWorlds.CampaignSystem.Hero, System.Collections.Generic.List<TaleWorlds.CampaignSystem.Hero>, int)
+  METHOD  public       virtual void MissionTick(float)
+  METHOD  public       virtual void OnArmyOverlaySetDirty()
+  METHOD  public       virtual void OnPlayerDesertedBattle(int)
+  METHOD  public       virtual void OnPartyVisibilityChanged(TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       virtual void TrackDetected(TaleWorlds.CampaignSystem.Track)
+  METHOD  public       virtual void TrackLost(TaleWorlds.CampaignSystem.Track)
+  METHOD  public       virtual void LocationCharactersAreReadyToSpawn(System.Collections.Generic.Dictionary<string, int>)
+  METHOD  public       virtual void OnBeforePlayerAgentSpawn(TaleWorlds.Library.MatrixFrame&)
+  METHOD  public       virtual void OnPlayerAgentSpawned()
+  METHOD  public       virtual void LocationCharactersSimulated()
+  METHOD  public       virtual void OnPlayerUpgradedTroops(TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject, int)
+  METHOD  public       virtual void OnHeroCombatHit(TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.CharacterObject, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.Core.WeaponComponentData, bool, int)
+  METHOD  public       virtual void OnCharacterPortraitPopUpOpened(TaleWorlds.CampaignSystem.CharacterObject)
+  METHOD  public       virtual void OnCharacterPortraitPopUpClosed()
+  METHOD  public       virtual void OnPlayerStartTalkFromMenu(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnGameMenuOptionSelected(TaleWorlds.CampaignSystem.GameMenus.GameMenu, TaleWorlds.CampaignSystem.GameMenus.GameMenuOption)
+  METHOD  public       virtual void OnPlayerStartRecruitment(TaleWorlds.CampaignSystem.CharacterObject)
+  METHOD  public       virtual void OnBeforePlayerCharacterChanged(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnPlayerCharacterChanged(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Party.MobileParty, bool)
+  METHOD  public       virtual void OnClanLeaderChanged(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnSiegeEventStarted(TaleWorlds.CampaignSystem.Siege.SiegeEvent)
+  METHOD  public       virtual void OnPlayerSiegeStarted()
+  METHOD  public       virtual void OnSiegeEventEnded(TaleWorlds.CampaignSystem.Siege.SiegeEvent)
+  METHOD  public       virtual void OnSiegeAftermathApplied(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Actions.SiegeAftermathAction/SiegeAftermath, TaleWorlds.CampaignSystem.Clan, System.Collections.Generic.Dictionary<TaleWorlds.CampaignSystem.Party.MobileParty, float>)
+  METHOD  public       virtual void OnSiegeBombardmentHit(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType, TaleWorlds.CampaignSystem.Siege.SiegeBombardTargets)
+  METHOD  public       virtual void OnSiegeBombardmentWallHit(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType, bool)
+  METHOD  public       virtual void OnSiegeEngineDestroyed(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType)
+  METHOD  public       virtual void OnTradeRumorIsTaken(System.Collections.Generic.List<TaleWorlds.CampaignSystem.TradeRumor>, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void OnCheckForIssue(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnIssueUpdated(TaleWorlds.CampaignSystem.Issues.IssueBase, TaleWorlds.CampaignSystem.Issues.IssueBase/IssueUpdateDetails, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnTroopsDeserted(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.TroopRoster)
+  METHOD  public       virtual void OnTroopRecruited(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.CharacterObject, int)
+  METHOD  public       virtual void OnTroopGivenToSettlement(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Roster.TroopRoster)
+  METHOD  public       virtual void OnItemSold(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.Core.ItemRosterElement, int, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void OnCaravanTransactionCompleted(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Town, System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.EquipmentElement, int>>)
+  METHOD  public       virtual void OnPrisonerSold(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.TroopRoster)
+  METHOD  public       virtual void OnPartyDisbandStarted(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnPartyDisbanded(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void OnPartyDisbandCanceled(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnHideoutSpotted(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       virtual void OnHideoutDeactivated(TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void OnHeroSharedFoodWithAnother(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, float)
+  METHOD  public       virtual void OnPlayerInventoryExchange(System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.ItemRosterElement, int>>, System.Collections.Generic.List<System.ValueTuple<TaleWorlds.Core.ItemRosterElement, int>>, bool)
+  METHOD  public       virtual void OnItemsDiscardedByPlayer(TaleWorlds.CampaignSystem.Roster.ItemRoster)
+  METHOD  public       virtual void OnPersuasionProgressCommitted(System.Tuple<TaleWorlds.CampaignSystem.Conversation.Persuasion.PersuasionOptionArgs, TaleWorlds.CampaignSystem.Conversation.Persuasion.PersuasionOptionResult>)
+  METHOD  public       virtual void OnQuestCompleted(TaleWorlds.CampaignSystem.QuestBase, TaleWorlds.CampaignSystem.QuestBase/QuestCompleteDetails)
+  METHOD  public       virtual void OnQuestStarted(TaleWorlds.CampaignSystem.QuestBase)
+  METHOD  public       virtual void OnItemProduced(TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Settlements.Settlement, int)
+  METHOD  public       virtual void OnItemConsumed(TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Settlements.Settlement, int)
+  METHOD  public       virtual void OnPartyConsumedFood(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnBeforeMainCharacterDied(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool)
+  METHOD  public       virtual void OnNewIssueCreated(TaleWorlds.CampaignSystem.Issues.IssueBase)
+  METHOD  public       virtual void OnIssueOwnerChanged(TaleWorlds.CampaignSystem.Issues.IssueBase, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnGameOver()
+  METHOD  public       virtual void SiegeCompleted(TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, bool, TaleWorlds.CampaignSystem.MapEvents.MapEvent/BattleTypes)
+  METHOD  public       virtual void AfterSiegeCompleted(TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, bool, TaleWorlds.CampaignSystem.MapEvents.MapEvent/BattleTypes)
+  METHOD  public       virtual void SiegeEngineBuilt(TaleWorlds.CampaignSystem.Siege.SiegeEvent, TaleWorlds.Core.BattleSideEnum, TaleWorlds.Core.SiegeEngineType)
+  METHOD  public       virtual void RaidCompleted(TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.RaidEventComponent)
+  METHOD  public       virtual void ForceVolunteersCompleted(TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.ForceVolunteersEventComponent)
+  METHOD  public       virtual void ForceSuppliesCompleted(TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.ForceSuppliesEventComponent)
+  METHOD  public       virtual void OnHideoutBattleCompleted(TaleWorlds.Core.BattleSideEnum, TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent, TaleWorlds.CampaignSystem.MapEvents.HideoutEventComponent/HideoutBattleEndState)
+  METHOD  public       virtual void OnClanDestroyed(TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual void OnNewItemCrafted(TaleWorlds.Core.ItemObject, TaleWorlds.Core.ItemModifier, bool)
+  METHOD  public       virtual void CraftingPartUnlocked(TaleWorlds.Core.CraftingPiece)
+  METHOD  public       virtual void OnWorkshopInitialized(TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop)
+  METHOD  public       virtual void OnWorkshopOwnerChanged(TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnWorkshopTypeChanged(TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop)
+  METHOD  public       virtual void OnBeforeSave()
+  METHOD  public       virtual void OnSaveStarted()
+  METHOD  public       virtual void OnSaveOver(bool, string)
+  METHOD  public       virtual void CollectMetadataEntries(System.Collections.Generic.List<System.Collections.Generic.KeyValuePair<string, string>>)
+  METHOD  public       virtual void OnPrisonerTaken(TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster)
+  METHOD  public       virtual void OnPrisonerReleased(TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster)
+  METHOD  public       virtual void OnMainPartyPrisonerRecruited(TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster)
+  METHOD  public       virtual void OnPrisonerDonatedToSettlement(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Roster.FlattenedTroopRoster, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void OnEquipmentSmeltedByHero(TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.EquipmentElement)
+  METHOD  public       virtual void OnPlayerTradeProfit(int)
+  METHOD  public       virtual void OnHeroChangedClan(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual void OnHeroGetsBusy(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.HeroGetsBusyReasons)
+  METHOD  public       virtual void OnCollectLootItems(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.ItemRoster)
+  METHOD  public       virtual void OnLootDistributedToParty(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Roster.ItemRoster)
+  METHOD  public       virtual void OnHeroTeleportationRequested(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Settlements.Settlement, TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Actions.TeleportHeroAction/TeleportationDetail)
+  METHOD  public       virtual void OnPartyLeaderChangeOfferCanceled(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnPartyLeaderChanged(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnClanInfluenceChanged(TaleWorlds.CampaignSystem.Clan, float)
+  METHOD  public       virtual void OnPlayerPartyKnockedOrKilledTroop(TaleWorlds.CampaignSystem.CharacterObject)
+  METHOD  public       virtual void OnPlayerEarnedGoldFromAsset(TaleWorlds.CampaignSystem.GameComponents.DefaultClanFinanceModel/AssetIncomeType, int)
+  METHOD  public       virtual void OnClanEarnedGoldFromTribute(TaleWorlds.CampaignSystem.Clan, TaleWorlds.CampaignSystem.IFaction)
+  METHOD  public       virtual void OnMainPartyStarving()
+  METHOD  public       virtual void OnPlayerJoinedTournament(TaleWorlds.CampaignSystem.Settlements.Town, bool)
+  METHOD  public       virtual void OnHeroUnregistered(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnConfigChanged()
+  METHOD  public       virtual void OnCraftingOrderCompleted(TaleWorlds.CampaignSystem.Settlements.Town, TaleWorlds.CampaignSystem.CraftingSystem.CraftingOrder, TaleWorlds.Core.ItemObject, TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnItemsRefined(TaleWorlds.CampaignSystem.Hero, TaleWorlds.Core.Crafting/RefiningFormula)
+  METHOD  public       virtual void OnHeirSelectionRequested(System.Collections.Generic.Dictionary<TaleWorlds.CampaignSystem.Hero, int>)
+  METHOD  public       virtual void OnHeirSelectionOver(TaleWorlds.CampaignSystem.Hero)
+  METHOD  public       virtual void OnMobilePartyRaftStateChanged(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnCharacterCreationInitialized(TaleWorlds.CampaignSystem.CharacterCreationContent.CharacterCreationManager)
+  METHOD  public       virtual void OnShipDestroyed(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Actions.DestroyShipAction/ShipDestroyDetail)
+  METHOD  public       virtual void OnShipOwnerChanged(TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Actions.ChangeShipOwnerAction/ShipOwnerChangeDetail)
+  METHOD  public       virtual void OnShipRepaired(TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void OnShipCreated(TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       virtual void OnFigureheadUnlocked(TaleWorlds.CampaignSystem.Naval.Figurehead)
+  METHOD  public       virtual void OnPartyLeftArmy(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Army)
+  METHOD  public       virtual void OnPartyAddedToMapEvent(TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       virtual void OnIncidentResolved(TaleWorlds.CampaignSystem.Incidents.Incident)
+  METHOD  public       virtual void OnMobilePartyNavigationStateChanged(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnMobilePartyJoinedToSiegeEvent(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnMobilePartyLeftSiegeEvent(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual void OnBlockadeActivated(TaleWorlds.CampaignSystem.Siege.SiegeEvent)
+  METHOD  public       virtual void OnBlockadeDeactivated(TaleWorlds.CampaignSystem.Siege.SiegeEvent)
+  METHOD  public       virtual void OnMapMarkerCreated(TaleWorlds.CampaignSystem.Map.MapMarker)
+  METHOD  public       virtual void OnMapMarkerRemoved(TaleWorlds.CampaignSystem.Map.MapMarker)
+  METHOD  public       virtual void OnAllianceStarted(TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnAllianceEnded(TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnCallToWarAgreementStarted(TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void OnCallToWarAgreementEnded(TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom, TaleWorlds.CampaignSystem.Kingdom)
+  METHOD  public       virtual void CanHeroLeadParty(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void CanHeroMarry(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void CanHeroEquipmentBeChanged(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void CanBeGovernorOrHavePartyRole(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void CanHeroDie(TaleWorlds.CampaignSystem.Hero, TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail, bool&)
+  METHOD  public       virtual void CanPlayerMeetWithHeroAfterConversation(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void CanHeroBecomePrisoner(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void CanMoveToSettlement(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void CanHaveCampaignIssues(TaleWorlds.CampaignSystem.Hero, bool&)
+  METHOD  public       virtual void IsSettlementBusy(TaleWorlds.CampaignSystem.Settlements.Settlement, object, int&)
+  METHOD  public       virtual void OnMapEventContinuityNeedsUpdate(TaleWorlds.CampaignSystem.IFaction)
+  METHOD  public       void .ctor()
+

@@ -1,0 +1,42 @@
+class TaleWorlds.CampaignSystem.Actions.ChangeShipOwnerAction
+  METHOD  private      static void ApplyInternal(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Actions.ChangeShipOwnerAction/ShipOwnerChangeDetail)
+  METHOD  public       static void ApplyByTransferring(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  public       static void ApplyByTrade(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  public       static void ApplyByLooting(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  public       static void ApplyByProduction(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  public       static void ApplyByMobilePartyCreation(TaleWorlds.CampaignSystem.Party.PartyBase, TaleWorlds.CampaignSystem.Naval.Ship)
+class TaleWorlds.CampaignSystem.Actions.DestroyShipAction
+  METHOD  private      static void ApplyInternal(TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Actions.DestroyShipAction/ShipDestroyDetail)
+  METHOD  public       static void Apply(TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  public       static void ApplyByDiscard(TaleWorlds.CampaignSystem.Naval.Ship)
+class TaleWorlds.CampaignSystem.Actions.RepairShipAction
+  METHOD  private      static void ApplyInternal(TaleWorlds.CampaignSystem.Naval.Ship, float, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       static void Apply(TaleWorlds.CampaignSystem.Naval.Ship, TaleWorlds.CampaignSystem.Settlements.Settlement)
+  METHOD  public       static void ApplyForFree(TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  public       static void ApplyForBanditShip(TaleWorlds.CampaignSystem.Naval.Ship)
+class TaleWorlds.CampaignSystem.Actions.RaftStateChangeAction
+  METHOD  private      static void ApplyInternal(TaleWorlds.CampaignSystem.Party.MobileParty, bool)
+  METHOD  public       static void ActivateRaftStateForParty(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       static void DeactivateRaftStateForParty(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       void .ctor()
+class Helpers.ShipHelper
+  FIELD   public       static int NavalRaidMissionShipLimit
+  METHOD  public       static TaleWorlds.Core.Banner GetShipBanner(TaleWorlds.Core.IShipOrigin, TaleWorlds.Core.IAgent)
+  METHOD  public       static System.ValueTuple<uint, uint> GetSailColors(TaleWorlds.Core.IShipOrigin, TaleWorlds.Core.IAgent)
+  METHOD  public       static TaleWorlds.Core.Banner GetShipBanner(TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       static System.ValueTuple<uint, uint> GetSailColors(TaleWorlds.CampaignSystem.Party.PartyBase)
+  METHOD  public       static System.Collections.Generic.List<TaleWorlds.CampaignSystem.Naval.Ship> GetOrderedNavalRaidShipsOfPlayerParty()
+class TaleWorlds.CampaignSystem.ComponentInterfaces.FleetManagementModel : TaleWorlds.Core.MBGameModel<TaleWorlds.CampaignSystem.ComponentInterfaces.FleetManagementModel>
+  PROP    int MinimumTroopCountRequiredToSendShips {get:public}
+  METHOD  public       virtual bool CanTroopsReturn()
+  METHOD  public       virtual TaleWorlds.CampaignSystem.CampaignTime GetReturnTimeForTroops(TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  public       virtual bool CanSendShipToPlayerClan(TaleWorlds.CampaignSystem.Naval.Ship, int, int, TaleWorlds.Localization.TextObject&)
+  METHOD  family       void .ctor()
+class TaleWorlds.CampaignSystem.ComponentInterfaces.PartyShipLimitModel : TaleWorlds.Core.MBGameModel<TaleWorlds.CampaignSystem.ComponentInterfaces.PartyShipLimitModel>
+  METHOD  public       virtual int GetIdealShipNumber(TaleWorlds.CampaignSystem.Party.MobileParty)
+  METHOD  public       virtual int GetIdealShipNumber(TaleWorlds.CampaignSystem.Clan)
+  METHOD  public       virtual float GetShipPriority(TaleWorlds.CampaignSystem.Party.MobileParty, TaleWorlds.CampaignSystem.Naval.Ship, bool)
+  METHOD  family       void .ctor()
+class TaleWorlds.CampaignSystem.ComponentInterfaces.ShipStatModel : TaleWorlds.Core.MBGameModel<TaleWorlds.CampaignSystem.ComponentInterfaces.ShipStatModel>
+  METHOD  public       virtual float GetShipFlagshipScore(TaleWorlds.CampaignSystem.Naval.Ship)
+  METHOD  family       void .ctor()

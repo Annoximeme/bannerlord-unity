@@ -1,0 +1,930 @@
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::<>9:NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::<>9__31_0:System.Func<TaleWorlds.CampaignSystem.Settlements.Town, bool>
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::<>9__31_1:System.Func<TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop, bool>
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::<>9__31_2:System.Func<TaleWorlds.CampaignSystem.CharacterObject, bool>
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c__DisplayClass30_0::kingdom:TaleWorlds.CampaignSystem.Kingdom
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralCastleCount:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralLightShipCount:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralMarinerTroopCounts:System.Collections.Generic.Dictionary<int, System.ValueTuple<int, int>>
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralMediumShipCount:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralMinimumClanTier:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralNormalTroopCounts:System.Collections.Generic.Dictionary<int, System.ValueTuple<int, int>>
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralSeed:uint
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralStartingCompanionCount:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralStartingFoodMax:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralStartingFoodMin:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralStartingGoldMax:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::FleetAdmiralStartingGoldMin:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerClanTier:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerMaximumTroopCount:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerSeed:uint
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerShipId:string
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerStartingCompanionCount:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerStartingFoodMax:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerStartingFoodMin:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerStartingGoldMax:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerStartingGoldMin:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerTradeGoodTypeCount:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerTradeGoodsGoldMax:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerTradeGoodsGoldMin:int
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::MerchantVenturerTroopCounts:System.Collections.Generic.Dictionary<int, System.ValueTuple<int, int>>
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::PersonalShipHullIds:string[]
+F NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::PersonalShipSeed:uint
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9:NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_0:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_100:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_101:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_102:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_103:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_104:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_106:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_107:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_108:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_109:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_10:System.Func<TaleWorlds.CampaignSystem.Naval.Ship, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_110:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_111:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_112:System.Func<TaleWorlds.CampaignSystem.Naval.Ship, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_113:System.Func<TaleWorlds.Core.ItemObject>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_114:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_115:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_116:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_117:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_119:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_11:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_120:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_121:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_122:System.Func<TaleWorlds.CampaignSystem.CharacterObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_123:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_124:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_125:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_126:System.Func<TaleWorlds.Core.ItemObject>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_127:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_128:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_129:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_12:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_131:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_132:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_134:System.Func<TaleWorlds.CampaignSystem.Naval.Ship, int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_135:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_138:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_139:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_13:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_140:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_142:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_143:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_145:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_146:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_147:System.Func<TaleWorlds.CampaignSystem.CharacterObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_148:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_14:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_150:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_151:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_152:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_153:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_154:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_155:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_156:System.Func<System.Collections.Generic.List<TaleWorlds.Localization.TextObject>>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_157:System.Func<TaleWorlds.CampaignSystem.Incidents.IncidentEffect, TaleWorlds.CampaignSystem.Incidents.IncidentHint>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_158:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_159:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_15:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_160:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_161:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_162:System.Func<TaleWorlds.Core.ItemObject>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_163:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_164:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_165:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_166:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_167:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_169:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_16:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_170:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_171:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_172:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_173:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_176:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_177:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_178:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_179:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_17:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_180:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_181:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_182:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_183:System.Func<TaleWorlds.CampaignSystem.Naval.Ship, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_184:System.Func<TaleWorlds.CampaignSystem.IFaction>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_185:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_186:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_187:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_18:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_1:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_20:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_21:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_22:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_23:System.Func<TaleWorlds.Core.ItemObject>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_24:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_25:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_26:System.Func<TaleWorlds.CampaignSystem.Hero, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_27:System.Func<TaleWorlds.Core.ItemObject>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_28:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_29:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_2:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_30:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_31:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_32:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_33:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_34:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_35:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_39:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_40:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_41:System.Func<TaleWorlds.Core.SiegeEngineType, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_42:System.Func<TaleWorlds.CampaignSystem.Naval.Ship, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_43:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_44:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_45:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_46:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_47:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_48:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_4:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_50:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_51:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_53:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_54:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_55:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_57:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_58:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_59:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_5:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_60:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_61:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_62:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_63:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_64:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_65:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_67:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_68:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_69:System.Func<TaleWorlds.CampaignSystem.CharacterObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_70:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_71:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_72:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_74:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_75:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_76:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_77:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_78:TaleWorlds.CampaignSystem.Incidents.Incident/IncidentOptionConditionDelegate
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_79:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_7:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_80:System.Func<TaleWorlds.CampaignSystem.Hero, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_81:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_82:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_83:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_84:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_85:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_86:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_87:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_88:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_89:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_90:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_91:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_92:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_93:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_94:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_95:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_96:System.Func<int>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_97:System.Func<TaleWorlds.CampaignSystem.Settlements.Settlement>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_98:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_99:System.Func<TaleWorlds.CampaignSystem.Roster.TroopRosterElement, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<>9__18_9:System.Func<TaleWorlds.Localization.TextObject, bool>
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_0::type:TaleWorlds.Core.ShipHull/ShipType
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_1::culture:TaleWorlds.CampaignSystem.CultureObject
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentTrigger::LeavingEncounterAtSea:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentTrigger::LeavingNavalBattle:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentTrigger::LeavingPort:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentType::HarborWaterfront:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentType::LifeAtSea:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentType::NauticalHazard:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentType::PostNavalBattleScene:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentType::River:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::FishItemId:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::NorthernWatersY:float
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::PortMenuId:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::PortSetSailOptionId:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::SouthernWatersY:float
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::WhaleOilItemId:string
+F NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::WineItemId:string
+F NavalDLC.CampaignBehaviors.NavalTransitionCampaignBehavior/<>c::<>9__20_0:System.Func<string, bool>
+F NavalDLC.CampaignBehaviors.NavalTransitionCampaignBehavior/<>c::<>9__2_0:TaleWorlds.CampaignSystem.GameMenus.GameMenuOption/OnConsequenceDelegate
+F NavalDLC.CampaignBehaviors.ShipUpgradeCampaignBehavior/<>c__DisplayClass6_0::upgradePieceLevelToLook:int
+F NavalDLC.CharacterDevelopment.NavalSkillLevellingManager/<>c::<>9:NavalDLC.CharacterDevelopment.NavalSkillLevellingManager/<>c
+F NavalDLC.CharacterDevelopment.NavalSkillLevellingManager/<>c::<>9__51_0:System.Func<TaleWorlds.CampaignSystem.Party.MobileParty, int>
+F NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c::<>9:NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c
+F NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c::<>9__7_0:System.Func<TaleWorlds.CampaignSystem.MapEvents.MapEventParty, int>
+F NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c::<>9__7_1:System.Func<TaleWorlds.CampaignSystem.MapEvents.MapEventParty, int>
+F NavalDLC.GameComponents.NavalDLCBattleWreckageModel::MaxNavalWreckageCount:int
+F NavalDLC.GameComponents.NavalDLCBattleWreckageModel::NavalEpicWreckageBattleSizeThreshold:int
+F NavalDLC.GameComponents.NavalDLCBattleWreckageModel::NavalNormalWreckageBattleSizeThreshold:int
+F NavalDLC.GameComponents.NavalDLCBattleWreckageModel::NavalSmallWreckageBattleSizeThreshold:int
+F NavalDLC.GameComponents.NavalDLCMobilePartyAIModel/<>c::<>9__31_0:System.Func<TaleWorlds.CampaignSystem.Naval.Ship, float>
+F NavalDLC.GameComponents.NavalDLCMobilePartyAIModel/<>c__DisplayClass31_0::<>4__this:NavalDLC.GameComponents.NavalDLCMobilePartyAIModel
+F NavalDLC.GameComponents.NavalDLCMobilePartyAIModel/<>c__DisplayClass31_0::mobileParty:TaleWorlds.CampaignSystem.Party.MobileParty
+F NavalDLC.GameComponents.NavalDLCMobilePartyAIModel::_tradeAgreementBehavior:TaleWorlds.CampaignSystem.CampaignBehaviors.ITradeAgreementsCampaignBehavior
+F NavalDLC.MissionShipFactory/<>c__DisplayClass1_0::defaultSailColors:System.Nullable<System.ValueTuple<uint, uint>>
+F NavalDLC.Missions.Deployment.NavalDeploymentPlan/<>c::<>9__46_0:System.Comparison<System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>>
+F NavalDLC.Missions.Deployment.NavalDeploymentPlan/<>c::<>9__46_1:System.Func<System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>, float>
+F NavalDLC.Missions.Deployment.NavalDeploymentPlan/<>c::<>9__46_2:System.Func<System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>, float>
+F NavalDLC.Missions.Deployment.NavalDeploymentPlan::ForceSingleRowDeployment:bool
+F NavalDLC.Missions.Deployment.NavalDeploymentPlan::MaxHorizontalShipGap:float
+F NavalDLC.Missions.Deployment.NavalDeploymentPlan::ShipRowGap:float
+F NavalDLC.Missions.Deployment.NavalMissionDeploymentPlanningLogic/<>c__DisplayClass33_0::team:TaleWorlds.MountAndBlade.Team
+F NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic/<>c__DisplayClass41_0::team:TaleWorlds.MountAndBlade.Team
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan/<>c::<>9__36_0:System.Func<TaleWorlds.Library.Vec2, float>
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan/<>c::<>9__36_1:System.Func<TaleWorlds.Library.Vec2, float>
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::DeployZoneBackwardsMargin:float
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::DeployZoneExtraWidthPerShip:float
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::DeployZoneMaximumWidth:float
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::RiverDeployZoneMarginWidth:float
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::RiverDeployZoneMaximumWidth:float
+F NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::_deploymentZoneFrame:TaleWorlds.Library.MatrixFrame
+F NavalDLC.Missions.Objects.MissionShip/<>c::<>9__433_0:System.Comparison<NavalDLC.Missions.Objects.UsableMachines.ShipOarMachine>
+F NavalDLC.Missions.Objects.MissionShip/<>c::<>9__433_1:System.Comparison<NavalDLC.Missions.Objects.UsableMachines.ShipOarMachine>
+F NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass428_0::<>4__this:NavalDLC.Missions.Objects.MissionShip
+F NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass428_0::missionShipObject:TaleWorlds.Core.MissionShipObject
+F NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass431_0::uniqueIdsFaces:System.Collections.Generic.HashSet<int>
+F NavalDLC.Missions.Objects.OceanWave2Sine::AlignTag:string
+F NavalDLC.Missions.Objects.OceanWave2Sine::MinWavelength:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::_helperTag:TaleWorlds.Engine.SimpleButton
+F NavalDLC.Missions.Objects.OceanWave2Sine::alignToWaveNormal:bool
+F NavalDLC.Missions.Objects.OceanWave2Sine::atRest:bool
+F NavalDLC.Missions.Objects.OceanWave2Sine::cachedChildCount:int
+F NavalDLC.Missions.Objects.OceanWave2Sine::childAlignEligible:bool[]
+F NavalDLC.Missions.Objects.OceanWave2Sine::childRestFrames:TaleWorlds.Library.MatrixFrame[]
+F NavalDLC.Missions.Objects.OceanWave2Sine::enabledInEditor:bool
+F NavalDLC.Missions.Objects.OceanWave2Sine::et:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::lodDistance:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::lodDistanceSq:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::phaseOffsetDegrees:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::tiltSampleEpsilon:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::wave1Amplitude:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::wave1Frequency:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::wave1Wavelength:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::wave2Amplitude:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::wave2Frequency:float
+F NavalDLC.Missions.Objects.OceanWave2Sine::wave2Wavelength:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod::Culled:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod::Far:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod::Medium:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod::Near:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod::value__:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy::Collapsed:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy::Natural:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy::Taut:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy::value__:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::AdditionalBoneFrameCount:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::BakedFrameCount:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::DampingConvergenceRate:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::DebugMaterialPointCount:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::DebugMaxRopeLength:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::DefaultVerletRestLength:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::LodBoundingRadiusPadding:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::LodCullDistance:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::LodFrustumCosine:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::LodMediumDistance:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::LodNearDistance:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::MaxVerletDt:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::PointParam:float[]
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::RestLengthSmoothing:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SagCoef:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SegmentFraction:float[]
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::VerletIterationsMedium:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::VerletIterationsNear:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::WaterFloatOffset:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::WaterSamplesMedium:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::WaterSamplesNear:int
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::WindForceScale:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_applyClipPlanes:bool
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_clipPlaneSrcEntity:TaleWorlds.Engine.GameEntity
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_clipPlaneTgtEntity:TaleWorlds.Engine.GameEntity
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_dampingOverride:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_dampingTargetOverride:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_driftAcceleration:TaleWorlds.Library.Vec3
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_fadeDuration:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_lastLodWasFarOrCulled:bool
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_lastVerletTime:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_lifetimeRemaining:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_lifetimeTotal:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_meshUnfurlOverride:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_posWorld:TaleWorlds.Library.Vec3[]
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_prevPosWorld:TaleWorlds.Library.Vec3[]
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_sourceAnchorLocalOffset:TaleWorlds.Library.Vec3
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_sourceAnchorTracker:TaleWorlds.Engine.GameEntity
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_sourcePinned:bool
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_targetAnchorLocalOffset:TaleWorlds.Library.Vec3
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_targetAnchorTracker:TaleWorlds.Engine.GameEntity
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_targetPinned:bool
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_targetRestLength:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_verletInitialized:bool
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_verletRestLength:float
+F NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::_wobbleImpulseWorld:TaleWorlds.Library.Vec3[]
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment/<>c__DisplayClass132_0::attachmentSourceHolderEntity:TaleWorlds.Engine.WeakGameEntity
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachmentJoint::<TensionRatio>k__BackingField:float
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachmentJoint::SlackPullBoostFullAtMeters:float
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachmentJoint::SlackPullBoostMax:float
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachmentJoint::_lastActualDistance:float
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::<RopeVisualEntity>k__BackingField:TaleWorlds.Engine.GameEntity
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::_cutRopeSegmentEntities:TaleWorlds.Engine.GameEntity[]
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::_cutRopeSegmentsCached:NavalDLC.Missions.Objects.UsableMachines.RopePileBaked[]
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePart:TaleWorlds.Engine.GameEntity
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartCleanCollider:TaleWorlds.Engine.GameEntity
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartIndicesPinnedGCHandler:System.Runtime.InteropServices.GCHandle
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartIndicesPinnedPointer:UIntPtr
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartPhysicsMaterialCached:TaleWorlds.Engine.PhysicsMaterial
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartQuadPinnedGCHandler:System.Runtime.InteropServices.GCHandle
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartQuadPinnedPointer:UIntPtr
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartQuadsCached:TaleWorlds.Library.Vec3[]
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartQuadsIndicesCached:int[]
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_destructablePartReset:bool
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_lastHitDamage:float
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_lastHitImpactDirection:TaleWorlds.Library.Vec3
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_lastHitImpactPosition:TaleWorlds.Library.Vec3
+F NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::_shipAttachmentPointMachineDestructableComponent:TaleWorlds.MountAndBlade.DestructableComponent
+F NavalDLC.Missions.Objects.VisibilityMask::currentlyVisible:bool
+F NavalDLC.Missions.Objects.VisibilityMask::distance:float
+F NavalDLC.NavalDLCSubModule::ShipHullsXMLPath:string
+F NavalDLC.NavalDLCSubModule::ShipSlotsXMLPath:string
+F NavalDLC.NavalDLCSubModule::ShipUpgradePiecesXMLPath:string
+F NavalDLC.NavalIncidentEffects/<>c::<>9:NavalDLC.NavalIncidentEffects/<>c
+F NavalDLC.NavalIncidentEffects/<>c::<>9__0_0:System.Func<bool>
+F NavalDLC.NavalIncidentEffects/<>c::<>9__1_0:System.Func<bool>
+F NavalDLC.NavalIncidentEffects/<>c__DisplayClass0_0::factor:float
+F NavalDLC.NavalIncidentEffects/<>c__DisplayClass1_0::factor:float
+F NavalDLC.NavalIncidentEffects/<>c__DisplayClass2_0::shipGetter:System.Func<TaleWorlds.CampaignSystem.Naval.Ship>
+F NavalDLC.NavalIncidentEffects/<>c__DisplayClass3_0::shipGetter:System.Func<TaleWorlds.CampaignSystem.Naval.Ship>
+F NavalDLC.NavalIncidentEffects/<>c__DisplayClass4_0::figurehead:TaleWorlds.CampaignSystem.Naval.Figurehead
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<>9__105_0:System.Func<TaleWorlds.CampaignSystem.QuestBase, bool>
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<>9__85_0:System.Func<TaleWorlds.Engine.GameEntity, bool>
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<>9__98_0:System.Func<System.ValueTuple<string, int>, int>
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<>9__99_0:System.Func<System.ValueTuple<string, int>, int>
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass81_0::valueTuple:System.ValueTuple<NavalDLC.Missions.Objects.MissionShip, bool>
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass84_0::playerShipHull:TaleWorlds.Core.ShipHull
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass85_0::playerAllyMissionShip:NavalDLC.Missions.Objects.MissionShip
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass86_0::hull:TaleWorlds.Core.ShipHull
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass91_0::spawnPointId:string
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass92_0::shipHullObject:TaleWorlds.Core.ShipHull
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass94_0::fortressCenter:TaleWorlds.Library.Vec3
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController::AllyShipForceConnectDelay:float
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController::AllyShipForceConnectMaxDistanceSquared:float
+F NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController::_allyShipStuckDurations:System.Collections.Generic.Dictionary<NavalDLC.Missions.Objects.MissionShip, float>
+F NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<>9__149_0:System.Func<NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/EnemySpawnPoint, bool>
+F NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<>9__150_0:System.Func<NavalDLC.Storyline.Objects.BurnShipObject, bool>
+F NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<>9__150_1:System.Func<NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/EnemySpawnPoint, bool>
+F NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<>9__153_0:System.Func<TaleWorlds.MountAndBlade.Agent, bool>
+F NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<>9__205_0:System.Func<NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/EnemyShipTrigger, bool>
+F NavalDLC.Storyline.NavalStorylineData/<>c::<>9:NavalDLC.Storyline.NavalStorylineData/<>c
+F NavalDLC.Storyline.NavalStorylineData/<>c::<>9__87_0:System.Func<TaleWorlds.CampaignSystem.QuestBase, bool>
+F NavalDLC.Storyline.NavalStorylineData/<>c__DisplayClass87_0::questAccepted:System.Action
+F NavalDLC.Storyline.NavalStorylineData/<>c__DisplayClass87_0::questRejected:System.Action
+M NavalDLC.CampaignBehaviors.ClanFleetManagementCampaignBehavior::conversation_clan_member_manage_fleet_clickable_condition(TaleWorlds.Localization.TextObject&):bool
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::.ctor():void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::CanHeroDie(TaleWorlds.CampaignSystem.Hero,TaleWorlds.CampaignSystem.Actions.KillCharacterAction/KillCharacterActionDetail,bool&):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::GiveCachedShipsToMainParty(TaleWorlds.Library.MBReadOnlyList<TaleWorlds.CampaignSystem.Naval.Ship>):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::OnAfterSessionLaunched(TaleWorlds.CampaignSystem.CampaignGameStarter):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::RegisterEvents():void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::SyncData(TaleWorlds.CampaignSystem.IDataStore):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::continue_condition(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):bool
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::game_menu_ferry_state_end_on_init(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::game_menu_ferry_state_wait_on_init(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::game_menu_ferry_target_on_condition(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):bool
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::game_menu_ferry_target_on_consequence(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::player_ferry_state_end_continue_on_consequence(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):void
+M NavalDLC.CampaignBehaviors.FerryCampaignBehavior::player_ferry_state_menu_on_tick(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs,TaleWorlds.CampaignSystem.CampaignTime):void
+M NavalDLC.CampaignBehaviors.FishingPartyCampaignBehavior::OnNewGameCreatedPartialFollowUpEnd(TaleWorlds.CampaignSystem.CampaignGameStarter):void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::.cctor():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::.ctor():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::<StartGameAsMerchantVenturer>b__31_0(TaleWorlds.CampaignSystem.Settlements.Town):bool
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::<StartGameAsMerchantVenturer>b__31_1(TaleWorlds.CampaignSystem.Settlements.Workshops.Workshop):bool
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c::<StartGameAsMerchantVenturer>b__31_2(TaleWorlds.CampaignSystem.CharacterObject):bool
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c__DisplayClass30_0::.ctor():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c__DisplayClass30_0::<StartGameAsFleetAdmiral>b__0(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c__DisplayClass30_0::<StartGameAsFleetAdmiral>b__1(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c__DisplayClass30_0::<StartGameAsFleetAdmiral>b__2(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::.cctor():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::.ctor():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::CollectTroops(System.Collections.Generic.List<TaleWorlds.CampaignSystem.CharacterObject>,int,bool):System.Collections.Generic.List<TaleWorlds.CampaignSystem.CharacterObject>
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::GivePersonalShip():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::GiveRandomShipsByType(int,TaleWorlds.Core.ShipHull/ShipType,TaleWorlds.CampaignSystem.CultureObject,TaleWorlds.Core.MBFastRandom):void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::GiveTroopsFromTree(System.Collections.Generic.List<TaleWorlds.CampaignSystem.CharacterObject>,System.Collections.Generic.Dictionary<int, System.ValueTuple<int, int>>,bool,TaleWorlds.Core.MBFastRandom):void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::GiveTroopsToMainPartyFromCaravanTemplate(TaleWorlds.CampaignSystem.CultureObject,TaleWorlds.Core.MBFastRandom):void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::OnCharacterCreationIsOver(int):void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::RegisterEvents():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::StartGameAsFleetAdmiral(string):void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::StartGameAsMerchantVenturer():void
+M NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior::SyncData(TaleWorlds.CampaignSystem.IDataStore):void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::.cctor():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::.ctor():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_0(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_1():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_10(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_100():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_101(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_102():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_103(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_104():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_106(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_107(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_108():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_109():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_11(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_110():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_111(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_112(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_113():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_114():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_115(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_116(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_117():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_119(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_12():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_120(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_121(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_122(TaleWorlds.CampaignSystem.CharacterObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_123(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_124(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_125(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_126():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_127():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_128():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_129():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_13(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_131(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_132(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_134(TaleWorlds.CampaignSystem.Naval.Ship):int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_135():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_138(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_139(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_14(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_140(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_142(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_143():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_145(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_146(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_147(TaleWorlds.CampaignSystem.CharacterObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_148():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_15(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_150(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_151(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_152(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_153():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_154(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_155():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_156():System.Collections.Generic.List<TaleWorlds.Localization.TextObject>
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_157(TaleWorlds.CampaignSystem.Incidents.IncidentEffect):TaleWorlds.CampaignSystem.Incidents.IncidentHint
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_158(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_159(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_16(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_160():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_161(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_162():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_163():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_164(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_165():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_166():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_167(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_169(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_17():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_170():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_171(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_172():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_173():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_176(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_177():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_178():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_179():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_18():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_180(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_181(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_182(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_183(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_184():TaleWorlds.CampaignSystem.IFaction
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_185():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_186(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_187():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_2(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_20(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_21(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_22(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_23():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_24():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_25():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_26(TaleWorlds.CampaignSystem.Hero):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_27():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_28():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_29():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_30(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_31(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_32():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_33(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_34(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_35():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_39(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_4(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_40(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_41(TaleWorlds.Core.SiegeEngineType):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_42(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_43():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_44():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_45(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_46():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_47():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_48():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_5(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_50(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_51():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_53(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_54(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_55():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_57(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_58(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_59():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_60():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_61():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_62():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_63(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_64(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_65():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_67(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_68(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_69(TaleWorlds.CampaignSystem.CharacterObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_7(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_70():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_71():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_72():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_74(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_75(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_76(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_77(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_78(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_79():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_80(TaleWorlds.CampaignSystem.Hero):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_81(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_82(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_83(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_84():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_85(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_86():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_87(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_88():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_89(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_9(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_90():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_91(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_92():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_93():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_94(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_95():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_96():int
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_97():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_98(TaleWorlds.Localization.TextObject):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>b__18_99(TaleWorlds.CampaignSystem.Roster.TroopRosterElement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetCrewMember|18_3():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetFish|18_174():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetFish|18_56():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetInjuredCrew|18_19():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetMarinerInfantry|18_144():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetMasterSeamanTroop|18_118():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetMeat|18_37():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetRivalVillage|18_105():TaleWorlds.CampaignSystem.Settlements.Settlement
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetSeamanTroop|18_66():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetShipWithBallista|18_36():TaleWorlds.CampaignSystem.Naval.Ship
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetSmallestShip|18_130():TaleWorlds.CampaignSystem.Naval.Ship
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetTownRecruit|18_73():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetTradeGood|18_168():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetWhaleOil|18_38():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c::<InitializeIncidents>g__GetWine|18_49():TaleWorlds.Core.ItemObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_0::.ctor():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_0::<InitializeIncidents>b__133(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_1::.ctor():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_1::<InitializeIncidents>b__141(TaleWorlds.CampaignSystem.Settlements.Settlement):bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::.ctor():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::<InitializeIncidents>g__GetFirstTwoCrewCultures|18_52():System.ValueTuple<TaleWorlds.CampaignSystem.CultureObject, TaleWorlds.CampaignSystem.CultureObject>
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::<InitializeIncidents>g__GetNearestPortNameOfCulture|18_137(TaleWorlds.CampaignSystem.CultureObject):TaleWorlds.Localization.TextObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::<InitializeIncidents>g__GetSeasickLandlubber|18_6():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::<InitializeIncidents>g__GetSwimmerTroop|18_149():TaleWorlds.CampaignSystem.CharacterObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::<InitializeIncidents>g__GetTwoCrewCultures|18_136():System.Collections.Generic.List<TaleWorlds.CampaignSystem.CultureObject>
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::<InitializeIncidents>g__GetVillages|18_175():System.ValueTuple<TaleWorlds.CampaignSystem.Settlements.Village, TaleWorlds.CampaignSystem.Settlements.Village>
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::<InitializeIncidents>g__HasLargeGalley|18_8():bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::GetPlayerShipName():TaleWorlds.Localization.TextObject
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::InitializeIncidents():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::IsLastVisitedPortOnRiver():bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::IsOnRiver():bool
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::OnConversationEnded(System.Collections.Generic.IEnumerable<TaleWorlds.CampaignSystem.CharacterObject>):void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::OnGameMenuOptionSelected(TaleWorlds.CampaignSystem.GameMenus.GameMenu,TaleWorlds.CampaignSystem.GameMenus.GameMenuOption):void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::OnMapEventEnded(TaleWorlds.CampaignSystem.MapEvents.MapEvent):void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::RegisterEvents():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::RegisterIncident(string,string,string,string,string,TaleWorlds.CampaignSystem.CampaignTime,System.Func<TaleWorlds.Localization.TextObject, bool>):TaleWorlds.CampaignSystem.Incidents.Incident
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::RegisterIncident(string,string,string,string[],string,TaleWorlds.CampaignSystem.CampaignTime,System.Func<TaleWorlds.Localization.TextObject, bool>):TaleWorlds.CampaignSystem.Incidents.Incident
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::SyncData(TaleWorlds.CampaignSystem.IDataStore):void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::TaleWorlds.CampaignSystem.CampaignBehaviors.INonReadyObjectHandler.OnBeforeNonReadyObjectsDeleted():void
+M NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour::TryInvokeIncident(TaleWorlds.CampaignSystem.Incidents.Incident/IncidentTrigger):void
+M NavalDLC.CampaignBehaviors.NavalInitializationCampaignBehavior::OnCharacterCreationIsOver(int):void
+M NavalDLC.CampaignBehaviors.NavalTransitionCampaignBehavior/<>c::<AddGameMenus>b__2_0(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):void
+M NavalDLC.CampaignBehaviors.NavalTransitionCampaignBehavior/<>c::<enter_port_condition>b__20_0(string):bool
+M NavalDLC.CampaignBehaviors.NavalTransitionCampaignBehavior::game_menu_leave_at_sea_on_condition(TaleWorlds.CampaignSystem.GameMenus.MenuCallbackArgs):bool
+M NavalDLC.CampaignBehaviors.RaftStateCampaignBehavior::GiveCachedShipsToMainParty(TaleWorlds.Library.MBReadOnlyList<TaleWorlds.CampaignSystem.Naval.Ship>):void
+M NavalDLC.CampaignBehaviors.RaftStateCampaignBehavior::OnGameLoadFinished():void
+M NavalDLC.CampaignBehaviors.ShipUpgradeCampaignBehavior/<>c__DisplayClass6_0::.ctor():void
+M NavalDLC.CampaignBehaviors.ShipUpgradeCampaignBehavior/<>c__DisplayClass6_0::<DailyTickPartyEvent>b__0(TaleWorlds.Core.ShipUpgradePiece):bool
+M NavalDLC.CampaignBehaviors.ShipUpgradeCampaignBehavior::CanHaveUnlockedUpgradePiece(TaleWorlds.CampaignSystem.Naval.Ship,TaleWorlds.CampaignSystem.Actions.ChangeShipOwnerAction/ShipOwnerChangeDetail,bool&):void
+M NavalDLC.CharacterDevelopment.NavalSkillLevellingManager/<>c::.cctor():void
+M NavalDLC.CharacterDevelopment.NavalSkillLevellingManager/<>c::.ctor():void
+M NavalDLC.CharacterDevelopment.NavalSkillLevellingManager/<>c::<OnTravelOnWater>b__51_0(TaleWorlds.CampaignSystem.Party.MobileParty):int
+M NavalDLC.CharacterDevelopment.NavalSkillLevellingManager::OnHighMorale(TaleWorlds.CampaignSystem.Party.MobileParty):void
+M NavalDLC.CharacterDevelopment.NavalSkillLevellingManager::OnTravelOnFoot(TaleWorlds.CampaignSystem.Hero):void
+M NavalDLC.CharacterDevelopment.NavalSkillLevellingManager::OnTravelOnHorse(TaleWorlds.CampaignSystem.Hero):void
+M NavalDLC.CharacterDevelopment.NavalSkillLevellingManager::OnTravelOnWater(TaleWorlds.CampaignSystem.Party.MobileParty):void
+M NavalDLC.GameComponents.NavalAgentApplyDamageModel::CalculatePassiveAttackDamage(TaleWorlds.MountAndBlade.AttackInformation&,TaleWorlds.MountAndBlade.AttackCollisionData&,float):float
+M NavalDLC.GameComponents.NavalAgentStatCalculateModel::ClearMissionState():void
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c::.cctor():void
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c::.ctor():void
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c::<GetWreckageTypeForMapEvent>b__7_0(TaleWorlds.CampaignSystem.MapEvents.MapEventParty):int
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c::<GetWreckageTypeForMapEvent>b__7_1(TaleWorlds.CampaignSystem.MapEvents.MapEventParty):int
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel::.ctor():void
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel::CanPlayerInteractWithWreckage(TaleWorlds.Localization.TextObject&):bool
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel::GetMaxWreckageCountForMapEventType(TaleWorlds.CampaignSystem.MapEvents.MapEvent):int
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel::GetWreckageCreationBattleSizeThreshold(TaleWorlds.CampaignSystem.MapEvents.MapEvent):int
+M NavalDLC.GameComponents.NavalDLCBattleWreckageModel::GetWreckageTypeForMapEvent(TaleWorlds.CampaignSystem.MapEvents.MapEvent):TaleWorlds.CampaignSystem.BattleWreckages.BattleWreckage/WreckageType
+M NavalDLC.GameComponents.NavalDLCCombatSimulationModel::GetShipCombatImportance(TaleWorlds.CampaignSystem.Naval.Ship):float
+M NavalDLC.GameComponents.NavalDLCCombatSimulationModel::GetShipCombatScore(TaleWorlds.CampaignSystem.Naval.Ship):float
+M NavalDLC.GameComponents.NavalDLCCombatSimulationModel::SimulateHit(TaleWorlds.CampaignSystem.CharacterObject,TaleWorlds.CampaignSystem.CharacterObject,TaleWorlds.CampaignSystem.Party.PartyBase,TaleWorlds.CampaignSystem.Party.PartyBase,float,TaleWorlds.CampaignSystem.MapEvents.MapEvent,TaleWorlds.Core.BattleEnvironment,float,float):TaleWorlds.CampaignSystem.ExplainedNumber
+M NavalDLC.GameComponents.NavalDLCCustomAgentApplyDamageModel::CalculatePassiveAttackDamage(TaleWorlds.MountAndBlade.AttackInformation&,TaleWorlds.MountAndBlade.AttackCollisionData&,float):float
+M NavalDLC.GameComponents.NavalDLCMapDistanceModel::GetDistance(TaleWorlds.CampaignSystem.CampaignVec2&,TaleWorlds.CampaignSystem.CampaignVec2&,TaleWorlds.CampaignSystem.Party.MobileParty/NavigationType,float&):float
+M NavalDLC.GameComponents.NavalDLCMapVisibilityModel::GetMobilePartyVisibilityAndInspectedState(TaleWorlds.CampaignSystem.Party.MobileParty,TaleWorlds.Library.Vec2[],float,bool&,bool&,bool&):void
+M NavalDLC.GameComponents.NavalDLCMapVisibilityModel::GetSettlementInspectedState(TaleWorlds.CampaignSystem.Settlements.Settlement,TaleWorlds.Library.Vec2[],float,bool&,bool&):void
+M NavalDLC.GameComponents.NavalDLCMobilePartyAIModel/<>c::<GetBestInitiativeBehavior>b__31_0(TaleWorlds.CampaignSystem.Naval.Ship):float
+M NavalDLC.GameComponents.NavalDLCMobilePartyAIModel/<>c__DisplayClass31_0::.ctor():void
+M NavalDLC.GameComponents.NavalDLCMobilePartyAIModel/<>c__DisplayClass31_0::<GetBestInitiativeBehavior>b__1(TaleWorlds.CampaignSystem.Party.PartyBase):bool
+M NavalDLC.GameComponents.NavalDLCMobilePartyAIModel::AreFactionsAllied(TaleWorlds.CampaignSystem.IFaction,TaleWorlds.CampaignSystem.IFaction):bool
+M NavalDLC.GameComponents.NavalDLCMobilePartyAIModel::get_TradeAgreementBehavior():TaleWorlds.CampaignSystem.CampaignBehaviors.ITradeAgreementsCampaignBehavior
+M NavalDLC.GameComponents.NavalDLCPartySpeedCalculationModel::GetSkeletalCrewCount(TaleWorlds.CampaignSystem.Party.MobileParty):int
+M NavalDLC.GameComponents.NavalDLCPartyTransitionModel::GetAnchorReachDurationInHours(float):TaleWorlds.CampaignSystem.ExplainedNumber
+M NavalDLC.GameComponents.NavalDLCPrisonerRecruitmentCalculationModel::GetPrisonerRecruitmentMoraleEffect(TaleWorlds.CampaignSystem.Party.PartyBase,TaleWorlds.CampaignSystem.CharacterObject,int):float
+M NavalDLC.GameComponents.NavalDLCRaidModel::GetRaidLootMultiplier(TaleWorlds.CampaignSystem.Party.PartyBase):float
+M NavalDLC.GameComponents.NavalDLCSettlementGarrisonModel::GetMaximumDailyAutoRecruitmentCount(TaleWorlds.CampaignSystem.Settlements.Town,bool):TaleWorlds.CampaignSystem.ExplainedNumber
+M NavalDLC.GameComponents.NavalFerryModel::.ctor():void
+M NavalDLC.GameComponents.NavalFerryModel::GetFerryCost(TaleWorlds.CampaignSystem.Settlements.Settlement,bool):TaleWorlds.CampaignSystem.ExplainedNumber
+M NavalDLC.GameComponents.NavalFerryModel::get_MaximumFerryCapacityForPassengers():int
+M NavalDLC.MissionShipFactory::CreateMissionShip(int,NavalDLC.ShipAssignment,NavalDLC.Missions.MissionLogics.NavalShipsLogic,TaleWorlds.Library.MatrixFrame&,System.Nullable<System.ValueTuple<uint, uint>>):TaleWorlds.MountAndBlade.MissionObject
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan/<>c::<DeployShips>b__46_0(System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>,System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>):int
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan/<>c::<DeployShips>b__46_1(System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>):float
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan/<>c::<DeployShips>b__46_2(System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>):float
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan::ComputeFormationsCenterFrameAndExtents(bool,TaleWorlds.Library.Vec2&):TaleWorlds.Library.MatrixFrame
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan::DeployShipRow(TaleWorlds.Library.Vec2&,TaleWorlds.Library.Vec2&,TaleWorlds.Library.MBList<System.ValueTuple<int, NavalDLC.Missions.Deployment.NavalFormationDeploymentPlan>>,float):void
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan::DeployShips(TaleWorlds.Library.Vec2&,TaleWorlds.Library.Vec2&):void
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan::GetFirstValidFormationDeploymentFrame(TaleWorlds.Library.MatrixFrame&):bool
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan::GetFirstValidFormationFrame(TaleWorlds.Library.MatrixFrame&,bool):bool
+M NavalDLC.Missions.Deployment.NavalDeploymentPlan::GetFormationFrame(TaleWorlds.Core.FormationClass,TaleWorlds.Library.MatrixFrame&):bool
+M NavalDLC.Missions.Deployment.NavalMissionDeploymentPlanningLogic/<>c__DisplayClass33_0::.ctor():void
+M NavalDLC.Missions.Deployment.NavalMissionDeploymentPlanningLogic/<>c__DisplayClass33_0::<GetTeamPlanAux>b__0(System.ValueTuple<TaleWorlds.MountAndBlade.Team, NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan>):bool
+M NavalDLC.Missions.Deployment.NavalMissionDeploymentPlanningLogic::GetDeploymentZoneFrame(TaleWorlds.MountAndBlade.Team):TaleWorlds.Library.MatrixFrame
+M NavalDLC.Missions.Deployment.NavalMissionDeploymentPlanningLogic::GetFormationsCenterFrameAndExtents(TaleWorlds.MountAndBlade.Team,TaleWorlds.Library.Vec2&,bool):TaleWorlds.Library.MatrixFrame
+M NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic/<>c__DisplayClass41_0::.ctor():void
+M NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic/<>c__DisplayClass41_0::<GetTeamPlanAux>b__0(System.ValueTuple<TaleWorlds.MountAndBlade.Team, TaleWorlds.MountAndBlade.DefaultTeamDeploymentPlan>):bool
+M NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic/<>c__DisplayClass41_0::<GetTeamPlanAux>b__1(System.ValueTuple<TaleWorlds.MountAndBlade.Team, NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan>):bool
+M NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic::GetDeploymentZoneFrame(TaleWorlds.MountAndBlade.Team):TaleWorlds.Library.MatrixFrame
+M NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic::GetFormationsCenterFrameAndExtents(TaleWorlds.MountAndBlade.Team,TaleWorlds.Library.Vec2&,bool):TaleWorlds.Library.MatrixFrame
+M NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic::GetNavmeshValidPositionInDeploymentZone(TaleWorlds.MountAndBlade.Team):TaleWorlds.Engine.WorldPosition
+M NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan/<>c::<ComputeDeploymentZoneFromFormations>b__36_0(TaleWorlds.Library.Vec2):float
+M NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan/<>c::<ComputeDeploymentZoneFromFormations>b__36_1(TaleWorlds.Library.Vec2):float
+M NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::ComputeDeploymentZoneFromFormations(bool,bool,float):void
+M NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::GetDeploymentZoneFrame():TaleWorlds.Library.MatrixFrame
+M NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::GetFormationsCenterFrameAndExtents(TaleWorlds.Library.Vec2&,bool):TaleWorlds.Library.MatrixFrame
+M NavalDLC.Missions.Deployment.NavalTeamDeploymentPlan::UpdateDeploymentFrameZ():void
+M NavalDLC.Missions.MissionLogics.NavalShipDeploymentLimit::get_NetDeploymentLimitWithoutSkeletal():int
+M NavalDLC.Missions.Objects.MissionShip/<>c::<InitializeLists>b__433_0(NavalDLC.Missions.Objects.UsableMachines.ShipOarMachine,NavalDLC.Missions.Objects.UsableMachines.ShipOarMachine):int
+M NavalDLC.Missions.Objects.MissionShip/<>c::<InitializeLists>b__433_1(NavalDLC.Missions.Objects.UsableMachines.ShipOarMachine,NavalDLC.Missions.Objects.UsableMachines.ShipOarMachine):int
+M NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass428_0::.ctor():void
+M NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass428_0::<CheckSpawnPoints>b__0(TaleWorlds.Core.MissionShipObject):bool
+M NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass428_0::<CheckSpawnPoints>b__1(TaleWorlds.Core.ShipHull):bool
+M NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass431_0::.ctor():void
+M NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass431_0::<CheckAttachedNavmeshSanityAux>b__0(TaleWorlds.Library.PathFaceRecord):bool
+M NavalDLC.Missions.Objects.MissionShip::<CheckOarCount>b__429_0(TaleWorlds.Core.MissionShipObject):bool
+M NavalDLC.Missions.Objects.MissionShip::FinalizeDeployment(bool):void
+M NavalDLC.Missions.Objects.NavalModuleDataHelper::FindMergedEntryByAttribute(string,string,string,string):System.Xml.XmlNode
+M NavalDLC.Missions.Objects.NavalModuleDataHelper::FindModuleDataFile(string):string
+M NavalDLC.Missions.Objects.NavalModuleDataHelper::GetMergedEntries(string,string):System.Collections.Generic.List<System.Xml.XmlNode>
+M NavalDLC.Missions.Objects.NavalModuleDataHelper::IsXmlIdDeclaredByAnyActiveModule(string):bool
+M NavalDLC.Missions.Objects.OceanWave2Sine::.ctor():void
+M NavalDLC.Missions.Objects.OceanWave2Sine::Animate(float):void
+M NavalDLC.Missions.Objects.OceanWave2Sine::CacheRestFrames():void
+M NavalDLC.Missions.Objects.OceanWave2Sine::GetTickRequirement():TaleWorlds.Engine.ScriptComponentBehavior/TickRequirement
+M NavalDLC.Missions.Objects.OceanWave2Sine::IsBeyondLod():bool
+M NavalDLC.Missions.Objects.OceanWave2Sine::OnEditorInit():void
+M NavalDLC.Missions.Objects.OceanWave2Sine::OnEditorTick(float):void
+M NavalDLC.Missions.Objects.OceanWave2Sine::OnEditorVariableChanged(string):void
+M NavalDLC.Missions.Objects.OceanWave2Sine::OnInit():void
+M NavalDLC.Missions.Objects.OceanWave2Sine::OnSceneSave(string):void
+M NavalDLC.Missions.Objects.OceanWave2Sine::OnTick(float):void
+M NavalDLC.Missions.Objects.OceanWave2Sine::RefreshLodDistanceSq():void
+M NavalDLC.Missions.Objects.OceanWave2Sine::ResetChildrenToRest():void
+M NavalDLC.Missions.Objects.OceanWave2Sine::SampleHeight(float,float,float,float,float,float,float,float,float,float):float
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::.cctor():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ApplyClipPlanes():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ApplyWaterFloor(NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ApplyWobble(TaleWorlds.Library.Vec3,float,float,float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::BakeChain(TaleWorlds.Library.MatrixFrame&,TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&,bool):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ClearAnchorTrackers():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ClearClipPlanes():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ClearDampingRamp():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ClearDriftAcceleration():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ClearMeshUnfurlOverride():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ComputeEndFromTarget(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):TaleWorlds.Library.Vec3
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ComputeLod(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ComputePointParams():float[]
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ComputeRestLength(NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy,float,float):float
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ComputeSegmentFractions():float[]
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::DebugRenderPoints(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::InitializeChainToStraightLine(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::OnTick(float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ProjectileSample(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&,float,float):TaleWorlds.Library.Vec3
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ResetChain():void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::ResolveAnchorPosition(TaleWorlds.Engine.GameEntity,TaleWorlds.Library.Vec3):TaleWorlds.Library.Vec3
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::RunChain(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&,bool):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SampleChainAtFraction(float):TaleWorlds.Library.Vec3
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SeedChain(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SeedChainFromSlice(NavalDLC.Missions.Objects.UsableMachines.RopePileBaked,float,float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetApplyClipPlanes(bool):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetClipPlaneEntities(TaleWorlds.Engine.GameEntity,TaleWorlds.Engine.GameEntity):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetDampingRamp(float,float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetDriftAcceleration(TaleWorlds.Library.Vec3):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetEndPinning(bool,bool):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetMeshUnfurlOverride(float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetRopeState(NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy,float,float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetSourceAnchorTracker(TaleWorlds.Engine.GameEntity,TaleWorlds.Library.Vec3):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SetTargetAnchorTracker(TaleWorlds.Engine.GameEntity,TaleWorlds.Library.Vec3):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::SnapRopeState(NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy,float,float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::StartLifetime(float,float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::StepVerlet(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&,NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod,float):void
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::UpdateRopeMeshVisualAccordingToTargetPointLinearNoHookOffset(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):TaleWorlds.Library.Vec3
+M NavalDLC.Missions.Objects.UsableMachines.RopePileBaked::WriteStraightBake(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment/<>c::<.cctor>b__164_0(System.Collections.Generic.KeyValuePair<float, TaleWorlds.Library.Vec3>,System.Collections.Generic.KeyValuePair<float, TaleWorlds.Library.Vec3>):int
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment/<>c__DisplayClass132_0::.ctor():void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment/<>c__DisplayClass132_0::<UpdateRopeThrowingBehavior>b__0(TaleWorlds.Engine.WeakGameEntity):bool
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment::ApplyThrowHandWobble(TaleWorlds.Library.Vec3):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment::BreakWithCutRope(float,TaleWorlds.Library.Vec3,float):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment::ClosestPointFractionOnSegment(TaleWorlds.Library.Vec3,TaleWorlds.Library.Vec3,TaleWorlds.Library.Vec3):float
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment::PrimeChainForThrow(TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&,TaleWorlds.Library.Vec3&):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachmentJoint::get_TensionRatio():float
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachmentJoint::set_TensionRatio(float):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::<OnInit>b__153_0():bool
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::<OnInit>b__153_1():bool
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::ActivateCutRopeSegment(int,TaleWorlds.Engine.GameEntity,TaleWorlds.Library.Vec3,TaleWorlds.Library.Vec3,TaleWorlds.Library.Vec3,TaleWorlds.Library.Vec3,NavalDLC.Missions.Objects.UsableMachines.RopePileBaked,float,float,TaleWorlds.Engine.GameEntity,float):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::InitializeCutRopeSegments():void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::TryFindShipBetweenAttachments(NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine,NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine,NavalDLC.Missions.Objects.MissionShip&):bool
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::get_RopeVisualEntity():TaleWorlds.Engine.GameEntity
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::set_RopeVisualEntity(TaleWorlds.Engine.GameEntity):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::<OnInit>b__48_0():bool
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::<OnInit>b__48_1():bool
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::OnDestructableHitTakenWithImpact(TaleWorlds.MountAndBlade.DestructableComponent,TaleWorlds.MountAndBlade.Agent,TaleWorlds.Library.Vec3,TaleWorlds.Library.Vec3,int):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::OnRemoved(int):void
+M NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentPointMachine::SetPhysicsEntitiesVisibility(bool):void
+M NavalDLC.Missions.Objects.UsableMachines.UserDamageCalculateComponent::ApplyPerkBonusForCharacter(TaleWorlds.CampaignSystem.CharacterDevelopment.PerkObject,bool,TaleWorlds.CampaignSystem.CharacterObject,TaleWorlds.Core.BattleEnvironment,TaleWorlds.CampaignSystem.ExplainedNumber&):void
+M NavalDLC.Missions.Objects.VisibilityMask::.ctor():void
+M NavalDLC.Missions.Objects.VisibilityMask::GetTickRequirement():TaleWorlds.Engine.ScriptComponentBehavior/TickRequirement
+M NavalDLC.Missions.Objects.VisibilityMask::OnEditorTick(float):void
+M NavalDLC.Missions.Objects.VisibilityMask::OnEditorVariableChanged(string):void
+M NavalDLC.Missions.Objects.VisibilityMask::OnInit():void
+M NavalDLC.Missions.Objects.VisibilityMask::OnTick(float):void
+M NavalDLC.Missions.Objects.VisibilityMask::UpdateVisibility():void
+M NavalDLC.NavalIncidentEffects/<>c::.cctor():void
+M NavalDLC.NavalIncidentEffects/<>c::.ctor():void
+M NavalDLC.NavalIncidentEffects/<>c::<FlagShipHitPointsChange>b__1_0():bool
+M NavalDLC.NavalIncidentEffects/<>c::<FleetShipHitPointsChangeFactor>b__0_0():bool
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass0_0::.ctor():void
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass0_0::<FleetShipHitPointsChangeFactor>b__1():System.Collections.Generic.List<TaleWorlds.Localization.TextObject>
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass0_0::<FleetShipHitPointsChangeFactor>b__2(TaleWorlds.CampaignSystem.Incidents.IncidentEffect):TaleWorlds.CampaignSystem.Incidents.IncidentHint
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass1_0::.ctor():void
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass1_0::<FlagShipHitPointsChange>b__1():System.Collections.Generic.List<TaleWorlds.Localization.TextObject>
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass1_0::<FlagShipHitPointsChange>b__2(TaleWorlds.CampaignSystem.Incidents.IncidentEffect):TaleWorlds.CampaignSystem.Incidents.IncidentHint
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass2_0::.ctor():void
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass2_0::<DestroyShipSiegeEngine>b__0():bool
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass2_0::<DestroyShipSiegeEngine>b__1():System.Collections.Generic.List<TaleWorlds.Localization.TextObject>
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass2_0::<DestroyShipSiegeEngine>b__2(TaleWorlds.CampaignSystem.Incidents.IncidentEffect):TaleWorlds.CampaignSystem.Incidents.IncidentHint
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass3_0::.ctor():void
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass3_0::<DestroyShip>b__0():bool
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass3_0::<DestroyShip>b__1():System.Collections.Generic.List<TaleWorlds.Localization.TextObject>
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass3_0::<DestroyShip>b__2(TaleWorlds.CampaignSystem.Incidents.IncidentEffect):TaleWorlds.CampaignSystem.Incidents.IncidentHint
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass4_0::.ctor():void
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass4_0::<UnlockFigurehead>b__0():bool
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass4_0::<UnlockFigurehead>b__1():System.Collections.Generic.List<TaleWorlds.Localization.TextObject>
+M NavalDLC.NavalIncidentEffects/<>c__DisplayClass4_0::<UnlockFigurehead>b__2(TaleWorlds.CampaignSystem.Incidents.IncidentEffect):TaleWorlds.CampaignSystem.Incidents.IncidentHint
+M NavalDLC.NavalIncidentEffects::DestroyShip(System.Func<TaleWorlds.CampaignSystem.Naval.Ship>):TaleWorlds.CampaignSystem.Incidents.IncidentEffect
+M NavalDLC.NavalIncidentEffects::DestroyShipSiegeEngine(System.Func<TaleWorlds.CampaignSystem.Naval.Ship>):TaleWorlds.CampaignSystem.Incidents.IncidentEffect
+M NavalDLC.NavalIncidentEffects::FlagShipHitPointsChange(float):TaleWorlds.CampaignSystem.Incidents.IncidentEffect
+M NavalDLC.NavalIncidentEffects::FleetShipHitPointsChangeFactor(float):TaleWorlds.CampaignSystem.Incidents.IncidentEffect
+M NavalDLC.NavalIncidentEffects::UnlockFigurehead(TaleWorlds.CampaignSystem.Naval.Figurehead):TaleWorlds.CampaignSystem.Incidents.IncidentEffect
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineSecondActCampaignBehavior::<AddGunnarDialogFlow>b__12_11():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineSecondActCampaignBehavior::<AddGunnarDialogFlow>b__12_12():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineSecondActCampaignBehavior::QuestAccepted():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFifthQuestBehaviour::<AddDialogs>b__16_10():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFifthQuestBehaviour::<AddDialogs>b__16_11():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFifthQuestBehaviour::<AddDialogs>b__16_12():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFifthQuestBehaviour::<AddDialogs>b__16_9():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFifthQuestBehaviour::QuestAccepted():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFirstQuestBehavior::<AddGunnarInitialDialogFlow>b__13_11():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFirstQuestBehavior::<AddGunnarInitialDialogFlow>b__13_12():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFirstQuestBehavior::<AddGunnarInitialDialogFlow>b__13_13():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFirstQuestBehavior::QuestAccepted():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFourthQuestBehavior::<AddDialogs>b__8_20():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFourthQuestBehavior::<AddDialogs>b__8_21():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActFourthQuestBehavior::QuestAccepted():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActSecondQuestBehavior::<AddDialogs>b__7_6():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActSecondQuestBehavior::<AddDialogs>b__7_7():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActSecondQuestBehavior::QuestAccepted():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActThirdQuestBehavior::<AddGunnarInitialDialogFlow>b__10_8():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActThirdQuestBehavior::<AddGunnarInitialDialogFlow>b__10_9():void
+M NavalDLC.Storyline.CampaignBehaviors.NavalStorylineThirdActThirdQuestBehavior::QuestAccepted():void
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<OnViewFadeOut>b__105_0(TaleWorlds.CampaignSystem.QuestBase):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<SpawnAllyShipAgents>b__99_0(System.ValueTuple<string, int>):int
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<SpawnEnemyShipAgents>b__98_0(System.ValueTuple<string, int>):int
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c::<TickPhaseTwoInitialization>b__85_0(TaleWorlds.Engine.GameEntity):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass81_0::<TickPhaseTwoLogic>b__0(NavalDLC.Missions.Objects.MissionShip):float
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass84_0::.ctor():void
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass84_0::<SpawnPlayerShip>b__0(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass85_0::.ctor():void
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass85_0::<TickPhaseTwoInitialization>b__1(NavalDLC.Missions.Objects.MissionShip):float
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass86_0::<SpawnAllyShips>b__1(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass86_0::<SpawnAllyShips>b__2(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass86_0::<SpawnAllyShips>b__3(string):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass91_0::.ctor():void
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass91_0::<CreateMissionShip>b__0(TaleWorlds.Engine.GameEntity):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass92_0::.ctor():void
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass92_0::<SpawnEnemyShips>b__0(TaleWorlds.CampaignSystem.Naval.Ship):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass94_0::.ctor():void
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass94_0::<TryMaintainConnection>b__0(NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine):float
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController::<SpawnAllyShips>b__86_0(TaleWorlds.MountAndBlade.Formation):bool
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController::TickAllyShipForceConnect(NavalDLC.Missions.Objects.MissionShip,float):void
+M NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController::TryForceConnectShips(NavalDLC.Missions.Objects.MissionShip,NavalDLC.Missions.Objects.MissionShip):bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<CanSeeShip>b__205_0(NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/EnemyShipTrigger):bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<SpawnGunnarOnShip>b__153_0(TaleWorlds.MountAndBlade.Agent):bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<TickGunnar>b__150_0(NavalDLC.Storyline.Objects.BurnShipObject):bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<TickGunnar>b__150_1(NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/EnemySpawnPoint):bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/<>c::<TickMissionPhase2>b__149_0(NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController/EnemySpawnPoint):bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController::<OnMissileHit>b__163_0():bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController::<SpawnEnemyChaserShip>b__203_0(TaleWorlds.MountAndBlade.Formation):bool
+M NavalDLC.Storyline.MissionControllers.BlockedEstuaryMissionController::MakeEnemiesStand(NavalDLC.Missions.Objects.MissionShip):void
+M NavalDLC.Storyline.MissionControllers.Quest5NavalMissionDeploymentPlanningLogic::GetDeploymentZoneFrame(TaleWorlds.MountAndBlade.Team):TaleWorlds.Library.MatrixFrame
+M NavalDLC.Storyline.MissionControllers.Quest5SetPieceBattleMissionController::<TriggerPurigsDeadPopUp>b__540_0():void
+M NavalDLC.Storyline.MissionControllers.Quest5SetPieceBattleMissionController::TargetMainAgentFormation(NavalDLC.Missions.Objects.MissionShip):void
+M NavalDLC.Storyline.NavalStorylineData/<>c::.cctor():void
+M NavalDLC.Storyline.NavalStorylineData/<>c::.ctor():void
+M NavalDLC.Storyline.NavalStorylineData/<>c::<OnPlayerAcceptsQuest>b__87_0(TaleWorlds.CampaignSystem.QuestBase):bool
+M NavalDLC.Storyline.NavalStorylineData/<>c__DisplayClass87_0::.ctor():void
+M NavalDLC.Storyline.NavalStorylineData/<>c__DisplayClass87_0::<OnPlayerAcceptsQuest>b__1():void
+M NavalDLC.Storyline.NavalStorylineData/<>c__DisplayClass87_0::<OnPlayerAcceptsQuest>b__2():void
+M NavalDLC.Storyline.NavalStorylineData::OnPlayerAcceptsQuest(System.Action,System.Action):void
+M NavalDLC.Storyline.NavalStorylineData::ShouldIssueQuestCancelled(TaleWorlds.CampaignSystem.QuestBase):bool
+M NavalDLC.Storyline.Quests.InquireAtOstican::<northerner_quest_options_3_continue_on_consequence>b__40_0():void
+P NavalDLC.GameComponents.NavalDLCMobilePartyAIModel::TradeAgreementBehavior:TaleWorlds.CampaignSystem.CampaignBehaviors.ITradeAgreementsCampaignBehavior
+P NavalDLC.GameComponents.NavalFerryModel::MaximumFerryCapacityForPassengers:int
+P NavalDLC.Missions.MissionLogics.NavalShipDeploymentLimit::NetDeploymentLimitWithoutSkeletal:int
+P NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachmentJoint::TensionRatio:float
+P NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine::RopeVisualEntity:TaleWorlds.Engine.GameEntity
+T NavalDLC.CampaignBehaviors.FerryCampaignBehavior
+T NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior
+T NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c
+T NavalDLC.CampaignBehaviors.NavalAdvancedStartingPlayerOptionsCampaignBehavior/<>c__DisplayClass30_0
+T NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour
+T NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c
+T NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_0
+T NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/<>c__DisplayClass18_1
+T NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentTrigger
+T NavalDLC.CampaignBehaviors.NavalIncidentsCampaignBehaviour/IncidentType
+T NavalDLC.CampaignBehaviors.ShipUpgradeCampaignBehavior/<>c__DisplayClass6_0
+T NavalDLC.CharacterDevelopment.NavalSkillLevellingManager/<>c
+T NavalDLC.GameComponents.NavalDLCBattleWreckageModel
+T NavalDLC.GameComponents.NavalDLCBattleWreckageModel/<>c
+T NavalDLC.GameComponents.NavalDLCMobilePartyAIModel/<>c__DisplayClass31_0
+T NavalDLC.GameComponents.NavalFerryModel
+T NavalDLC.Missions.Deployment.NavalMissionDeploymentPlanningLogic/<>c__DisplayClass33_0
+T NavalDLC.Missions.Deployment.NavalRaidMissionDeploymentPlanningLogic/<>c__DisplayClass41_0
+T NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass428_0
+T NavalDLC.Missions.Objects.MissionShip/<>c__DisplayClass431_0
+T NavalDLC.Missions.Objects.NavalModuleDataHelper
+T NavalDLC.Missions.Objects.OceanWave2Sine
+T NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeLod
+T NavalDLC.Missions.Objects.UsableMachines.RopePileBaked/RopeSlackPolicy
+T NavalDLC.Missions.Objects.UsableMachines.ShipAttachmentMachine/ShipAttachment/<>c__DisplayClass132_0
+T NavalDLC.Missions.Objects.VisibilityMask
+T NavalDLC.NavalIncidentEffects
+T NavalDLC.NavalIncidentEffects/<>c
+T NavalDLC.NavalIncidentEffects/<>c__DisplayClass0_0
+T NavalDLC.NavalIncidentEffects/<>c__DisplayClass1_0
+T NavalDLC.NavalIncidentEffects/<>c__DisplayClass2_0
+T NavalDLC.NavalIncidentEffects/<>c__DisplayClass3_0
+T NavalDLC.NavalIncidentEffects/<>c__DisplayClass4_0
+T NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass84_0
+T NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass85_0
+T NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass91_0
+T NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass92_0
+T NavalDLC.Storyline.FloatingFortressSetPieceBattleMissionController/<>c__DisplayClass94_0
+T NavalDLC.Storyline.NavalStorylineData/<>c
+T NavalDLC.Storyline.NavalStorylineData/<>c__DisplayClass87_0

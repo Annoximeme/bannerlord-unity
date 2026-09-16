@@ -1,0 +1,39 @@
+# Bannerlord Cooperative Campaign Mod (working title)
+
+A cooperative multiplayer campaign mod for **Mount & Blade II: Bannerlord**, with first-class support for the **War Sails (NavalDLC)** expansion.
+
+## Status
+
+**Phase 0 — Technical Audit: complete. No gameplay code has been written yet, by design.**
+
+Start with **[`PROJECT_STATUS.md`](PROJECT_STATUS.md)**.
+
+## Goals
+
+Multiple independent player parties · shared persistent campaign world · PvP · cooperative battles · sieges · armies · kingdoms · economy · quests · persistent progression · disconnect/reconnect · server restarts · **naval travel, ships, fleets, naval battles, boarding, ship capture, ship destruction, naval loot, seaborne raids, and War Sails campaign content**.
+
+## Documentation
+
+| Document | Purpose |
+|---|---|
+| [`PROJECT_STATUS.md`](PROJECT_STATUS.md) | Current state and decisions needed |
+| [`docs/INITIAL_TECHNICAL_AUDIT.md`](docs/INITIAL_TECHNICAL_AUDIT.md) | The Phase 0 audit |
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | System architecture |
+| [`docs/WARSAILS_ARCHITECTURE.md`](docs/WARSAILS_ARCHITECTURE.md) | Naval/War Sails API map |
+| [`docs/SYNCHRONIZATION_MODEL.md`](docs/SYNCHRONIZATION_MODEL.md) | Ownership & identity model |
+| [`docs/NETWORK_PROTOCOL.md`](docs/NETWORK_PROTOCOL.md) | Protocol & multiplayer lifecycle |
+| [`docs/SAVE_FORMAT.md`](docs/SAVE_FORMAT.md) | Save-data architecture |
+| [`docs/RISK_REGISTER.md`](docs/RISK_REGISTER.md) | Scored risk register |
+| [`docs/VERSION_SUPPORT.md`](docs/VERSION_SUPPORT.md) | Version support & API churn |
+| [`docs/ROADMAP.md`](docs/ROADMAP.md) | Phased plan |
+| [`CLAUDE.md`](CLAUDE.md) | Working agreement & confidence discipline |
+
+## Tooling
+
+[`tools/apiscan/`](tools/apiscan/) — a dependency-free ECMA-335 metadata reader used to verify every API claim in the docs directly against shipped TaleWorlds assemblies, with no .NET toolchain or game install required.
+
+## Note on the existing BannerlordCoop project
+
+[`Bannerlord-Coop-Team/BannerlordCoop`](https://github.com/Bannerlord-Coop-Team/BannerlordCoop) is an established Bannerlord co-op mod. **Since 2026-06-17 it is source-available, not MIT**, and its licence explicitly prohibits use of its source in a competing co-op mod.
+
+This project therefore derives its architecture **exclusively from TaleWorlds' own published API surface**. No code, algorithm or design from that project is used anywhere. See RISK-00 in [`docs/RISK_REGISTER.md`](docs/RISK_REGISTER.md).
