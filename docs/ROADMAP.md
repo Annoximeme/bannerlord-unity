@@ -53,21 +53,25 @@ Subscribe to all 277 `CampaignEvents`; log ordering, frequency, re-entrancy. Run
 `MBGUID` registry for `MBObjectBase` types **+ synthesized `CoopShipId`** with fingerprint fallback (`SYNCHRONIZATION_MODEL.md` §4). Decide publicizer vs Harmony for RISK-06.
 **Exit:** every relevant object addressable by a stable wire id. *Mitigates RISK-01.*
 
-### 1.7 Transport + wire protocol
-Implement the chosen transport, channels C0–C5, framing, handshake with version/DLC negotiation. Generate the replicated-state manifest from `[Saveable*]`/`[CachedData]` metadata via `tools/apiscan`.
-**Exit:** two processes exchange typed messages; handshake rejects mismatches.
+### 1.7 Transport + wire protocol + idempotent consequence ledger
+Implement the chosen transport, channels C0–C5, framing, handshake with version/DLC negotiation. Generate the replicated-state manifest from `[Saveable*]`/`[CachedData]` metadata via `tools/apiscan`. Implement the `ConsequenceId` ledger (`ARCHITECTURE.md` §10) so a duplicated packet can never double-apply loot, gold, XP, casualties or ship changes.
+**Exit:** two processes exchange typed messages; handshake rejects mismatches; a deliberately replayed packet is provably applied exactly once.
 
 ### 1.8 First vertical slice — party position
 One replicated system end-to-end: server-authoritative party movement, client intent, two clients observing each other. Measure bandwidth and snapshot size.
 **Exit:** two players see each other move correctly on a shared map. Bandwidth measured. *Informs RISK-10, A4.*
 
-### 1.9 Persistence & reconnect
-Our state through `SaveableTypeDefiner` + `SyncData`. **Run the save/load round-trip test for ship-id stability** and the `SAVE_FORMAT.md` §5 compatibility matrix.
-**Exit:** disconnect → reconnect → resume; server restart → clients reconnect. *Resolves RISK-15, informs RISK-13.*
+### 1.9 Persistence, reconnect & save safety
+Our state through `SaveableTypeDefiner` + `SyncData`. Implement the save-safety layer mandated by `CLAUDE.md` §7 and specified in `SAVE_FORMAT.md` §5: versioned save generations, schema versions, migration chain, backups, atomic write-then-rename, checksum corruption detection. **Run the save/load round-trip test for ship-id stability** and the `SAVE_FORMAT.md` §6 compatibility matrix.
+**Exit:** disconnect → reconnect → resume; server restart → clients reconnect; a save interrupted mid-write leaves the previous generation intact and loadable. *Resolves RISK-15, informs RISK-13.*
 
 ### 1.10 Naval campaign state
 Ships, ownership, fleet composition, at-sea/raft/anchor flags, storms — **campaign layer only, no naval missions**. Ownership via a `ChangeShipOwnerAction` adapter (version-aware per `VERSION_SUPPORT.md` §4.4).
 **Exit:** two players see each other's fleets; ownership transfer replicates and survives save/load.
+
+### Testing requirement (all steps)
+
+`CLAUDE.md` requires every meaningful feature to carry **unit, integration, network and save/load tests**, with **end-to-end tests** for major systems. No Phase 1 step is complete without them, and per `CLAUDE.md` §10 no feature may be described as working until tested. Stubs must be explicitly marked as stubs.
 
 **Phase 1 exit criteria:** two players, shared persistent world, synchronized movement and ship ownership, surviving disconnect and server restart, on a pinned version, with CI guarding API drift.
 

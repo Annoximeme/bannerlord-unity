@@ -26,7 +26,7 @@ Multiple independent player parties · shared persistent campaign world · PvP �
 | [`docs/RISK_REGISTER.md`](docs/RISK_REGISTER.md) | Scored risk register |
 | [`docs/VERSION_SUPPORT.md`](docs/VERSION_SUPPORT.md) | Version support & API churn |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Phased plan |
-| [`CLAUDE.md`](CLAUDE.md) | Working agreement & confidence discipline |
+| [`CLAUDE.md`](CLAUDE.md) | **Project engineering instructions — authoritative** |
 
 ## Tooling
 

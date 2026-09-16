@@ -70,6 +70,9 @@ Clients never mutate shared campaign state directly. They send **intent**; the s
 | **Ship ownership** | **Server, exclusively** | Request only |
 | Ship hit points / damage | Server | Display |
 | In-mission agent control | Owning client | Server reconciles outcome |
+| Wind (`INavalMapSceneWrapper.GetWindAtPosition`) | Server | Display/apply replicated value |
+| Storms (`StormManager`) | Server | Display |
+| Map terrain (`TerrainType`) | **Neither — static map data** | Query locally, never replicate |
 | Quests | Server | Request only |
 
 **Rule:** if it carries `[SaveableField]` or `[SaveableProperty]`, it is server-authoritative. If it carries `[CachedData]`, it is derived and must be recomputed locally, never replicated. This split is directly readable from assembly metadata (VERIFIED) and is the backbone of §3 in `SYNCHRONIZATION_MODEL.md`.
@@ -131,18 +134,60 @@ Full state machine in `docs/NETWORK_PROTOCOL.md` §5. Summary:
 `Disconnect → party frozen server-side, state retained → reconnect → resync from snapshot + deltas`
 `Server restart → save of record reloaded → clients reconnect → identity registries rehydrated from persisted ids`
 
-## 9. Module Layout (planned)
+## 9. Service Interfaces (mandated by `CLAUDE.md`)
+
+`CLAUDE.md` requires game-independent logic to be separated from Bannerlord-specific implementation, with raw TaleWorlds API calls confined to adapters. Every service below is an interface in `Coop.Core` with a Bannerlord adapter in `Coop.GameInterface`.
+
+| Service | Wraps (verified anchors) | Notes |
+|---|---|---|
+| `ICampaignService` | `Campaign`, `CampaignEvents` (277), `CampaignTime`, `Campaign.SupportsSaving` | Clock, event hub, campaign root |
+| `IPartyService` | `MobileParty`, `PartyBase`, `MobilePartyAi`, `Army` | Movement, rosters, army membership |
+| `ISettlementService` | `Settlement`, `Town`, `Village`, `Alley`, `Buildings` | Ownership, garrisons, production |
+| `IBattleService` | `EncounterManager`, `PlayerEncounter`, `MapEvent`, `MapEventSide`, `CampaignBattleResult` | **Volatile — see RISK-05** |
+| `ISiegeService` | `SiegeEvent`, `BesiegerCamp`, `BlockadeBattleMapEvent` | Incl. naval blockade |
+| `INavalService` | `MobileParty.IsCurrentlyAtSea/IsInRaftState/Anchor`, `TerrainType`, `IMapScene`, `INavalMapSceneWrapper`, `StormManager` | Naval movement, water navigation, weather |
+| `IShipService` | `Naval.Ship`, `ChangeShipOwnerAction`, `DestroyShipAction`, `RepairShipAction` | **Reshaped between versions — adapter mandatory** |
+| `IFleetService` | `PartyBase.Ships`/`.FlagShip`/`GetShipsVersion()`, `FleetManagementModel`, `PartyShipLimitModel` | No engine `Fleet` type exists |
+| `IQuestService` | `QuestBase`, `NavalStorylineQuestBase` | Phase 5 (RISK-11) |
+| `IInventoryService` | `ItemRoster`, `TroopRoster`, `FlattenedTroopRoster` | |
+| `IEconomyService` | Gold, trade, prices, `HeroOrPartyTradedGold` | |
+| `ICharacterService` | `Hero`, `CharacterObject`, skills, perks, `NavalPerks` | |
+| `INetworkService` | `ICoopTransport` (see §3 L2) | **Never binds `GameNetwork` directly — RISK-02** |
+| `ISaveService` | `SaveableTypeDefiner`, `IDataStore.SyncData`, `ISaveDriver` | Versioned/atomic writes per `SAVE_FORMAT.md` |
+
+**Rule:** no raw `TaleWorlds.*` call outside `Coop.GameInterface*`. This is what makes RISK-05 (2,638 members changed between versions) survivable — version conditionals live only in adapters.
+
+### Assembly layout
 
 | Assembly | References | Purpose |
 |---|---|---|
-| `Coop.Core` | none (game-agnostic) | Transport interface, serialization, registries, state machines |
-| `Coop.GameInterface` | `TaleWorlds.*` | Campaign binding, event subscription, action application |
+| `Coop.Core` | none (game-agnostic) | Service interfaces, transport interface, serialization, registries, state machines |
+| `Coop.GameInterface` | `TaleWorlds.*` | Adapters implementing the services above |
 | `Coop.GameInterface.Naval` | + `NavalDLC.dll` | **Optional**, loaded only when War Sails is detected |
 | `Coop.Server` | `Coop.Core` | Dedicated server host |
 | `Coop.Client` | `Coop.Core`, `Coop.GameInterface` | Client module |
+| `Coop.Tests` / `Coop.IntegrationTests` / `Coop.E2E.Tests` | | Unit, integration, network, save/load, end-to-end (mandated by `CLAUDE.md`) |
 | `tools/apiscan` | none (Python) | API extraction, version-drift CI gate |
 
-## 10. Open Architectural Questions
+## 10. Idempotency (mandated by `CLAUDE.md` §5)
+
+**Campaign consequences must never be applied twice.** A duplicated or replayed packet must not duplicate loot, gold, XP, casualties, prisoners, renown, influence, quest rewards, ship rewards, ship destruction, or settlement changes.
+
+Design:
+
+```
+ConsequenceId : (serverEpoch:u32, sequence:u64)   // globally unique, monotonic
+```
+
+- Every state-changing effect the server applies carries a `ConsequenceId`.
+- The server keeps an applied-set, persisted in the save of record (`SAVE_FORMAT.md` §3.3), so idempotency survives a restart.
+- Clients keep a received-set per epoch and discard replays.
+- Effects are applied **exactly once**, inside a guard that checks-and-records atomically.
+- `serverEpoch` increments on every server start, so ids from a previous run can never collide with a new one.
+
+This matters most where the engine's own actions are not naturally idempotent: `ChangeShipOwnerAction.ApplyByLooting`, `DestroyShipAction.Apply`, `MapEvent.LootDefeatedPartyShips`, and all roster/gold mutations.
+
+## 11. Open Architectural Questions
 
 These are **not** settled and are not to be treated as assumptions:
 

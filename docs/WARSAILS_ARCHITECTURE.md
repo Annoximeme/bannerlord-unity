@@ -111,6 +111,75 @@ No `MBGUID`. No `StringId`. Not an `MBObjectBase`. **This is RISK-01.** See `SYN
 
 ---
 
+## 4a. Water Navigation & Terrain Classification
+
+`CLAUDE.md` calls out `CoastalSea`, `OpenSea`, `River` and `NonNavigableRiver`. All four are **VERIFIED** as members of the `TaleWorlds.Core.TerrainType` enum in **`TaleWorlds.Core.dll`** — i.e. water navigation is classified by **base-game map terrain**, not by a DLC-specific system.
+
+### `TaleWorlds.Core.TerrainType` — complete enum (VERIFIED)
+
+`Plain` · `Desert` · `Snow` · `Forest` · `Steppe` · `Fording` · `Mountain` · `Lake` · `Water` · **`River`** · `Canyon` · `RuralArea` · `Swamp` · `Dune` · `Bridge` · **`CoastalSea`** · **`OpenSea`** · `Beach` · `Cliff` · **`NonNavigableRiver`** · `LandRestriction` · `SeaRestriction` · `UnderBridge`
+
+Water-relevant members and their significance:
+
+| Member | Significance |
+|---|---|
+| `CoastalSea` | Navigable coastal water — the normal naval travel surface near land |
+| `OpenSea` | Deep water; carries distinct speed and attrition rules (see below) |
+| `River` | Navigable river |
+| `NonNavigableRiver` | River that blocks naval movement — a hard navigation boundary |
+| `Lake`, `Water` | Other water bodies |
+| `Beach` | Land/sea interface — relevant to seaborne raids and landings |
+| `Cliff` | Impassable coast — blocks landing |
+| `Fording`, `Bridge`, `UnderBridge` | Land/water crossing points |
+| `LandRestriction`, `SeaRestriction` | Explicit movement restriction zones |
+
+### Terrain query API (VERIFIED)
+
+| Member | Assembly |
+|---|---|
+| `TaleWorlds.CampaignSystem.Campaign.MapSceneWrapper` → `TaleWorlds.CampaignSystem.Map.IMapScene` | `TaleWorlds.CampaignSystem.dll` |
+| `IMapScene.GetTerrainTypeAtPosition(ref CampaignVec2)` → `TerrainType` | `TaleWorlds.CampaignSystem.dll` |
+| `IMapScene.GetFaceTerrainType(PathFaceRecord)` → `TerrainType` | `TaleWorlds.CampaignSystem.dll` |
+| `IMapScene.GetTerrainTypeName(TerrainType)` → `string` | `TaleWorlds.CampaignSystem.dll` |
+| `TaleWorlds.CampaignSystem.Map.IMapSceneCreator` | `TaleWorlds.CampaignSystem.dll` |
+
+### Naval map scene extension (VERIFIED)
+
+`NavalDLC.INavalMapSceneWrapper` — obtained via `NavalDLCManager.NavalMapSceneWrapper`:
+
+| Member | Signature |
+|---|---|
+| `GetSpawnPoints(string)` | → `List<(CampaignVec2, float)>` |
+| `GetWindAtPosition(Vec2)` | → `Vec2` |
+| `Tick(float)` | → `void` |
+
+> **`GetWindAtPosition` is world state that affects naval movement.** It must be server-authoritative and replicated, or two clients will compute different ship speeds. Treated as T0 world state in `SYNCHRONIZATION_MODEL.md` §2.
+
+### Water-type-dependent campaign rules (VERIFIED)
+
+| Rule | Exact symbol |
+|---|---|
+| Open-sea attrition damage | `NavalDLC.GameComponents.NavalDLCCampaignShipDamageModel.CalculateOpenSeaAttritionDamageForShip(Ship)`; field `AverageBeingOnOpenSeaRatio` |
+| Open-sea speed bonus | `NavalDLC.GameComponents.NavalDLCPartySpeedCalculationModel.OpenSeaBonus`; `_openSeaEffect` (`TextObject`) |
+| Storm placement | `NavalDLC.CampaignBehaviors.StormCampaignBehavior._allOpenSeaWeatherNodePositions` : `List<Vec2>` |
+
+### Battle power context by water type (VERIFIED)
+
+`TaleWorlds.CampaignSystem.MapEvents.MapEvent.PowerCalculationContext` — complete enum:
+
+`PlainBattle` · `SteppeBattle` · `DesertBattle` · `DuneBattle` · `SnowBattle` · `ForestBattle` · `RiverCrossingBattle` · `Village` · `Siege` · **`SeaBattle`** · **`OpenSeaBattle`** · **`RiverBattle`** · **`NavalRaid`** · `Estimated`
+
+⇒ The campaign distinguishes **coastal sea battles, open-sea battles, river battles and naval raids** as separate power-calculation contexts. Battle outcome simulation is water-type dependent, so the server must resolve naval battles with the correct context or results will diverge from single-player expectations.
+
+### Synchronization implications
+
+1. **Navigation boundaries are deterministic map data**, not runtime state — `TerrainType` comes from the map scene, identical on every client. It does **not** need replication, and must **not** be replicated.
+2. **Wind does need replication** (`GetWindAtPosition`) — it is dynamic and affects speed.
+3. **Storms are server-authoritative** (`StormManager.CreateStormAtPosition`), placed on open-sea nodes.
+4. **Open-sea attrition is a server-side tick effect** on `Ship._hitPoints` — clients must never apply it locally or hit points will double-decay.
+
+---
+
 ## 5. Naval Encounters (Goal 18)
 
 All **base game**:

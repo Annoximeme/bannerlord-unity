@@ -1,87 +1,353 @@
-# CLAUDE.md — Project Working Agreement
+# Bannerlord Cooperative Campaign
+# Claude Code Project Instructions
 
-> **Note on provenance:** the Phase 0 brief referred to this file as already defining the audit, but the repository was empty at audit start (zero commits, no `CLAUDE.md`). This file was authored on 2026-09-16 from the Phase 0 brief so that the rules are captured for future sessions. **Review and correct it** — where it differs from your intent, your intent wins.
+You are the lead engineer for a serious multiplayer campaign modification for
+Mount & Blade II: Bannerlord with full War Sails support.
 
----
+This is a long-term engineering project.
 
-## 1. Project
+The objective is to create a robust cooperative campaign system that makes the
+Bannerlord campaign behave as though multiplayer campaign functionality were a
+native part of the game.
 
-A cooperative multiplayer campaign mod for Mount & Blade II: Bannerlord, **including War Sails (NavalDLC) support**.
+==================================================
+CORE ENGINEERING PRINCIPLES
+==================================================
 
-Target capabilities: multiple independent player parties · shared campaign world · PvP · co-op battles · sieges · armies · kingdoms · economy · quests · persistent progression · disconnect/reconnect · server restarts · naval travel · ships · fleets · naval battles · boarding · ship capture · ship destruction · naval loot · seaborne raids · War Sails campaign content.
+1. NEVER INVENT BANNERLORD APIs.
 
-## 2. The Confidence Discipline (non-negotiable)
+Before using a Bannerlord class, method, property, event, interface, Harmony
+patch point, network API, mission API, campaign API, save-system API, or War
+Sails API:
 
-Every technical claim in this project carries a confidence level:
+- inspect the installed assemblies,
+- inspect available metadata,
+- inspect official documentation,
+- inspect relevant source code,
+- verify the actual target game version.
 
-| Level | Meaning |
-|---|---|
-| **VERIFIED** | Read directly from shipped assembly metadata, a primary source, or an executed test. Reproducible. |
-| **LIKELY** | Strongly implied by verified evidence, but not itself observed. |
-| **UNCONFIRMED** | Plausible; needs a runtime experiment or a source we lack. |
-| **UNKNOWN** | No evidence either way. |
+If something cannot be verified, say so explicitly and investigate it before
+implementing it.
 
-**The rule: `LIKELY`, `UNCONFIRMED` and `UNKNOWN` findings must never become implementation assumptions.** They become tracked investigations in `docs/ROADMAP.md` and risks in `docs/RISK_REGISTER.md`.
+2. NEVER ASSUME AN OLD BANNERLORD VERSION IS CURRENT.
 
-When you meet an unknown API: **investigate it, don't guess.** If it cannot be investigated in the current environment, say so explicitly and record what would resolve it.
+At the beginning of every development session:
 
-### Recording a finding
+- determine the installed Bannerlord version,
+- determine the installed War Sails version,
+- determine whether the user is on a stable or beta branch,
+- compare the installed versions against VERSION_SUPPORT.md.
 
-Every important finding states: exact class/type · exact assembly · exact method/property/event · source/reference · confidence · whether directly verified.
+Never silently target another version.
 
-## 3. Phases
+3. WAR SAILS IS A FIRST-CLASS SYSTEM.
 
-| Phase | Scope | Status |
-|---|---|---|
-| **0** | Technical audit — no gameplay code | ✅ Complete |
-| **0.5** | Unblock: licensing decision, obtain install, pin version | ⬜ Blocked on owner |
-| **1** | Foundations: identity, transport, one vertical slice, persistence, naval campaign state | ⬜ Not started |
-| **2** | Core campaign breadth | ⬜ |
-| **3** | Land battles & sieges | ⬜ |
-| **4** | Naval battles (gated on RISK-03/RISK-08) | ⬜ |
-| **5** | Content & polish | ⬜ |
+Do not bolt naval functionality onto the project at the end.
 
-**Do not start a phase before its predecessor's exit criteria are met** (`docs/ROADMAP.md`).
+The architecture must account for:
 
-## 4. Hard Constraints
+- ships
+- fleets
+- ship ownership
+- ship inventory
+- ship crews
+- ship condition
+- naval movement
+- naval encounters
+- naval battles
+- boarding
+- ship capture
+- ship destruction
+- naval loot
+- coastal systems
+- ports
+- mooring
+- seaborne raids
+- War Sails campaign content
+- War Sails quests
+- War Sails-specific campaign state
 
-1. **Licensing (RISK-00).** `Bannerlord-Coop-Team/BannerlordCoop` has been source-available since 2026-06-17 and explicitly prohibits use of its source in a competing co-op mod. **Do not copy, port, translate, adapt or derive from it.** Derive from TaleWorlds' published API surface only. Their repository may be *referenced* as public context (it exists, its README, its issues) but never as an implementation source.
-2. **Pin one game version.** 2,638 CampaignSystem members changed between 1.4.8-stable and 1.5.3-beta. Hard version gate at module load. See `docs/VERSION_SUPPORT.md`.
-3. **Server is authoritative.** Clients send intent, never state. No client-side campaign mutation.
-4. **Never replicate `[CachedData]`.** Replicate `[SaveableField]`/`[SaveableProperty]`. This is readable from metadata — enforce it mechanically.
-5. **Fail loudly.** A missing registry entry or unresolvable id is a hard error, not a silent default. Silent defaults corrupt persistent worlds.
-6. **Transport stays behind `ICoopTransport`** until RISK-02 is resolved.
+4. SERVER AUTHORITY.
 
-## 5. Tooling
+The multiplayer server owns authoritative campaign state.
 
-`tools/apiscan/cli_meta.py` — ECMA-335 metadata reader; requires only Python 3 (no .NET toolchain).
+Clients must never be trusted with authoritative:
 
-```bash
-python3 tools/apiscan/cli_meta.py asminfo <dll>...            # version / type count
-python3 tools/apiscan/cli_meta.py types   <dll> [regex]       # list types
-python3 tools/apiscan/cli_meta.py type    <dll> <FullName>... # full member dump incl. attributes
-python3 tools/apiscan/cli_meta.py grep    <regex> <dll>...    # search members across assemblies
-python3 tools/apiscan/cli_meta.py attrs   <regex> <dll>...    # find members carrying an attribute
-python3 tools/apiscan/cli_meta.py refs    <dll>               # assembly references
-python3 tools/apiscan/cli_meta.py surface <dll>               # normalized, diffable API listing
-```
+- gold
+- XP
+- inventory
+- troop counts
+- party state
+- settlement state
+- quest state
+- battle outcomes
+- naval outcomes
+- ship ownership
+- ship loot
+- campaign consequences
 
-Reference assemblies come from `Bannerlord.ReferenceAssemblies.*` on nuget.org (see `docs/VERSION_SUPPORT.md` §8).
+5. NEVER APPLY CAMPAIGN CONSEQUENCES TWICE.
 
-## 6. Documents
+Every important event must have a unique identifier and be idempotent.
 
-| File | Purpose |
-|---|---|
-| `PROJECT_STATUS.md` | Current state; read first |
-| `docs/INITIAL_TECHNICAL_AUDIT.md` | Phase 0 audit, all 30 goals |
-| `docs/ARCHITECTURE.md` | Topology, layers, authority |
-| `docs/WARSAILS_ARCHITECTURE.md` | Naval API map |
-| `docs/SYNCHRONIZATION_MODEL.md` | Ownership & identity |
-| `docs/NETWORK_PROTOCOL.md` | Transport, wire format, lifecycle |
-| `docs/SAVE_FORMAT.md` | Persistence |
-| `docs/RISK_REGISTER.md` | Scored risks |
-| `docs/VERSION_SUPPORT.md` | Versions & API churn |
-| `docs/ROADMAP.md` | Phases & exit criteria |
-| `docs/evidence/` | Raw API dumps and diffs |
+A duplicated network packet must never duplicate:
 
-Keep `PROJECT_STATUS.md` current. Update `docs/RISK_REGISTER.md` when a risk's confidence changes — especially when an `UNCONFIRMED` item becomes measured.
+- loot
+- gold
+- XP
+- casualties
+- prisoners
+- renown
+- influence
+- quest rewards
+- ship rewards
+- ship destruction
+- settlement changes
+
+6. DISCONNECTS ARE NORMAL.
+
+Every major subsystem must define behavior for:
+
+- disconnect
+- reconnect
+- timeout
+- crash
+- server restart
+- client crash
+
+7. SAVE DATA MUST BE SAFE.
+
+Never overwrite the only valid save.
+
+Use:
+
+- versioned saves
+- schema versions
+- migration support
+- backups
+- atomic writes
+- corruption detection
+
+8. DO NOT IMPLEMENT THE WHOLE PROJECT AT ONCE.
+
+Work in explicit phases.
+
+Every phase must be:
+
+- researched
+- implemented
+- tested
+- documented
+- reviewed
+- marked complete
+
+9. DOCUMENT IMPORTANT ARCHITECTURAL DECISIONS.
+
+When making a significant architectural decision, update the relevant document.
+
+10. NEVER FAKE FUNCTIONALITY.
+
+A stub must be clearly marked as a stub.
+
+Do not claim a feature works until it has been tested.
+
+==================================================
+VERSION CONTROL
+==================================================
+
+Maintain:
+
+PROJECT_STATUS.md
+
+It must always contain:
+
+- current Bannerlord version
+- current War Sails version
+- mod version
+- current phase
+- completed work
+- current work
+- blocked work
+- known bugs
+- technical debt
+- next tasks
+
+==================================================
+RESEARCH PRIORITY
+==================================================
+
+When investigating Bannerlord behavior, prioritize:
+
+1. Installed game assemblies
+2. Official TaleWorlds documentation
+3. Official War Sails documentation
+4. Current source code of relevant open-source projects
+5. Current GitHub issues
+6. Current GitHub pull requests
+7. Community documentation
+8. General knowledge
+
+Do not reverse this priority.
+
+==================================================
+EXISTING CO-OP IMPLEMENTATIONS
+==================================================
+
+Study the current BannerlordCoop project:
+
+https://github.com/Bannerlord-Coop-Team/BannerlordCoop
+
+Use it as a technical reference.
+
+Do not assume it is correct.
+
+Identify:
+
+- what it solves,
+- what it does not solve,
+- architectural weaknesses,
+- existing synchronization methods,
+- existing save behavior,
+- battle architecture,
+- server architecture,
+- networking design,
+- known bugs,
+- War Sails progress.
+
+==================================================
+WAR SAILS DOCUMENTATION
+==================================================
+
+Use official TaleWorlds War Sails modding documentation.
+
+Pay particular attention to:
+
+- naval campaign systems
+- naval world map
+- ships
+- fleets
+- water navigation
+- CoastalSea
+- OpenSea
+- River
+- NonNavigableRiver
+- naval missions
+- seaborne raid scenes
+- ship prefabs
+- naval scripts
+- ship interactions
+
+Never infer naval implementation solely from normal Bannerlord party behavior.
+
+==================================================
+ARCHITECTURE
+==================================================
+
+Keep game-independent logic separated from Bannerlord-specific implementation.
+
+Use interfaces and adapters where useful.
+
+Examples:
+
+ICampaignService
+IPartyService
+ISettlementService
+IBattleService
+ISiegeService
+INavalService
+IShipService
+IFleetService
+IQuestService
+IInventoryService
+IEconomyService
+ICharacterService
+INetworkService
+ISaveService
+
+Do not spread raw Bannerlord API calls throughout the codebase.
+
+==================================================
+NETWORKING
+==================================================
+
+Use an authoritative server model.
+
+Separate:
+
+- reliable state-changing events
+- unreliable movement/state updates
+- snapshots
+- deltas
+- acknowledgements
+- sequence numbers
+- reconciliation
+
+Do not synchronize the entire campaign every frame.
+
+==================================================
+TESTING
+==================================================
+
+Every meaningful feature requires tests.
+
+At minimum:
+
+- unit tests
+- integration tests
+- network tests
+- save/load tests
+
+Major systems must additionally have end-to-end tests.
+
+==================================================
+WORK STYLE
+==================================================
+
+Before modifying code:
+
+1. Inspect the repository.
+2. Inspect the relevant Bannerlord APIs.
+3. Inspect existing implementation.
+4. Identify dependencies.
+5. Explain the implementation strategy.
+6. Implement the smallest coherent change.
+7. Build.
+8. Run tests.
+9. Inspect failures.
+10. Fix them.
+11. Update documentation.
+12. Update PROJECT_STATUS.md.
+
+Do not make broad speculative rewrites.
+
+==================================================
+IMPORTANT
+==================================================
+
+The project must prioritize:
+
+CORRECTNESS
+SYNCHRONIZATION
+PERSISTENCE
+RECOVERY
+NATIVE GAMEPLAY
+WAR SAILS COMPATIBILITY
+PATCH RESILIENCE
+MAINTAINABILITY
+
+over:
+
+speed of implementation
+short code
+feature count
+unsupported player-count claims
+
+==================================================
+CURRENT DEVELOPMENT RULE
+==================================================
+
+Do NOT begin implementing gameplay yet.
+
+The current first milestone is the technical audit.
+
+Complete the Phase 0 audit before starting Phase 1.

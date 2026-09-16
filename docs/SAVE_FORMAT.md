@@ -119,7 +119,24 @@ Cached (`[CachedData]` — **never persist, never replicate**): `_attachedPartie
 
 **Beta adds persisted naval state** (VERIFIED, 1.5.3-beta): `Settlement.ShipStash` : `MBList<Ship>`, `PlayerDataForNavalAutoTravel._reservedShips`, `MapEventSide._shipSiegeEngineList`. These are **new save-schema members** — see `VERSION_SUPPORT.md`.
 
-## 5. Save Compatibility Matrix (to be measured)
+## 5. Save Safety Requirements (mandated by `CLAUDE.md` §7)
+
+**Never overwrite the only valid save.** The server's save of record is the entire shared world; losing it loses every player's progress simultaneously.
+
+| Requirement | Implementation |
+|---|---|
+| **Versioned saves** | Rotating generations: `world.NNNN.sav`, keep the last N (configurable, default 10). Never write over the newest good save. |
+| **Schema versions** | Every one of our `SyncData` blobs begins with a `u32 schemaVersion`. Refuse to load an unknown-newer schema; migrate a known-older one. |
+| **Migration support** | Explicit, ordered migration steps `vN → vN+1`. A save may only be loaded via a complete migration chain; no implicit field defaulting. |
+| **Backups** | Before each autosave, the previous newest save is retained. A separate daily backup generation is kept independently of the rotation. |
+| **Atomic writes** | Write to a temporary file, `fsync`, then atomically rename into place. A crash mid-write must never leave a truncated save at the live path. |
+| **Corruption detection** | Store a checksum of our blobs in the save metadata and verify on load. On mismatch, refuse the save and fall back to the previous generation with a clear operator message. |
+
+**Rule: fail loudly, never silently.** A corrupt or unmigratable save is a hard stop with an explicit message, not a silent reset to defaults — a silent default here destroys a persistent world while appearing to work.
+
+**Note:** `TaleWorlds.SaveSystem` provides `AsyncFileSaveDriver`, `FileDriver` and `InMemDriver` (VERIFIED), plus `SaveError`/`LoadError`/`LoadResult` types. Whether the engine's own writes are atomic is **UNCONFIRMED** — our rotation and atomic-rename layer must therefore sit *outside* the engine's save call, not rely on it.
+
+## 6. Save Compatibility Matrix (to be measured)
 
 | Scenario | Expectation | Confidence |
 |---|---|---|
@@ -132,7 +149,7 @@ Cached (`[CachedData]` — **never persist, never replicate**): `_attachedPartie
 
 **None of these are verified.** Phase 1.9 must run this matrix empirically on a real install. Until then, the project supports exactly one pinned game version and one DLC state.
 
-## 6. Design Rules
+## 7. Design Rules
 
 1. **Never hand-serialize engine types.** Let the engine own its graph; we persist only ids and our own data.
 2. **Persist ids, not references**, in our own blobs.

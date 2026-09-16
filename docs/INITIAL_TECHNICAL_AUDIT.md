@@ -463,6 +463,10 @@ Supporting: `NavalDLCManager`, `NavalDLCEvents`, `NavalDLCSubModule`, `NavalPoli
 
 ### 12.3 Naval movement (Goal 17)
 
+**Water navigation is base-game terrain data (VERIFIED).** `CoastalSea`, `OpenSea`, `River` and `NonNavigableRiver` are members of `TaleWorlds.Core.TerrainType` in **`TaleWorlds.Core.dll`** — not a DLC system. Full enum, query API (`Campaign.MapSceneWrapper` → `IMapScene.GetTerrainTypeAtPosition` / `GetFaceTerrainType` / `GetTerrainTypeName`), the naval scene extension `INavalMapSceneWrapper` (`GetSpawnPoints`, `GetWindAtPosition`, `Tick`), water-type-dependent campaign rules (open-sea attrition, open-sea speed bonus, storm node placement), and the `MapEvent.PowerCalculationContext` battle contexts (`SeaBattle`, `OpenSeaBattle`, `RiverBattle`, `NavalRaid`) are documented in `docs/WARSAILS_ARCHITECTURE.md` §4a.
+
+Sync consequence: terrain is deterministic static map data and must **not** be replicated; **wind and storms must be**, since they alter ship speed and damage.
+
 Campaign-map: `MobileParty.IsCurrentlyAtSea`, `.IsInRaftState`, `.Anchor`/`SetAnchor`, `.IsTargetingPort`, `.HasNavalNavigationCapability`, `GetRegionSwitchCostFromLandToSea/SeaToLand`, `StartTransitionNextFrameToExitFromPort`, `Ship.GetCampaignSpeed()`, `Ship.SeaWorthiness`, `Ship.CampaignSpeedBonusFactor`, `NavalTransitionCampaignBehavior`. All VERIFIED.
 Mission-layer: `NavalDLC.Missions.ShipControl.{NavalState, NavalVec}`, `NavalDLC.Missions.NavalPhysics` (14 types), `NavalDLC.Missions.ShipActuators` (16 types), `NavalDLC.Missions.ShipInput` (6 types). VERIFIED.
 
@@ -568,6 +572,31 @@ Consequences, and they are not negotiable by us:
 
 **Conclusion (VERIFIED):** the mature incumbent co-op mod does **not** support War Sails. Naval co-op is unimplemented by anyone publicly. That is simultaneously this project's clearest differentiator and its largest unknown — there is no prior art to learn from, and the risks in §14 are unmitigated by anyone.
 
+### 13.3a Itemised assessment requested by `CLAUDE.md`
+
+`CLAUDE.md` asks to identify ten specific things about the incumbent project. Below is what each is, and — where a finding is deliberately limited — why.
+
+| Requested item | Finding | Confidence | Source |
+|---|---|---|---|
+| **What it solves** | Shared campaign map; player/AI movement sync; map encounters; party & troop management; skills and progression; clan & kingdom management; settlement management; recruitment & trading; caravans & villagers; smithing; captivity; field battles; village raids; PvE and PvP combat; simulated battles; players visible in locations; sieges and sally-outs; armies; dedicated server; Steam integration | VERIFIED | Public README |
+| **What it does not solve** | Quests, hideouts, **War Sails/naval** — all listed as *planned*. README instructs disabling the War Sails DLC. | VERIFIED | Public README |
+| **War Sails progress** | **None shipped.** "Epic: War Sails Sync" (#3060) open since 2026-08-15 with 9 child issues; `[WARSAILS]` issues #3088 (naval battles), #3089 (naval village raiding), #3090 (ship blockades during sieges) all open and unstarted. PRs #3159 and issue #1318 both explicitly scope naval battles *out*. | VERIFIED | Public issues/PRs |
+| **Known bugs** | Open issue themes: diplomacy (#3507, #3464, #3320, #3116, #3505, #2916, #3156, #3294), kingdom mechanics (#2524, #2845), village/battle systems (#2619, #2917, #2977), world map (#2160), dedicated server (#3082). ~97 open issues at audit time. | VERIFIED | Public issue tracker |
+| **Server architecture** | Dedicated server exists and is the *recommended* hosting mode; Steam hosting avoids port forwarding; server-side Steam64 ban list. | VERIFIED | Public README/docs index |
+| **Supported version** | README states **v1.4.7**; build target in `Deploy.targets` is `v1.3.12`; module dependencies are `Native`, `SandBoxCore`, `Sandbox`, `CustomBattle`, `StoryMode` — **no `NavalDLC`**. | VERIFIED | Public repo files |
+| **Scale** | 4,257 `.cs` files, ~25 projects, very active (a PR merged the day of this audit). Stated as "optimized for up to 8 players". | VERIFIED | Public repo |
+| **Existing synchronization methods** | **Deliberately not derived.** | — | See note below |
+| **Existing save behaviour** | **Deliberately not derived.** | — | See note below |
+| **Battle architecture** | **Deliberately not derived.** | — | See note below |
+| **Networking design** | **Deliberately not derived.** | — | See note below |
+| **Architectural weaknesses** | **Deliberately not derived.** | — | See note below |
+
+> **Why five items are limited.** Their licence permits "viewing, reference, education, security review", so *reading* the project is allowed. What it prohibits is using the source "to create… a competing… co-op… mod" — and extracting their synchronization methods, save behaviour, battle architecture or networking design **for use in this project** is exactly that. The line that matters: **observing that the project exists and what it publicly claims is fine; deriving our implementation from its internals is not.**
+>
+> This audit therefore built the entire architecture from **TaleWorlds' own API surface**, which is independently verifiable, legally clean, and — since it is what we actually compile against — technically the better foundation regardless.
+>
+> If you choose option (b) or (c) in RISK-00 (permission, or contributing upstream), these five items become available and I can complete them. **That is your call, not mine to assume.**
+
 ### 13.4 Architecture comparison (Goal 24)
 
 Comparison is at the level of **publicly documented capability**, not implementation (per §13.2).
@@ -629,6 +658,7 @@ Everything here rests only on `VERIFIED` findings.
 | 7 | Save compat with/without `NavalDLC` enabled | Persistence, RISK-13 | Empirical save/load matrix |
 | 8 | `MissionShip` authority model & physics determinism | Naval battles | Runtime experiment |
 | 9 | Actual installed version on the target machine | Version pinning | Run §1.4 procedure |
+| 10 | Official TaleWorlds War Sails modding documentation (not located this session) | Naval detail, scenes, prefabs | Locate and review; naval findings are currently assembly-derived only |
 
 **The single highest-value next action is obtaining a real Bannerlord + War Sails install**, which converts items 1–9 from blocked to testable.
 

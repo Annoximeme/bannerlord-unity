@@ -165,7 +165,7 @@ Option (c) deserves genuine consideration: upstream has 4,257 files of working c
 
 **Evidence:** naval types live in the base assembly (VERIFIED), so the *types* always exist; whether a War-Sails-created save loads without the DLC is **UNCONFIRMED**.
 
-**Mitigation:** Phase 1 requires matching DLC state on server and client, enforced at handshake (`NETWORK_PROTOCOL.md` §5). Run the §5 compatibility matrix in `SAVE_FORMAT.md` once an install exists.
+**Mitigation:** Phase 1 requires matching DLC state on server and client, enforced at handshake (`NETWORK_PROTOCOL.md` §5). Run the §6 compatibility matrix in `SAVE_FORMAT.md` once an install exists.
 
 ---
 
