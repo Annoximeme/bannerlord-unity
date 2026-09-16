@@ -1,0 +1,1730 @@
+{
+  "collectedOn": "Gianni-PC",
+  "collectorPlatform": "Windows-11-10.0.26200-SP0",
+  "pythonVersion": "3.12.5",
+  "installPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord",
+  "installExists": true,
+  "steam": {
+    "path": "G:\\SteamLibrary\\steamapps\\appmanifest_261550.acf",
+    "appid": "261550",
+    "name": "Mount & Blade II: Bannerlord",
+    "buildid": "24573425",
+    "LastUpdated": "1788813390",
+    "SizeOnDisk": "96656220854",
+    "installdir": "Mount & Blade II Bannerlord",
+    "StateFlags": "4",
+    "betaKeys": [
+      "public"
+    ],
+    "optedIntoBeta": false,
+    "steamBranch": "public (default/live branch)"
+  },
+  "modules": [
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\AchievementUnblocker\\SubModule.xml",
+      "Id": "AchievementUnblocker",
+      "Name": "Achievement Unblocker",
+      "Version": "v1.1.1",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.3.6"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.3.6"
+        },
+        {
+          "Id": "Sandbox",
+          "DependentVersion": "v1.3.6"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "AchievementUnblocker",
+          "DLLName": "AchievementUnblocker.dll",
+          "SubModuleClassType": "AchievementUnblocker.SubModule"
+        }
+      ],
+      "dir": "AchievementUnblocker",
+      "assemblies": [
+        "0Harmony.dll",
+        "AchievementUnblocker.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\BannerFix\\SubModule.xml",
+      "Id": "BannerFix",
+      "Name": "Banner Fix",
+      "Version": "v3.3.6",
+      "dependencies": [
+        {
+          "Id": "Native"
+        },
+        {
+          "Id": "SandBoxCore"
+        },
+        {
+          "Id": "Sandbox"
+        },
+        {
+          "Id": "CustomBattle"
+        },
+        {
+          "Id": "StoryMode"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "BannerFix",
+          "DLLName": "Banner Fix.dll",
+          "SubModuleClassType": "Banner_Fix.Main"
+        }
+      ],
+      "dir": "BannerFix",
+      "assemblies": [
+        "Banner Fix.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\Bannerlord.ButterLib\\SubModule.xml",
+      "Id": "Bannerlord.ButterLib",
+      "Name": "ButterLib",
+      "Version": "v2.12.0",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "DefaultModule": "false",
+      "dependencies": [
+        {
+          "Id": "Bannerlord.Harmony",
+          "DependentVersion": "v2.2.2"
+        },
+        {
+          "id": "Bannerlord.Harmony",
+          "order": "LoadBeforeThis",
+          "version": "v2.2.2"
+        },
+        {
+          "id": "BetterExceptionWindow",
+          "order": "LoadBeforeThis",
+          "optional": "true"
+        },
+        {
+          "id": "Native",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*"
+        },
+        {
+          "id": "SandBoxCore",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "Sandbox",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "StoryMode",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "CustomBattle",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "ButterLib",
+          "DLLName": "Bannerlord.ButterLib.dll",
+          "SubModuleClassType": "Bannerlord.ButterLib.ButterLibSubModule"
+        },
+        {
+          "Name": "ButterLib Implementation Loader",
+          "DLLName": "Bannerlord.ButterLib.dll",
+          "SubModuleClassType": "Bannerlord.ButterLib.ImplementationLoaderSubModule"
+        }
+      ],
+      "dir": "Bannerlord.ButterLib",
+      "assemblies": [
+        "BUTR.CrashReport.Models.dll",
+        "BUTR.CrashReport.Renderer.Html.dll",
+        "BUTR.CrashReport.Renderer.ImGui.dll",
+        "BUTR.CrashReport.Renderer.WinForms.dll",
+        "BUTR.CrashReport.Renderer.Zip.dll",
+        "BUTR.CrashReport.dll",
+        "Bannerlord.ButterLib.Implementation.1.0.0.dll",
+        "Bannerlord.ButterLib.Implementation.1.0.1.dll",
+        "Bannerlord.ButterLib.Implementation.1.0.2.dll",
+        "Bannerlord.ButterLib.Implementation.1.0.3.dll",
+        "Bannerlord.ButterLib.Implementation.1.1.0.dll",
+        "Bannerlord.ButterLib.Implementation.1.1.1.dll",
+        "Bannerlord.ButterLib.Implementation.1.1.2.dll",
+        "Bannerlord.ButterLib.Implementation.1.1.3.dll",
+        "Bannerlord.ButterLib.Implementation.1.1.4.dll",
+        "Bannerlord.ButterLib.Implementation.1.1.5.dll",
+        "Bannerlord.ButterLib.Implementation.1.1.6.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.10.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.11.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.12.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.4.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.5.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.6.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.7.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.8.dll",
+        "Bannerlord.ButterLib.Implementation.1.2.9.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.10.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.11.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.12.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.13.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.14.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.15.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.4.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.5.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.6.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.7.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.8.dll",
+        "Bannerlord.ButterLib.Implementation.1.3.9.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.0.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.1.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.2.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.3.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.4.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.5.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.6.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.7.dll",
+        "Bannerlord.ButterLib.Implementation.1.4.8.dll",
+        "Bannerlord.ButterLib.Implementation.1.5.1.dll",
+        "Bannerlord.ButterLib.dll",
+        "Microsoft.Bcl.HashCode.dll",
+        "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "Microsoft.Extensions.DependencyInjection.dll",
+        "Microsoft.Extensions.Logging.Abstractions.dll",
+        "Microsoft.Extensions.Logging.dll",
+        "Microsoft.Extensions.Options.dll",
+        "Microsoft.Extensions.Primitives.dll",
+        "Serilog.Extensions.Logging.dll",
+        "Serilog.Sinks.File.dll",
+        "Serilog.dll",
+        "System.Buffers.dll",
+        "System.Collections.Immutable.dll",
+        "System.Memory.dll",
+        "System.Numerics.Vectors.dll",
+        "System.Reflection.Metadata.dll",
+        "System.Runtime.CompilerServices.Unsafe.dll",
+        "cimgui.dll",
+        "glfw3.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\Bannerlord.Diplomacy\\SubModule.xml",
+      "Id": "Bannerlord.Diplomacy",
+      "Name": "Diplomacy",
+      "Version": "v1.5.2",
+      "ModuleType": "Community",
+      "DefaultModule": "false",
+      "Official": "false",
+      "dependencies": [
+        {
+          "Id": "Bannerlord.Harmony",
+          "DependentVersion": "v2.4.2"
+        },
+        {
+          "Id": "Bannerlord.ButterLib",
+          "DependentVersion": "v2.11.1"
+        },
+        {
+          "Id": "Bannerlord.MBOptionScreen",
+          "DependentVersion": "v5.12.3"
+        },
+        {
+          "Id": "Bannerlord.UIExtenderEx",
+          "DependentVersion": "v2.13.2"
+        },
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.0"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.0"
+        },
+        {
+          "Id": "Sandbox",
+          "DependentVersion": "v1.4.0"
+        },
+        {
+          "Id": "StoryMode",
+          "DependentVersion": "v1.4.0"
+        },
+        {
+          "id": "Bannerlord.Harmony",
+          "order": "LoadBeforeThis",
+          "version": "v2.4.2"
+        },
+        {
+          "id": "Bannerlord.ButterLib",
+          "order": "LoadBeforeThis",
+          "version": "v2.11.1"
+        },
+        {
+          "id": "Bannerlord.MBOptionScreen",
+          "order": "LoadBeforeThis",
+          "version": "v5.12.3"
+        },
+        {
+          "id": "Bannerlord.UIExtenderEx",
+          "order": "LoadBeforeThis",
+          "version": "v2.13.2"
+        },
+        {
+          "id": "Native",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.0.*"
+        },
+        {
+          "id": "SandBoxCore",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.0.*"
+        },
+        {
+          "id": "Sandbox",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.0.*"
+        },
+        {
+          "id": "StoryMode",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.0.*"
+        },
+        {
+          "id": "CustomBattle",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "BirthAndDeath",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "NavalDLC",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.0.*",
+          "optional": "true"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "Bannerlord Module Loader",
+          "DLLName": "Bannerlord.ModuleLoader.Bannerlord.Diplomacy.dll",
+          "SubModuleClassType": "Bannerlord.ModuleLoader.Bannerlord_Diplomacy"
+        }
+      ],
+      "dir": "Bannerlord.Diplomacy",
+      "assemblies": [
+        "Bannerlord.Diplomacy.1.4.0.dll",
+        "Bannerlord.Diplomacy.1.4.1.dll",
+        "Bannerlord.Diplomacy.1.4.2.dll",
+        "Bannerlord.Diplomacy.1.4.3.dll",
+        "Bannerlord.Diplomacy.1.4.4.dll",
+        "Bannerlord.Diplomacy.1.4.5.dll",
+        "Bannerlord.Diplomacy.1.4.6.dll",
+        "Bannerlord.Diplomacy.1.4.7.dll",
+        "Bannerlord.Diplomacy.1.4.8.dll",
+        "Bannerlord.Diplomacy.1.5.1.dll",
+        "Bannerlord.Diplomacy.1.5.2.dll",
+        "Bannerlord.ModuleLoader.Bannerlord.Diplomacy.dll",
+        "ColorMinePortable.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\Bannerlord.Harmony\\SubModule.xml",
+      "Id": "Bannerlord.Harmony",
+      "Name": "Harmony",
+      "Version": "v2.4.2.248",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "DefaultModule": "false",
+      "dependencies": [
+        {
+          "id": "Native",
+          "order": "LoadAfterThis",
+          "version": "v1.3.4.*",
+          "optional": "true"
+        },
+        {
+          "id": "SandBoxCore",
+          "order": "LoadAfterThis",
+          "version": "v1.3.4.*",
+          "optional": "true"
+        },
+        {
+          "id": "Sandbox",
+          "order": "LoadAfterThis",
+          "version": "v1.3.4.*",
+          "optional": "true"
+        },
+        {
+          "id": "StoryMode",
+          "order": "LoadAfterThis",
+          "version": "v1.3.4.*",
+          "optional": "true"
+        },
+        {
+          "id": "CustomBattle",
+          "order": "LoadAfterThis",
+          "version": "v1.3.4.*",
+          "optional": "true"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "Harmony",
+          "DLLName": "Bannerlord.Harmony.dll",
+          "SubModuleClassType": "Bannerlord.Harmony.SubModule"
+        }
+      ],
+      "dir": "Bannerlord.Harmony",
+      "assemblies": [
+        "0Harmony.dll",
+        "Bannerlord.Harmony.dll",
+        "Mono.Cecil.Mdb.dll",
+        "Mono.Cecil.Pdb.dll",
+        "Mono.Cecil.Rocks.dll",
+        "Mono.Cecil.dll",
+        "MonoMod.Backports.dll",
+        "MonoMod.Core.dll",
+        "MonoMod.ILHelpers.dll",
+        "MonoMod.Iced.dll",
+        "MonoMod.Utils.dll",
+        "System.ValueTuple.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\Bannerlord.MBOptionScreen\\SubModule.xml",
+      "Id": "Bannerlord.MBOptionScreen",
+      "Name": "Mod Configuration Menu v5",
+      "Version": "v5.12.3",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "DefaultModule": "false",
+      "dependencies": [
+        {
+          "Id": "Bannerlord.Harmony",
+          "DependentVersion": "v2.2.2"
+        },
+        {
+          "Id": "Bannerlord.ButterLib",
+          "DependentVersion": "v2.11.1"
+        },
+        {
+          "Id": "Bannerlord.UIExtenderEx",
+          "DependentVersion": "v2.13.3"
+        },
+        {
+          "id": "Bannerlord.Harmony",
+          "order": "LoadBeforeThis",
+          "version": "v2.2.2"
+        },
+        {
+          "id": "Bannerlord.ButterLib",
+          "order": "LoadBeforeThis",
+          "version": "v2.11.1"
+        },
+        {
+          "id": "Bannerlord.UIExtenderEx",
+          "order": "LoadBeforeThis",
+          "version": "v2.13.3"
+        },
+        {
+          "id": "Native",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*"
+        },
+        {
+          "id": "SandBoxCore",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "Sandbox",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "StoryMode",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "CustomBattle",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "MCMv5",
+          "DLLName": "MCMv5.dll",
+          "SubModuleClassType": "MCM.MCMSubModule"
+        },
+        {
+          "Name": "MCMv5 Basic Implementation",
+          "DLLName": "MCMv5.dll",
+          "SubModuleClassType": "MCM.Internal.MCMImplementationSubModule"
+        },
+        {
+          "Name": "Bannerlord Module Loader",
+          "DLLName": "Bannerlord.ModuleLoader.Bannerlord.MBOptionScreen.dll",
+          "SubModuleClassType": "Bannerlord.ModuleLoader.Bannerlord_MBOptionScreen"
+        }
+      ],
+      "dir": "Bannerlord.MBOptionScreen",
+      "assemblies": [
+        "Bannerlord.MBOptionScreen.v1.0.0.dll",
+        "Bannerlord.MBOptionScreen.v1.0.1.dll",
+        "Bannerlord.MBOptionScreen.v1.0.2.dll",
+        "Bannerlord.MBOptionScreen.v1.0.3.dll",
+        "Bannerlord.MBOptionScreen.v1.1.0.dll",
+        "Bannerlord.MBOptionScreen.v1.1.1.dll",
+        "Bannerlord.MBOptionScreen.v1.1.2.dll",
+        "Bannerlord.MBOptionScreen.v1.1.3.dll",
+        "Bannerlord.MBOptionScreen.v1.1.4.dll",
+        "Bannerlord.MBOptionScreen.v1.1.5.dll",
+        "Bannerlord.MBOptionScreen.v1.1.6.dll",
+        "Bannerlord.MBOptionScreen.v1.2.10.dll",
+        "Bannerlord.MBOptionScreen.v1.2.11.dll",
+        "Bannerlord.MBOptionScreen.v1.2.12.dll",
+        "Bannerlord.MBOptionScreen.v1.2.4.dll",
+        "Bannerlord.MBOptionScreen.v1.2.5.dll",
+        "Bannerlord.MBOptionScreen.v1.2.6.dll",
+        "Bannerlord.MBOptionScreen.v1.2.7.dll",
+        "Bannerlord.MBOptionScreen.v1.2.8.dll",
+        "Bannerlord.MBOptionScreen.v1.2.9.dll",
+        "Bannerlord.MBOptionScreen.v1.3.10.dll",
+        "Bannerlord.MBOptionScreen.v1.3.11.dll",
+        "Bannerlord.MBOptionScreen.v1.3.12.dll",
+        "Bannerlord.MBOptionScreen.v1.3.13.dll",
+        "Bannerlord.MBOptionScreen.v1.3.14.dll",
+        "Bannerlord.MBOptionScreen.v1.3.15.dll",
+        "Bannerlord.MBOptionScreen.v1.3.4.dll",
+        "Bannerlord.MBOptionScreen.v1.3.5.dll",
+        "Bannerlord.MBOptionScreen.v1.3.6.dll",
+        "Bannerlord.MBOptionScreen.v1.3.7.dll",
+        "Bannerlord.MBOptionScreen.v1.3.8.dll",
+        "Bannerlord.MBOptionScreen.v1.3.9.dll",
+        "Bannerlord.MBOptionScreen.v1.4.0.dll",
+        "Bannerlord.MBOptionScreen.v1.4.1.dll",
+        "Bannerlord.MBOptionScreen.v1.4.2.dll",
+        "Bannerlord.MBOptionScreen.v1.4.3.dll",
+        "Bannerlord.MBOptionScreen.v1.4.4.dll",
+        "Bannerlord.MBOptionScreen.v1.4.5.dll",
+        "Bannerlord.MBOptionScreen.v1.4.6.dll",
+        "Bannerlord.MBOptionScreen.v1.4.7.dll",
+        "Bannerlord.MBOptionScreen.v1.4.8.dll",
+        "Bannerlord.MBOptionScreen.v1.5.1.dll",
+        "Bannerlord.ModuleLoader.Bannerlord.MBOptionScreen.dll",
+        "MCM.UI.Adapter.MCMv5.dll",
+        "MCMv5.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\Bannerlord.UIExtenderEx\\SubModule.xml",
+      "Id": "Bannerlord.UIExtenderEx",
+      "Name": "UIExtenderEx",
+      "Version": "v2.13.3",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "DefaultModule": "false",
+      "dependencies": [
+        {
+          "Id": "Bannerlord.Harmony",
+          "DependentVersion": "v2.2.2"
+        },
+        {
+          "id": "Bannerlord.Harmony",
+          "order": "LoadBeforeThis",
+          "version": "v2.2.2"
+        },
+        {
+          "id": "Native",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "SandBoxCore",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "Sandbox",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "StoryMode",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        },
+        {
+          "id": "CustomBattle",
+          "order": "LoadAfterThis",
+          "version": "v1.0.0.*",
+          "optional": "true"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "UIExtenderEx",
+          "DLLName": "Bannerlord.UIExtenderEx.dll",
+          "SubModuleClassType": "Bannerlord.UIExtenderEx.SubModule"
+        }
+      ],
+      "dir": "Bannerlord.UIExtenderEx",
+      "assemblies": [
+        "Bannerlord.UIExtenderEx.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\BirthAndDeath\\SubModule.xml",
+      "Id": "BirthAndDeath",
+      "Name": "Birth and Aging Options",
+      "Version": "v1.4.8",
+      "ModuleType": "OfficialOptional",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "BirthAndDeathSubModule",
+          "DLLName": "TaleWorlds.CampaignSystem.ViewModelCollection.BirthAndDeath.dll",
+          "SubModuleClassType": "TaleWorlds.CampaignSystem.ViewModelCollection.BirthAndDeath.BirthAndDeathSubModule"
+        }
+      ],
+      "dir": "BirthAndDeath",
+      "assemblies": [
+        "TaleWorlds.CampaignSystem.ViewModelCollection.BirthAndDeath.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\CustomBattle\\SubModule.xml",
+      "Id": "CustomBattle",
+      "Name": "CustomBattle",
+      "Version": "v1.4.8",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Official",
+      "DefaultModule": "true",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "CustomBattleSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.CustomBattle.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.CustomBattle.CustomBattleSubModule"
+        }
+      ],
+      "dir": "CustomBattle",
+      "assemblies": [
+        "TaleWorlds.MountAndBlade.CustomBattle.dll",
+        "TaleWorlds.MountAndBlade.Multiplayer.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\DisableCompanionDonations\\SubModule.xml",
+      "Id": "DisableCompanionDonations",
+      "Name": "Disable Companion Donations",
+      "Version": "v1.0.0",
+      "dependencies": [
+        {
+          "Id": "Native"
+        },
+        {
+          "Id": "SandBoxCore"
+        },
+        {
+          "Id": "Sandbox"
+        },
+        {
+          "Id": "CustomBattle"
+        },
+        {
+          "Id": "StoryMode"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "DisableCompanionDonations",
+          "DLLName": "DisableCompanionDonations.dll",
+          "SubModuleClassType": "DisableCompanionDonations.SubModule"
+        }
+      ],
+      "dir": "DisableCompanionDonations",
+      "assemblies": [
+        "0Harmony.dll",
+        "DisableCompanionDonations.dll",
+        "TaleWorlds.Core.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\DismembermentPlus\\SubModule.xml",
+      "Id": "DismembermentPlus",
+      "Name": "Dismemberment (Plus) for v1.4.8",
+      "Version": "v2.0.8.8",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "dependencies": [
+        {
+          "DependentVersion": "v1.4.8",
+          "Id": "Native"
+        },
+        {
+          "DependentVersion": "v1.4.8",
+          "Id": "SandBoxCore"
+        },
+        {
+          "DependentVersion": "v1.4.8",
+          "Id": "Sandbox"
+        },
+        {
+          "DependentVersion": "v1.4.8",
+          "Id": "StoryMode"
+        },
+        {
+          "DependentVersion": "v1.4.8",
+          "Id": "CustomBattle"
+        },
+        {
+          "version": "v1.4.8",
+          "order": "LoadBeforeThis",
+          "id": "Native"
+        },
+        {
+          "version": "v1.4.8",
+          "order": "LoadBeforeThis",
+          "id": "SandBoxCore"
+        },
+        {
+          "version": "v1.4.8",
+          "order": "LoadBeforeThis",
+          "id": "Sandbox"
+        },
+        {
+          "version": "v1.4.8",
+          "order": "LoadBeforeThis",
+          "id": "CustomBattle",
+          "optional": "true"
+        },
+        {
+          "version": "v1.4.8",
+          "order": "LoadBeforeThis",
+          "id": "StoryMode",
+          "optional": "true"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "Dismemberment (Plus)",
+          "DLLName": "DismembermentPlus.dll",
+          "SubModuleClassType": "DismembermentPlus.Main"
+        }
+      ],
+      "dir": "DismembermentPlus",
+      "assemblies": [
+        "DismembermentPlus.dll",
+        "MCMv5.dll",
+        "Newtonsoft.Json.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\FastMode\\SubModule.xml",
+      "Id": "FastMode",
+      "Name": "Fast Mode",
+      "Version": "v1.4.8",
+      "ModuleType": "OfficialOptional",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "FastModeSubModule",
+          "DLLName": "TaleWorlds.CampaignSystem.FastMode.dll",
+          "SubModuleClassType": "TaleWorlds.CampaignSystem.FastMode.FastModeSubModule"
+        }
+      ],
+      "dir": "FastMode",
+      "assemblies": [
+        "TaleWorlds.CampaignSystem.FastMode.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\ImprovedGarrisons\\SubModule.xml",
+      "Id": "ImprovedGarrisons",
+      "Name": "Improved Garrisons",
+      "Version": "v4.2.0.7",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "subModules": [
+        {
+          "Name": "Improved Garrisons",
+          "DLLName": "ImprovedGarrisons.dll",
+          "SubModuleClassType": "ImprovedGarrisons.Main"
+        }
+      ],
+      "dir": "ImprovedGarrisons",
+      "assemblies": [
+        "ImprovedGarrisons.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\Multiplayer\\SubModule.xml",
+      "Id": "Multiplayer",
+      "Name": "Multiplayer",
+      "Version": "v1.4.8",
+      "ModuleCategory": "Multiplayer",
+      "ModuleType": "Official",
+      "DefaultModule": "true",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "TaleWorlds.MountAndBlade.Multiplayer",
+          "DLLName": "TaleWorlds.MountAndBlade.Multiplayer.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.Multiplayer.MultiplayerSubModule"
+        },
+        {
+          "Name": "TaleWorlds.MountAndBlade.Multiplayer.View",
+          "DLLName": "TaleWorlds.MountAndBlade.Multiplayer.View.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.Multiplayer.View.MultiplayerViewSubModule"
+        },
+        {
+          "Name": "TaleWorlds.MountAndBlade.Multiplayer.GauntletUI",
+          "DLLName": "TaleWorlds.MountAndBlade.Multiplayer.GauntletUI.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.Multiplayer.GauntletUI.MultiplayerGauntletUISubModule"
+        },
+        {
+          "Name": "TaleWorlds.MountAndBlade.Multiplayer.GDK",
+          "DLLName": "TaleWorlds.MountAndBlade.Multiplayer.GDK.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.Multiplayer.GDK.MultiplayerGDKSubModule"
+        },
+        {
+          "Name": "DedicatedServerSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.DedicatedServer.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.DedicatedServer.DedicatedServerSubModule"
+        },
+        {
+          "Name": "DedicatedCommunityServerSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.DedicatedCommunityServer.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.DedicatedCommunityServer.DedicatedCommunityServerSubModule"
+        },
+        {
+          "Name": "DedicatedCustomServerSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.DedicatedCustomServer.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.DedicatedCustomServer.DedicatedCustomServerSubModule"
+        },
+        {
+          "Name": "DedicatedCustomServerOfficialSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.DedicatedCustomServer.Official.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.DedicatedCustomServer.Official.DedicatedCustomServerOfficialSubModule"
+        },
+        {
+          "Name": "DedicatedCustomServerWebPanelSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.DedicatedCustomServer.WebPanel.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.DedicatedCustomServer.WebPanel.DedicatedCustomServerWebPanelSubModule"
+        },
+        {
+          "Name": "ListedServerMapServerSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.ListedServer.MapServer.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.ListedServer.MapServer.ListedServerMapServerSubModule"
+        },
+        {
+          "Name": "DedicatedCustomServerClientHelperSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.DedicatedCustomServer.ClientHelper.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.DedicatedCustomServer.ClientHelper.DedicatedCustomServerClientHelperSubModule"
+        }
+      ],
+      "dir": "Multiplayer",
+      "assemblies": [
+        "TaleWorlds.MountAndBlade.DedicatedCustomServer.ClientHelper.dll",
+        "TaleWorlds.MountAndBlade.Multiplayer.GauntletUI.AutoGenerated.dll",
+        "TaleWorlds.MountAndBlade.Multiplayer.GauntletUI.dll",
+        "TaleWorlds.MountAndBlade.Multiplayer.View.dll",
+        "TaleWorlds.MountAndBlade.Multiplayer.ViewModelCollection.dll",
+        "TaleWorlds.MountAndBlade.Multiplayer.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\Native\\SubModule.xml",
+      "Id": "Native",
+      "Name": "Native",
+      "Version": "v1.4.8",
+      "ModuleType": "Official",
+      "subModules": [
+        {
+          "Name": "ViewSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.View.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.View.ViewSubModule"
+        },
+        {
+          "Name": "GauntletUISubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.GauntletUI.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.GauntletUI.GauntletUISubModule"
+        },
+        {
+          "Name": "PlatformPCSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.Platform.PC.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.Platform.PC.PlatformPCSubModule"
+        },
+        {
+          "Name": "PlatformPSSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.Platform.PS.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.Platform.PS.PlatformPSSubModule"
+        },
+        {
+          "Name": "PlatformGDKSubModule",
+          "DLLName": "TaleWorlds.MountAndBlade.Platform.GDK.dll",
+          "SubModuleClassType": "TaleWorlds.MountAndBlade.Platform.GDK.PlatformGDKSubModule"
+        }
+      ],
+      "dir": "Native",
+      "assemblies": [
+        "TaleWorlds.MountAndBlade.GauntletUI.AutoGenerated.0.dll",
+        "TaleWorlds.MountAndBlade.GauntletUI.AutoGenerated.1.dll",
+        "TaleWorlds.MountAndBlade.GauntletUI.dll",
+        "TaleWorlds.MountAndBlade.Platform.PC.dll",
+        "TaleWorlds.MountAndBlade.View.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\NavalDLC\\SubModule.xml",
+      "Id": "NavalDLC",
+      "Name": "NavalDLC",
+      "Version": "v1.2.8",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "OfficialOptional",
+      "DefaultModule": "true",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "Sandbox",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Optional": "False",
+          "DependentVersion": "v1.4.8",
+          "Id": "StoryMode"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "NavalDLC",
+          "DLLName": "NavalDLC.dll",
+          "SubModuleClassType": "NavalDLC.NavalDLCSubModule"
+        },
+        {
+          "Name": "NavalDLCCustomBattle",
+          "DLLName": "NavalDLC.CustomBattle.dll",
+          "SubModuleClassType": "NavalDLC.CustomBattle.NavalDLCCustomBattleSubModule"
+        },
+        {
+          "Name": "NavalDLC.View",
+          "DLLName": "NavalDLC.View.dll",
+          "SubModuleClassType": "NavalDLC.View.NavalDLCViewSubModule"
+        },
+        {
+          "Name": "NavalDLC.GauntletUI",
+          "DLLName": "NavalDLC.GauntletUI.dll",
+          "SubModuleClassType": "NavalDLC.GauntletUI.NavalDLCGauntletUISubModule"
+        }
+      ],
+      "dir": "NavalDLC",
+      "assemblies": [
+        "NavalDLC.CustomBattle.dll",
+        "NavalDLC.GauntletUI.AutoGenerated.dll",
+        "NavalDLC.GauntletUI.Widgets.dll",
+        "NavalDLC.GauntletUI.dll",
+        "NavalDLC.View.dll",
+        "NavalDLC.ViewModelCollection.dll",
+        "NavalDLC.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\NoWaterEscape\\SubModule.xml",
+      "Id": "NoWaterEscape",
+      "Name": "NoWaterEscape",
+      "Version": "v1.0.0",
+      "ModuleCategory": "Community",
+      "dependencies": [
+        {
+          "Id": "Native"
+        },
+        {
+          "Id": "SandBoxCore"
+        },
+        {
+          "Id": "Sandbox"
+        },
+        {
+          "Id": "NavalDLC"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "NoWaterEscape",
+          "DLLName": "NoWaterEscape.dll",
+          "SubModuleClassType": "NoWaterEscape.SubModule"
+        }
+      ],
+      "dir": "NoWaterEscape",
+      "assemblies": [
+        "NoWaterEscape.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\RaiseYourBanner\\SubModule.xml",
+      "Id": "RaiseYourBanner",
+      "Name": "Raise your Banner",
+      "Version": "v16.1.7",
+      "dependencies": [
+        {
+          "Id": "Native"
+        },
+        {
+          "Id": "SandBoxCore"
+        },
+        {
+          "Id": "Sandbox"
+        },
+        {
+          "Id": "CustomBattle"
+        },
+        {
+          "Id": "StoryMode"
+        },
+        {
+          "Id": "BannerFix"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "RaiseYourBanner",
+          "DLLName": "Raise your Banner.dll",
+          "SubModuleClassType": "Raise_your_Banner.Main"
+        }
+      ],
+      "dir": "RaiseYourBanner",
+      "assemblies": [
+        "Raise your Banner MCM.dll",
+        "Raise your Banner RYT MCM.dll",
+        "Raise your Banner.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\RTSCamera\\SubModule.xml",
+      "Id": "RTSCamera",
+      "Name": "RTS Camera",
+      "Version": "v5.4.16",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "Sandbox",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "CustomBattle",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "StoryMode",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "id": "Bannerlord.Harmony",
+          "order": "LoadBeforeThis",
+          "optional": "true"
+        },
+        {
+          "id": "Native",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "SandBoxCore",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "Sandbox",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "StoryMode",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "CustomBattle",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "RTSCameraSubModule",
+          "DLLName": "RTSCamera.dll",
+          "SubModuleClassType": "RTSCamera.RTSCameraSubModule"
+        }
+      ],
+      "dir": "RTSCamera",
+      "assemblies": [
+        "0Harmony.dll",
+        "MissionLibrary.dll",
+        "RTSCamera.dll",
+        "RTSCameraAgentComponent.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\RTSCamera.CommandSystem\\SubModule.xml",
+      "Id": "RTSCamera.CommandSystem",
+      "Name": "RTS Camera Command System",
+      "Version": "v5.4.16",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Community",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "Sandbox",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "CustomBattle",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "Id": "StoryMode",
+          "DependentVersion": "v1.4.8"
+        },
+        {
+          "id": "Bannerlord.Harmony",
+          "order": "LoadBeforeThis",
+          "optional": "true"
+        },
+        {
+          "id": "Native",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "SandBoxCore",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "Sandbox",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "StoryMode",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        },
+        {
+          "id": "CustomBattle",
+          "order": "LoadBeforeThis",
+          "version": "v1.4.*"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "RTSCameraCommandSystemSubModule",
+          "DLLName": "RTSCamera.CommandSystem.dll",
+          "SubModuleClassType": "RTSCamera.CommandSystem.CommandSystemSubModule"
+        }
+      ],
+      "dir": "RTSCamera.CommandSystem",
+      "assemblies": [
+        "0Harmony.dll",
+        "MissionLibrary.dll",
+        "RTSCamera.CommandSystem.dll",
+        "RTSCameraAgentComponent.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\SandBox\\SubModule.xml",
+      "Id": "Sandbox",
+      "Name": "Sandbox",
+      "Version": "v1.4.8",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Official",
+      "DefaultModule": "true",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "SandBox",
+          "DLLName": "SandBox.dll",
+          "SubModuleClassType": "SandBox.SandBoxSubModule"
+        },
+        {
+          "Name": "SandBox.View",
+          "DLLName": "SandBox.View.dll",
+          "SubModuleClassType": "SandBox.View.SandBoxViewSubModule"
+        },
+        {
+          "Name": "SandBox.GauntletUI",
+          "DLLName": "SandBox.GauntletUI.dll",
+          "SubModuleClassType": "SandBox.GauntletUI.SandBoxGauntletUISubModule"
+        }
+      ],
+      "dir": "SandBox",
+      "assemblies": [
+        "SandBox.GauntletUI.AutoGenerated.0.dll",
+        "SandBox.GauntletUI.AutoGenerated.1.dll",
+        "SandBox.GauntletUI.dll",
+        "SandBox.View.dll",
+        "SandBox.ViewModelCollection.dll",
+        "SandBox.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\SandBoxCore\\SubModule.xml",
+      "Id": "SandBoxCore",
+      "Name": "SandBox Core",
+      "Version": "v1.4.8",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Official",
+      "DefaultModule": "true",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        }
+      ],
+      "dir": "SandBoxCore",
+      "assemblies": []
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\StoryMode\\SubModule.xml",
+      "Id": "StoryMode",
+      "Name": "StoryMode",
+      "Version": "v1.4.8",
+      "ModuleCategory": "Singleplayer",
+      "ModuleType": "Official",
+      "DefaultModule": "false",
+      "dependencies": [
+        {
+          "Id": "Native",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "SandBoxCore",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        },
+        {
+          "Id": "Sandbox",
+          "DependentVersion": "v1.4.8",
+          "Optional": "false"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "StoryMode",
+          "DLLName": "StoryMode.dll",
+          "SubModuleClassType": "StoryMode.StoryModeSubModule"
+        },
+        {
+          "Name": "StoryMode.View",
+          "DLLName": "StoryMode.View.dll",
+          "SubModuleClassType": "StoryMode.View.StoryModeViewSubModule"
+        },
+        {
+          "Name": "StoryMode.GauntletUI",
+          "DLLName": "StoryMode.GauntletUI.dll",
+          "SubModuleClassType": "StoryMode.GauntletUI.StoryModeGauntletUISubModule"
+        }
+      ],
+      "dir": "StoryMode",
+      "assemblies": [
+        "StoryMode.GauntletUI.AutoGenerated.dll",
+        "StoryMode.GauntletUI.dll",
+        "StoryMode.View.dll",
+        "StoryMode.ViewModelCollection.dll",
+        "StoryMode.dll"
+      ]
+    },
+    {
+      "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\UnblockableThrust\\SubModule.xml",
+      "Id": "UnblockableThrust",
+      "Name": "Unblockable Thrust",
+      "Version": "v1.1.3",
+      "dependencies": [
+        {
+          "Id": "Native"
+        },
+        {
+          "Id": "SandBoxCore"
+        },
+        {
+          "Id": "Sandbox"
+        },
+        {
+          "Id": "CustomBattle"
+        },
+        {
+          "Id": "StoryMode"
+        },
+        {
+          "Id": "Bannerlord.Harmony"
+        },
+        {
+          "Id": "Bannerlord.MBOptionScreen"
+        }
+      ],
+      "subModules": [
+        {
+          "Name": "UnblockableThrust",
+          "DLLName": "UnblockableThrust.dll",
+          "SubModuleClassType": "UnblockableThrust.UnblockableThrustSubmodule"
+        }
+      ],
+      "dir": "UnblockableThrust",
+      "assemblies": [
+        "UnblockableThrust.dll"
+      ]
+    }
+  ],
+  "moduleCount": 24,
+  "warSailsInstalled": true,
+  "warSailsModule": {
+    "path": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\NavalDLC\\SubModule.xml",
+    "Id": "NavalDLC",
+    "Name": "NavalDLC",
+    "Version": "v1.2.8",
+    "ModuleCategory": "Singleplayer",
+    "ModuleType": "OfficialOptional",
+    "DefaultModule": "true",
+    "dependencies": [
+      {
+        "Id": "Native",
+        "DependentVersion": "v1.4.8",
+        "Optional": "false"
+      },
+      {
+        "Id": "SandBoxCore",
+        "DependentVersion": "v1.4.8",
+        "Optional": "false"
+      },
+      {
+        "Id": "Sandbox",
+        "DependentVersion": "v1.4.8",
+        "Optional": "false"
+      },
+      {
+        "Optional": "False",
+        "DependentVersion": "v1.4.8",
+        "Id": "StoryMode"
+      }
+    ],
+    "subModules": [
+      {
+        "Name": "NavalDLC",
+        "DLLName": "NavalDLC.dll",
+        "SubModuleClassType": "NavalDLC.NavalDLCSubModule"
+      },
+      {
+        "Name": "NavalDLCCustomBattle",
+        "DLLName": "NavalDLC.CustomBattle.dll",
+        "SubModuleClassType": "NavalDLC.CustomBattle.NavalDLCCustomBattleSubModule"
+      },
+      {
+        "Name": "NavalDLC.View",
+        "DLLName": "NavalDLC.View.dll",
+        "SubModuleClassType": "NavalDLC.View.NavalDLCViewSubModule"
+      },
+      {
+        "Name": "NavalDLC.GauntletUI",
+        "DLLName": "NavalDLC.GauntletUI.dll",
+        "SubModuleClassType": "NavalDLC.GauntletUI.NavalDLCGauntletUISubModule"
+      }
+    ],
+    "dir": "NavalDLC",
+    "assemblies": [
+      "NavalDLC.CustomBattle.dll",
+      "NavalDLC.GauntletUI.AutoGenerated.dll",
+      "NavalDLC.GauntletUI.Widgets.dll",
+      "NavalDLC.GauntletUI.dll",
+      "NavalDLC.View.dll",
+      "NavalDLC.ViewModelCollection.dll",
+      "NavalDLC.dll"
+    ]
+  },
+  "assemblies": [
+    {
+      "name": "TaleWorlds.CampaignSystem",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.CampaignSystem",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.CampaignSystem",
+        "AssemblyTitleAttribute": "TaleWorlds.CampaignSystem"
+      },
+      "typeCount": 2306,
+      "file": "TaleWorlds.CampaignSystem.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.CampaignSystem.dll",
+      "size": 5469656
+    },
+    {
+      "name": "TaleWorlds.Core",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.Core",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.Core",
+        "AssemblyTitleAttribute": "TaleWorlds.Core"
+      },
+      "typeCount": 323,
+      "file": "TaleWorlds.Core.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.Core.dll",
+      "size": 501720
+    },
+    {
+      "name": "TaleWorlds.Library",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.Library",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.Library",
+        "AssemblyTitleAttribute": "TaleWorlds.Library"
+      },
+      "typeCount": 256,
+      "file": "TaleWorlds.Library.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.Library.dll",
+      "size": 270296
+    },
+    {
+      "name": "TaleWorlds.ObjectSystem",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.ObjectSystem",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.ObjectSystem",
+        "AssemblyTitleAttribute": "TaleWorlds.ObjectSystem"
+      },
+      "typeCount": 27,
+      "file": "TaleWorlds.ObjectSystem.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.ObjectSystem.dll",
+      "size": 59864
+    },
+    {
+      "name": "TaleWorlds.SaveSystem",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.SaveSystem",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.SaveSystem",
+        "AssemblyTitleAttribute": "TaleWorlds.SaveSystem"
+      },
+      "typeCount": 135,
+      "file": "TaleWorlds.SaveSystem.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.SaveSystem.dll",
+      "size": 174040
+    },
+    {
+      "name": "TaleWorlds.MountAndBlade",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "InternalsVisibleToAttribute": "TaleWorlds.Generator.Bannerlord",
+        "DefineAsEngineStruct": "TaleWorlds.Core.EquipmentIndex, TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.MountAndBlade",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.MountAndBlade",
+        "AssemblyTitleAttribute": "TaleWorlds.MountAndBlade"
+      },
+      "typeCount": 1738,
+      "file": "TaleWorlds.MountAndBlade.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.MountAndBlade.dll",
+      "size": 2600408
+    },
+    {
+      "name": "TaleWorlds.Network",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.Network",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.Network",
+        "AssemblyTitleAttribute": "TaleWorlds.Network"
+      },
+      "typeCount": 66,
+      "file": "TaleWorlds.Network.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.Network.dll",
+      "size": 68056
+    },
+    {
+      "name": "TaleWorlds.ModuleManager",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.ModuleManager",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.ModuleManager",
+        "AssemblyTitleAttribute": "TaleWorlds.ModuleManager"
+      },
+      "typeCount": 19,
+      "file": "TaleWorlds.ModuleManager.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.ModuleManager.dll",
+      "size": 39384
+    },
+    {
+      "name": "TaleWorlds.Localization",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "TaleWorlds.Localization",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "TaleWorlds.Localization",
+        "AssemblyTitleAttribute": "TaleWorlds.Localization"
+      },
+      "typeCount": 103,
+      "file": "TaleWorlds.Localization.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\bin\\Win64_Shipping_Client\\TaleWorlds.Localization.dll",
+      "size": 211416
+    },
+    {
+      "name": "SandBox",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "SandBox",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "SandBox",
+        "AssemblyTitleAttribute": "SandBox"
+      },
+      "typeCount": 594,
+      "file": "SandBox.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\SandBox\\bin\\Win64_Shipping_Client\\SandBox.dll",
+      "size": 1331672
+    },
+    {
+      "name": "StoryMode",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "StoryMode",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "StoryMode",
+        "AssemblyTitleAttribute": "StoryMode"
+      },
+      "typeCount": 158,
+      "file": "StoryMode.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\StoryMode\\bin\\Win64_Shipping_Client\\StoryMode.dll",
+      "size": 535000
+    },
+    {
+      "name": "NavalDLC",
+      "version": "1.0.0.0",
+      "runtime": "v4.0.30319",
+      "attrs": {
+        "ExtensionAttribute": "",
+        "RuntimeCompatibilityAttribute": "\u0000",
+        "DebuggableAttribute": "\u0000\u0000",
+        "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+        "AssemblyCompanyAttribute": "NavalDLC",
+        "AssemblyConfigurationAttribute": "Shipping_Client",
+        "AssemblyFileVersionAttribute": "1.0.0.0",
+        "AssemblyInformationalVersionAttribute": "1.0.0",
+        "AssemblyProductAttribute": "NavalDLC",
+        "AssemblyTitleAttribute": "NavalDLC"
+      },
+      "typeCount": 692,
+      "file": "NavalDLC.dll",
+      "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\NavalDLC\\bin\\Win64_Shipping_Client\\NavalDLC.dll",
+      "size": 1913816
+    }
+  ],
+  "assemblyFileVersionVotes": {},
+  "nativeModuleVersion": "v1.4.8",
+  "resolvedGameVersion": "v1.4.8",
+  "versionPrefixChannel": "Release (stable)",
+  "branchAssessment": "STABLE (public branch, Release-prefixed version)",
+  "navalDlcAssembly": {
+    "name": "NavalDLC",
+    "version": "1.0.0.0",
+    "runtime": "v4.0.30319",
+    "attrs": {
+      "ExtensionAttribute": "",
+      "RuntimeCompatibilityAttribute": "\u0000",
+      "DebuggableAttribute": "\u0000\u0000",
+      "TargetFrameworkAttribute": ".NETStandard,Version=v2.0",
+      "AssemblyCompanyAttribute": "NavalDLC",
+      "AssemblyConfigurationAttribute": "Shipping_Client",
+      "AssemblyFileVersionAttribute": "1.0.0.0",
+      "AssemblyInformationalVersionAttribute": "1.0.0",
+      "AssemblyProductAttribute": "NavalDLC",
+      "AssemblyTitleAttribute": "NavalDLC"
+    },
+    "typeCount": 692,
+    "file": "NavalDLC.dll",
+    "fullPath": "G:\\SteamLibrary\\steamapps\\common\\Mount & Blade II Bannerlord\\Modules\\NavalDLC\\bin\\Win64_Shipping_Client\\NavalDLC.dll",
+    "size": 1913816
+  }
+}
