@@ -333,6 +333,44 @@ class Asm:
                 out.append('?')
         return out
 
+    @staticmethod
+    def _serstring(b,o):
+        """Decode a SerString at offset o -> (value, next_offset). None for null."""
+        if o>=len(b): return None,o
+        if b[o]==0xFF: return None,o+1
+        n,k=Asm._cint(b,o); o+=k
+        if o+n>len(b): return None,len(b)
+        return b[o:o+n].decode('utf-8','replace'),o+n
+
+    def ca_values(self,parent):
+        """[(attrTypeName, firstStringArg|None)] — decodes the common single-string ctor case."""
+        out=[]
+        for r in self.ca.get(parent,[]):
+            t,rid=r['Type']
+            name='?'
+            if t==0x0A:
+                mr=self.row(0x0A,rid); name=self.tdr(mr['Class'])
+            val=None
+            try:
+                blob=self.blob(r['Value'])
+                if len(blob)>=2 and blob[0]==0x01 and blob[1]==0x00:
+                    val,_=self._serstring(blob,2)
+            except Exception:
+                val=None
+            out.append((name,val))
+        return out
+
+    def assembly_info(self):
+        r=self.row(0x20,1)
+        d={'name':r['Name'] if r else None,
+           'version':'%d.%d.%d.%d'%(r['Major'],r['Minor'],r['Build'],r['Rev']) if r else None,
+           'runtime':self.runtime_version,'attrs':{}}
+        if r:
+            for n,v in self.ca_values((0x20,1)):
+                if v is not None:
+                    d['attrs'][n.split('.')[-1]]=v
+        return d
+
     # --- member enumeration ---
     def type_members(self,rid):
         td=self.row(0x02,rid)
@@ -491,6 +529,15 @@ def main():
             a=load(p)
             r=a.row(0x20,1)
             print('%-52s v%d.%d.%d.%d  runtime=%s  types=%d'%(os.path.basename(p),r['Major'],r['Minor'],r['Build'],r['Rev'],a.runtime_version,a.nrows(0x02)))
+    elif cmd=='asmattrs':
+        import json
+        out=[]
+        for p in sys.argv[2:]:
+            try:
+                a=load(p); info=a.assembly_info(); info['file']=os.path.basename(p); out.append(info)
+            except Exception as e:
+                out.append({'file':os.path.basename(p),'error':str(e)})
+        print(json.dumps(out,indent=2))
     elif cmd=='refs':
         a=load(sys.argv[2])
         for rid,r in a.rows_of(0x23):
@@ -520,6 +567,6 @@ def main():
                 r=a.row(0x04,x)
                 if r: print('F %s::%s:%s'%(fn,r['Name'],a.fieldsig(a.blob(r['Signature']))))
     else:
-        print('usage: types|type|grep|attrs|asminfo|refs|surface')
+        print('usage: types|type|grep|attrs|asmattrs|asminfo|refs|surface')
 
 if __name__=='__main__': main()

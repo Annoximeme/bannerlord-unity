@@ -15,7 +15,17 @@
 | **Current phase** | **Phase 0 — Technical Audit: COMPLETE** | VERIFIED |
 | Audited against | `1.4.8.119303` (latest stable) and `1.5.3.122374-beta` (latest beta) | VERIFIED |
 
-> ⚠ **`CLAUDE.md` §2 requires determining the installed Bannerlord and War Sails versions at the start of every development session.** This cannot be done from the current environment: the audit host is a Linux container with **no Bannerlord installation and no .NET toolchain** (verified by filesystem sweep). The detection procedure is specified in `docs/VERSION_SUPPORT.md` §5 and must be run on the real machine before Phase 1. **No version has been silently targeted** — the audit explicitly covers both the latest stable and latest beta lines and reports the differences between them.
+> ⚠ **`CLAUDE.md` §2 requires determining the installed Bannerlord and War Sails versions at the start of every development session.** This cannot be done from the current environment.
+
+The installation is reported to be at `G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord`. **That path is not reachable from this session.** Claude Code is running in an isolated Linux VM in the cloud, not on the Windows machine: root is `/dev/vda`, there are no WSL-style `/mnt/c` or `/mnt/g` mounts, no CIFS/9p/virtiofs host shares, and a full filesystem sweep finds no game files (all verified this session).
+
+**Resolution:** run `tools/apiscan/collect_install_report.py` on the Windows machine. It needs only Python 3 — no .NET, no Steam API, no third-party packages — and emits `docs/install-report/INSTALL_REPORT.md` plus JSON and API surface dumps. Output is text only; it never copies game assemblies, which are proprietary and must not be committed.
+
+```
+python tools\apiscan\collect_install_report.py "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
+```
+
+**No version has been silently targeted** — the audit explicitly covers both the latest stable and latest beta lines and reports the differences between them.
 
 ---
 
@@ -61,8 +71,8 @@
 | # | Blocked item | Blocked by | Unblocks |
 |---|---|---|---|
 | B1 | **Licensing decision (RISK-00)** | Project owner | All implementation |
-| B2 | Version pin + session version check (`CLAUDE.md` §2) | No install | Phase 1.1, 1.2 |
-| B3 | `GameNetwork`-in-campaign probe (RISK-02) | No install | All netcode |
+| B2 | Version pin + session version check (`CLAUDE.md` §2) | **Install not reachable from this cloud session** — collector script ready, needs to be run on the Windows machine | Phase 1.1, 1.2 |
+| B3 | `GameNetwork`-in-campaign probe (RISK-02) | Needs a running game | All netcode |
 | B4 | Campaign determinism / event ordering (RISK-04) | No install | Sync model |
 | B5 | `Ship` ↔ `MissionShip` binding lifetime (RISK-03) | No install | Naval capture |
 | B6 | Which mutations bump `Ship.VersionNo` | No install (method bodies) | Change detection |
@@ -96,7 +106,7 @@ Your options: **(a)** clean-room (status quo, recommended); **(b)** seek written
 
 | # | Item | Severity | Notes |
 |---|---|---|---|
-| TD1 | `CLAUDE.md` §2 session version check is not yet automatable | High | Requires an install; specified in `VERSION_SUPPORT.md` §5 |
+| TD1 | `CLAUDE.md` §2 session version check cannot run in a cloud session | High | Collector written (`tools/apiscan/collect_install_report.py`); must be run locally and its output committed |
 | TD2 | `docs/VERSION_SUPPORT.md` §6 pinned-target table is empty | High | Fill on first run with a real install |
 | TD3 | Ship-id stability rests on a `LIKELY` list-ordering assumption | Medium | Fingerprint fallback designed; needs the Phase 1.9 round-trip test (RISK-15) |
 | TD4 | `ModuleInfo` module-enumeration entry point is illustrative, not verified | Medium | Confirm against installed `TaleWorlds.ModuleManager.dll` |

@@ -116,6 +116,29 @@ APIs used are all VERIFIED to exist: `ApplicationVersion`, `.ApplicationVersionT
 
 > `ModuleInfo.GetModules()` is illustrative — confirm the exact enumeration entry point against the installed `TaleWorlds.ModuleManager.dll` before relying on it (the `Version`/`RequiredBaseVersion` members themselves are verified).
 
+## 5a. Automated Collector (preferred)
+
+`tools/apiscan/collect_install_report.py` performs the whole of §5 from the filesystem, plus the Steam branch check, without needing the game running or any .NET toolchain. **Run it on the machine where Bannerlord is installed:**
+
+```
+python tools\apiscan\collect_install_report.py "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
+```
+
+It reports:
+
+| Signal | Source |
+|---|---|
+| Resolved game version | `Modules/Native/SubModule.xml` `<Version>`, cross-checked against `AssemblyFileVersionAttribute` on the shipped assemblies |
+| Version-prefix channel | leading `v`/`e`/`b` per `ApplicationVersion.GetPrefix` |
+| Steam buildid + branch | `steamapps/appmanifest_261550.acf` (`buildid`, `BetaKey`) |
+| War Sails installed + version | presence of the `NavalDLC` module and `NavalDLC.dll` |
+| Full module set | every `Modules/*/SubModule.xml` with versions and dependencies |
+| Real API surface | diffable dumps of the installed assemblies, for pinning and drift detection |
+
+**Stable vs beta uses two independent signals** (Steam branch key and version prefix). They can legitimately disagree — a beta branch may ship a `v`-prefixed build — so the collector reports both and flags a conflict rather than picking one. The authoritative value remains the in-game `ApplicationVersion.ApplicationVersionType`; confirm against the main-menu version string before pinning.
+
+Output is text and JSON only. **Do not commit the game assemblies** — they are proprietary.
+
 ## 6. Pinned Target — TO BE FILLED IN
 
 | Field | Value |
