@@ -40,6 +40,10 @@ import xml.etree.ElementTree as ET
 
 BIN = os.path.join("bin", "Win64_Shipping_Client")
 
+# Steam BetaKey values that denote the live/default branch rather than a beta
+# opt-in. Bannerlord writes "public" here for the normal branch.
+PUBLIC_BRANCH_KEYS = {"", "public", "none", "default"}
+
 # Assemblies the co-op project binds to. Surface dumps are produced for these.
 KEY_ASSEMBLIES = [
     "TaleWorlds.CampaignSystem.dll",
@@ -125,9 +129,18 @@ def parse_acf(path: Path):
         if m:
             out[key] = m.group(1)
     betas = re.findall(r'"BetaKey"\s+"([^"]*)"', txt, re.I)
-    out["betaKeys"] = sorted({b for b in betas if b})
-    # A non-empty BetaKey means an opted-in Steam beta branch.
-    out["steamBranch"] = out["betaKeys"][0] if out["betaKeys"] else "(public / default branch)"
+    keys = sorted({b for b in betas if b})
+    out["betaKeys"] = keys
+    # A BetaKey naming the live branch is NOT a beta opt-in. Steam writes the
+    # default branch either as an absent/empty key or literally as "public".
+    real = [b for b in keys if b.lower() not in PUBLIC_BRANCH_KEYS]
+    out["optedIntoBeta"] = bool(real)
+    if real:
+        out["steamBranch"] = real[0]
+    elif keys:
+        out["steamBranch"] = "%s (default/live branch)" % keys[0]
+    else:
+        out["steamBranch"] = "(no BetaKey - default/live branch)"
     return out
 
 def scan_assembly(path: Path):
@@ -272,7 +285,7 @@ def main():
     # (a Steam beta branch may ship a 'v'-prefixed build). Report both; never
     # silently reconcile them -- CLAUDE.md forbids silently targeting a version.
     steam_branch = report.get("steam", {}).get("steamBranch")
-    on_steam_beta = bool(report.get("steam", {}).get("betaKeys"))
+    on_steam_beta = bool(report.get("steam", {}).get("optedIntoBeta"))
     prefix_stable = (channel == "Release (stable)")
     if steam_branch is None:
         assessment = "UNDETERMINED (no Steam manifest)"

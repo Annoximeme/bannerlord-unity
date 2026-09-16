@@ -10,7 +10,10 @@
 |---|---|---|
 | **Current Bannerlord version** | **UNKNOWN — not yet measured** | — |
 | **Current War Sails version** | **UNKNOWN — not yet measured** | — |
-| **Branch (stable / beta)** | **UNKNOWN — not yet measured** | — |
+| **Branch (stable / beta)** | **Steam public / live branch — NOT a beta opt-in** | VERIFIED (partial) |
+| Steam `buildid` | `24573425` | VERIFIED |
+| Steam `BetaKey` | `public` (both `UserConfig` and `MountedConfig`) | VERIFIED |
+| Steam `TargetBuildID` | `0` | VERIFIED |
 | **Mod version** | `0.0.0` (pre-implementation; no code yet) | VERIFIED |
 | **Current phase** | **Phase 0 — Technical Audit: COMPLETE** | VERIFIED |
 | Audited against | `1.4.8.119303` (latest stable) and `1.5.3.122374-beta` (latest beta) | VERIFIED |
@@ -24,6 +27,8 @@ The installation is reported to be at `G:\SteamLibrary\steamapps\common\Mount & 
 ```
 python tools\apiscan\collect_install_report.py "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
 ```
+
+**Partial result received 2026-09-16** from the Steam app manifest on the install machine: `buildid 24573425`, `BetaKey "public"`. A `BetaKey` of `public` denotes Steam's live/default branch, **not** a beta opt-in — so the installation is on the **public branch**. Still outstanding: the game version string, the module list (hence whether War Sails is installed), and the shipped assembly file version.
 
 **No version has been silently targeted** — the audit explicitly covers both the latest stable and latest beta lines and reports the differences between them.
 
@@ -111,6 +116,7 @@ Your options: **(a)** clean-room (status quo, recommended); **(b)** seek written
 | TD2 | `docs/VERSION_SUPPORT.md` §6 pinned-target table is empty | High | Fill on first run with a real install |
 | TD3 | Ship-id stability rests on a `LIKELY` list-ordering assumption | Medium | Fingerprint fallback designed; needs the Phase 1.9 round-trip test (RISK-15) |
 | TD4 | `ModuleInfo` module-enumeration entry point is illustrative, not verified | Medium | Confirm against installed `TaleWorlds.ModuleManager.dll` |
+| TD9 | Collector misclassified `BetaKey "public"` as a beta opt-in | **Fixed** | Found by real output from the install machine; `PUBLIC_BRANCH_KEYS` now excludes `public`/`none`/`default`/empty. Regression-tested for public-key, genuine-beta and no-key cases. |
 | TD5 | Official TaleWorlds War Sails modding docs not consulted | Medium | Naval findings are assembly-derived only; B11 |
 | TD6 | Reference assemblies lack method bodies | Medium | Inherent; all ordering/flow claims are UNCONFIRMED by construction |
 | TD7 | `docs/evidence/` diffs are large and uncompressed | Low | Acceptable; they are the audit trail |

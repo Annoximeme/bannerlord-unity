@@ -130,7 +130,7 @@ It reports:
 |---|---|
 | Resolved game version | `Modules/Native/SubModule.xml` `<Version>`, cross-checked against `AssemblyFileVersionAttribute` on the shipped assemblies |
 | Version-prefix channel | leading `v`/`e`/`b` per `ApplicationVersion.GetPrefix` |
-| Steam buildid + branch | `steamapps/appmanifest_261550.acf` (`buildid`, `BetaKey`) |
+| Steam buildid + branch | `steamapps/appmanifest_261550.acf` (`buildid`, `BetaKey`). A `BetaKey` of `public`, `none`, `default` or empty denotes the live branch, **not** a beta opt-in — only any other value is treated as beta. |
 | War Sails installed + version | presence of the `NavalDLC` module and `NavalDLC.dll` |
 | Full module set | every `Modules/*/SubModule.xml` with versions and dependencies |
 | Real API surface | diffable dumps of the installed assemblies, for pinning and drift detection |
@@ -144,10 +144,12 @@ Output is text and JSON only. **Do not commit the game assemblies** — they are
 | Field | Value |
 |---|---|
 | Bannerlord version | **UNKNOWN — pending §5** |
-| Channel (`ApplicationVersionType`) | **UNKNOWN — pending §5** |
+| Channel (`ApplicationVersionType`) | **UNKNOWN — pending §5** (Steam side: public branch, verified) |
 | War Sails installed | **UNKNOWN — pending §5** |
 | War Sails build number | **UNKNOWN — pending §5** |
 | Module set | **UNKNOWN — pending §5** |
+| Steam `buildid` | `24573425` (VERIFIED 2026-09-16) |
+| Steam branch | `public` — live/default branch, not a beta opt-in (VERIFIED 2026-09-16) |
 
 ## 7. Support Policy
 
