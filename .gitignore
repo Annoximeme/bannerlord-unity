@@ -15,3 +15,7 @@ Thumbs.db
 # Never commit proprietary TaleWorlds game assemblies
 *.dll
 !tools/**/*.dll
+
+# Python
+__pycache__/
+*.pyc

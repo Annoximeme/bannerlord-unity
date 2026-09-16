@@ -27,6 +27,7 @@ Multiple independent player parties · shared persistent campaign world · PvP �
 | [`docs/VERSION_SUPPORT.md`](docs/VERSION_SUPPORT.md) | Version support & API churn |
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Phased plan |
 | [`CLAUDE.md`](CLAUDE.md) | **Project engineering instructions — authoritative** |
+| [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md) | Running Claude Code locally on Windows; GitHub push setup |
 
 ## Tooling
 

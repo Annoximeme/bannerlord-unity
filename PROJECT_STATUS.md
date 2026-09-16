@@ -19,7 +19,7 @@
 
 The installation is reported to be at `G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord`. **That path is not reachable from this session.** Claude Code is running in an isolated Linux VM in the cloud, not on the Windows machine: root is `/dev/vda`, there are no WSL-style `/mnt/c` or `/mnt/g` mounts, no CIFS/9p/virtiofs host shares, and a full filesystem sweep finds no game files (all verified this session).
 
-**Resolution:** run `tools/apiscan/collect_install_report.py` on the Windows machine. It needs only Python 3 — no .NET, no Steam API, no third-party packages — and emits `docs/install-report/INSTALL_REPORT.md` plus JSON and API surface dumps. Output is text only; it never copies game assemblies, which are proprietary and must not be committed.
+**Resolution:** run Claude Code locally on the Windows machine (see `docs/LOCAL_SETUP.md`), or at minimum run `tools/apiscan/collect_install_report.py` there. It needs only Python 3 — no .NET, no Steam API, no third-party packages — and emits `docs/install-report/INSTALL_REPORT.md` plus JSON and API surface dumps. Output is text only; it never copies game assemblies, which are proprietary and must not be committed.
 
 ```
 python tools\apiscan\collect_install_report.py "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
@@ -44,6 +44,7 @@ python tools\apiscan\collect_install_report.py "G:\SteamLibrary\steamapps\common
 | `docs/RISK_REGISTER.md` | 16 scored risks with evidence and confidence |
 | `docs/VERSION_SUPPORT.md` | Version landscape, measured API churn, detection procedure |
 | `docs/ROADMAP.md` | Phases 0.5 → 5 with exit criteria |
+| `docs/LOCAL_SETUP.md` | Running Claude Code locally; unblocks B2, B6–B9 |
 | `tools/apiscan/` | ECMA-335 metadata reader — makes every API claim reproducible |
 | `docs/evidence/` | Raw API dumps and cross-version diffs |
 
