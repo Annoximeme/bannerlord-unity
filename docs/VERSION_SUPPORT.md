@@ -4,16 +4,20 @@
 
 ---
 
-## 1. Status: the installed version is NOT yet known
+## 1. Status: MEASURED — target pinned
 
-The Phase 0 audit ran on a Linux container with **no Bannerlord installation** (VERIFIED: filesystem sweep found no game files, no `TaleWorlds*.dll`, no Steam library). The literal questions "what exact version is installed" and "what exact War Sails version is installed" **cannot be answered from that environment**.
+**The installed version has been measured** (2026-09-16) and is recorded in §6.
 
-What this document provides instead:
-1. The complete landscape of versions that exist, and which are stable vs beta (§2).
-2. The exact runtime procedure to measure the real machine (§5).
-3. A measured cross-version API-change analysis (§3–§4).
+| | |
+|---|---|
+| **Bannerlord** | **`v1.4.8`** (changeset `119303`, LIKELY), public/live branch, **stable** |
+| **War Sails** | **installed** — `NavalDLC` module `v1.2.8` |
+| Steam buildid | `24573425` |
+| Modules | 24 total — 9 official, **15 third-party** (see §6 and RISK-16) |
 
-**Action required:** run §5 on the target machine and record the result in §6.
+The Phase 0 audit was conducted against `Bannerlord.ReferenceAssemblies.* 1.4.8.119303`, which **matches this installation exactly** — see §6. Every `VERIFIED` finding in the audit applies to it.
+
+This document also records the version landscape (§2), a measured cross-version API-change analysis (§3–§4), and the detection procedure used (§5, §5a).
 
 ## 2. Version Landscape (VERIFIED from the public package feed)
 
@@ -139,17 +143,75 @@ It reports:
 
 Output is text and JSON only. **Do not commit the game assemblies** — they are proprietary.
 
-## 6. Pinned Target — TO BE FILLED IN
+## 6. Pinned Target — MEASURED 2026-09-16
 
-| Field | Value |
-|---|---|
-| Bannerlord version | **UNKNOWN — pending §5** |
-| Channel (`ApplicationVersionType`) | **UNKNOWN — pending §5** (Steam side: public branch, verified) |
-| War Sails installed | **UNKNOWN — pending §5** |
-| War Sails build number | **UNKNOWN — pending §5** |
-| Module set | **UNKNOWN — pending §5** |
-| Steam `buildid` | `24573425` (VERIFIED 2026-09-16) |
-| Steam branch | `public` — live/default branch, not a beta opt-in (VERIFIED 2026-09-16) |
+Collected with `tools/apiscan/collect_install_report.py` on the install machine.
+
+| Field | Value | Confidence |
+|---|---|---|
+| Install path | `G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord` | VERIFIED |
+| **Bannerlord version** | **`v1.4.8`** | **VERIFIED** |
+| **Changeset** | **`119303`** — `1.4.8.119303` is the *only* published 1.4.8.x build | **LIKELY** (module XML reports `v1.4.8` without changeset) |
+| **Branch** | **Public / live — not a beta opt-in** (`BetaKey "public"`) | **VERIFIED** |
+| Branch assessment | `STABLE (public branch, Release-prefixed version)` | VERIFIED |
+| Steam `buildid` | `24573425` | VERIFIED |
+| **War Sails installed** | **YES — `NavalDLC` module present** | **VERIFIED** |
+| **War Sails module version** | **`v1.2.8`** — an *independent* version line, not the game version | **VERIFIED** |
+| Total modules | 24 (9 official + 15 third-party) | VERIFIED |
+
+### Official modules (9)
+
+`Native` `SandBox` `SandBoxCore` `StoryMode` `CustomBattle` `Multiplayer` `BirthAndDeath` `FastMode` — all `v1.4.8` — plus **`NavalDLC` `v1.2.8`**.
+
+> **The DLC versions independently of the base game.** `NavalDLC` reports `v1.2.8` while every base module reports `v1.4.8`. Note the NuGet reference-assembly packages are keyed by *game* version (`bannerlord.referenceassemblies.navaldlc.1.4.8.119303`), **not** by DLC version — `1.2.8.31530` in that feed is an unrelated old game build. Do not conflate the two numbering schemes when pinning.
+
+### Third-party modules present (15)
+
+| Module | Version | Category |
+|---|---|---|
+| `Bannerlord.Harmony` | `v2.4.2.248` | Infrastructure — patching framework |
+| `Bannerlord.ButterLib` | `v2.12.0` | Infrastructure |
+| `Bannerlord.UIExtenderEx` | `v2.13.3` | Infrastructure — UI |
+| `Bannerlord.MBOptionScreen` | `v5.12.3` | Infrastructure — settings (MCM) |
+| `Bannerlord.Diplomacy` | `v1.5.2` | **Campaign state — high risk** |
+| `ImprovedGarrisons` | `v4.2.0.7` | **Campaign state — high risk** |
+| `RaiseYourBanner` | `v16.1.7` | **Campaign state — high risk** |
+| `DisableCompanionDonations` | `v1.0.0` | **Campaign state** |
+| `NoWaterEscape` | `v1.0.0` | **Campaign/mission — naval-adjacent** |
+| `RTSCamera` | `v5.4.16` | Mission layer |
+| `RTSCamera.CommandSystem` | `v5.4.16` | Mission layer |
+| `DismembermentPlus` | `v2.0.8.8` | Mission layer |
+| `UnblockableThrust` | `v1.1.3` | Mission layer |
+| `BannerFix` | `v3.3.6` | Cosmetic |
+| `AchievementUnblocker` | `v1.1.1` | Cosmetic |
+
+See **RISK-16** in `docs/RISK_REGISTER.md`. `Bannerlord.Harmony` being present is good news — it confirms the mitigation path for RISK-06 is available.
+
+### ✅ The Phase 0 audit was performed against the correct version
+
+The audit used `Bannerlord.ReferenceAssemblies.* 1.4.8.119303`. The collector's type and surface counts from the **real installed assemblies** match that baseline exactly across all 11 assemblies:
+
+| Assembly | Types (install) | Surface entries (install) | Phase 0 baseline |
+|---|---|---|---|
+| `TaleWorlds.CampaignSystem.dll` | 2306 | **44,655** | **44,655** ✅ |
+| `NavalDLC.dll` | 692 | **13,779** | **13,779** ✅ |
+| `TaleWorlds.MountAndBlade.dll` | 1738 | 30,778 | 30,778 ✅ |
+| `SandBox.dll` | 594 | 9,091 | 9,091 ✅ |
+| `TaleWorlds.Core.dll` | 323 | 6,660 | 6,660 ✅ |
+| `TaleWorlds.Library.dll` | 256 | 3,431 | 3,431 ✅ |
+| `TaleWorlds.SaveSystem.dll` | 135 | 1,725 | 1,725 ✅ |
+| `TaleWorlds.Localization.dll` | 103 | 1,504 | 1,504 ✅ |
+| `TaleWorlds.Network.dll` | 66 | 753 | 753 ✅ |
+| `TaleWorlds.ObjectSystem.dll` | 27 | 325 | 325 ✅ |
+| `TaleWorlds.ModuleManager.dll` | 19 | 238 | 238 ✅ |
+
+**Every `VERIFIED` finding in the Phase 0 audit therefore applies to this exact installation.**
+
+> Matching counts are strong evidence, not proof of identical content. To upgrade this from *consistent with* to *byte-identical*, commit `docs/install-report/surface/` and the baseline can be diffed member-by-member. Tracked as TD10.
+
+### Note: assembly file versions are not a version discriminator
+
+Every installed assembly reports `AssemblyFileVersion = 1.0.0.0`, exactly as the reference assemblies do. TaleWorlds normalises these attributes, so the collector's assembly-version cross-check adds nothing in practice — **module `SubModule.xml` versions and the Steam manifest are the usable signals.**
 
 ## 7. Support Policy
 

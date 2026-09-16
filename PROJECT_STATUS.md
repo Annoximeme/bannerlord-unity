@@ -6,31 +6,23 @@
 
 ## Version Block
 
+**Measured on the install machine 2026-09-16** via `tools/apiscan/collect_install_report.py`.
+
 | Field | Value | Confidence |
 |---|---|---|
-| **Current Bannerlord version** | **UNKNOWN — not yet measured** | — |
-| **Current War Sails version** | **UNKNOWN — not yet measured** | — |
-| **Branch (stable / beta)** | **Steam public / live branch — NOT a beta opt-in** | VERIFIED (partial) |
+| **Current Bannerlord version** | **`v1.4.8`** (changeset `119303`) | VERIFIED / changeset LIKELY |
+| **Current War Sails version** | **`v1.2.8`** (`NavalDLC` module — independent version line) | VERIFIED |
+| **Branch (stable / beta)** | **STABLE — Steam public/live branch, `BetaKey "public"`** | VERIFIED |
 | Steam `buildid` | `24573425` | VERIFIED |
-| Steam `BetaKey` | `public` (both `UserConfig` and `MountedConfig`) | VERIFIED |
-| Steam `TargetBuildID` | `0` | VERIFIED |
+| Install path | `G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord` | VERIFIED |
+| Modules installed | 24 — 9 official, **15 third-party** | VERIFIED |
 | **Mod version** | `0.0.0` (pre-implementation; no code yet) | VERIFIED |
 | **Current phase** | **Phase 0 — Technical Audit: COMPLETE** | VERIFIED |
-| Audited against | `1.4.8.119303` (latest stable) and `1.5.3.122374-beta` (latest beta) | VERIFIED |
+| Audit conducted against | `1.4.8.119303` reference assemblies — **matches the install exactly** | VERIFIED |
 
-> ⚠ **`CLAUDE.md` §2 requires determining the installed Bannerlord and War Sails versions at the start of every development session.** This cannot be done from the current environment.
+✅ **The Phase 0 audit targeted the correct version.** Type and API-surface counts from the real installed assemblies match the audit baseline across all 11 assemblies (`TaleWorlds.CampaignSystem.dll` 44,655 surface entries; `NavalDLC.dll` 13,779 — both exact). Every `VERIFIED` audit finding applies to this installation. Detail in `docs/VERSION_SUPPORT.md` §6.
 
-The installation is reported to be at `G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord`. **That path is not reachable from this session.** Claude Code is running in an isolated Linux VM in the cloud, not on the Windows machine: root is `/dev/vda`, there are no WSL-style `/mnt/c` or `/mnt/g` mounts, no CIFS/9p/virtiofs host shares, and a full filesystem sweep finds no game files (all verified this session).
-
-**Resolution:** run Claude Code locally on the Windows machine (see `docs/LOCAL_SETUP.md`), or at minimum run `tools/apiscan/collect_install_report.py` there. It needs only Python 3 — no .NET, no Steam API, no third-party packages — and emits `docs/install-report/INSTALL_REPORT.md` plus JSON and API surface dumps. Output is text only; it never copies game assemblies, which are proprietary and must not be committed.
-
-```
-python tools\apiscan\collect_install_report.py "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord"
-```
-
-**Partial result received 2026-09-16** from the Steam app manifest on the install machine: `buildid 24573425`, `BetaKey "public"`. A `BetaKey` of `public` denotes Steam's live/default branch, **not** a beta opt-in — so the installation is on the **public branch**. Still outstanding: the game version string, the module list (hence whether War Sails is installed), and the shipped assembly file version.
-
-**No version has been silently targeted** — the audit explicitly covers both the latest stable and latest beta lines and reports the differences between them.
+⚠ **15 third-party mods are installed**, four of which mutate campaign state (`Bannerlord.Diplomacy`, `ImprovedGarrisons`, `RaiseYourBanner`, `DisableCompanionDonations`) and one of which is naval-adjacent (`NoWaterEscape`). These are a direct desync and save-schema risk for co-op — see **RISK-16**. `Bannerlord.Harmony v2.4.2.248` being present confirms the RISK-06 mitigation path is available.
 
 ---
 
@@ -77,7 +69,7 @@ python tools\apiscan\collect_install_report.py "G:\SteamLibrary\steamapps\common
 | # | Blocked item | Blocked by | Unblocks |
 |---|---|---|---|
 | B1 | **Licensing decision (RISK-00)** | Project owner | All implementation |
-| B2 | Version pin + session version check (`CLAUDE.md` §2) | **Install not reachable from this cloud session** — collector script ready, needs to be run on the Windows machine | Phase 1.1, 1.2 |
+| ~~B2~~ | ~~Version pin + session version check~~ | **RESOLVED 2026-09-16** — measured; see Version Block | — |
 | B3 | `GameNetwork`-in-campaign probe (RISK-02) | Needs a running game | All netcode |
 | B4 | Campaign determinism / event ordering (RISK-04) | No install | Sync model |
 | B5 | `Ship` ↔ `MissionShip` binding lifetime (RISK-03) | No install | Naval capture |
@@ -112,8 +104,10 @@ Your options: **(a)** clean-room (status quo, recommended); **(b)** seek written
 
 | # | Item | Severity | Notes |
 |---|---|---|---|
-| TD1 | `CLAUDE.md` §2 session version check cannot run in a cloud session | High | Collector written (`tools/apiscan/collect_install_report.py`); must be run locally and its output committed |
-| TD2 | `docs/VERSION_SUPPORT.md` §6 pinned-target table is empty | High | Fill on first run with a real install |
+| ~~TD1~~ | ~~§2 session version check cannot run in a cloud session~~ | **Resolved** | Collector run on the install machine; version pinned |
+| ~~TD2~~ | ~~`VERSION_SUPPORT.md` §6 pinned-target table empty~~ | **Resolved** | Filled with measured values |
+| TD10 | Install surface dumps not yet committed, so the match with the audit baseline rests on counts rather than a member-by-member diff | Medium | Commit `docs/install-report/surface/` and diff against the baseline |
+| TD11 | Changeset `119303` inferred from it being the only published 1.4.8.x build, not read from the game | Low | Confirm against the in-game version string |
 | TD3 | Ship-id stability rests on a `LIKELY` list-ordering assumption | Medium | Fingerprint fallback designed; needs the Phase 1.9 round-trip test (RISK-15) |
 | TD4 | `ModuleInfo` module-enumeration entry point is illustrative, not verified | Medium | Confirm against installed `TaleWorlds.ModuleManager.dll` |
 | TD9 | Collector misclassified `BetaKey "public"` as a beta opt-in | **Fixed** | Found by real output from the install machine; `PUBLIC_BRANCH_KEYS` now excludes `public`/`none`/`default`/empty. Regression-tested for public-key, genuine-beta and no-key cases. |
@@ -128,10 +122,11 @@ Your options: **(a)** clean-room (status quo, recommended); **(b)** seek written
 
 **Phase 0.5 — unblock (owner):**
 
-1. Decide RISK-00 (licensing).
-2. Provide a Bannerlord + War Sails install with a .NET toolchain.
-3. Run `docs/VERSION_SUPPORT.md` §5 detection; fill §6 and this file's Version Block.
-4. Confirm target player count and whether beta support is required.
+1. Decide RISK-00 (licensing). **Still blocking.**
+2. ~~Run detection; fill the Version Block.~~ **Done 2026-09-16.**
+3. Decide the third-party mod policy (RISK-16).
+4. Confirm target player count.
+5. Commit `docs/install-report/` so the install surface can be diffed against the audit baseline (TD10).
 
 **Phase 1 — foundations (ordered; see `docs/ROADMAP.md`):**
 

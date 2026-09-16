@@ -657,10 +657,10 @@ Everything here rests only on `VERIFIED` findings.
 | 6 | Siege stage transition sequence (refactored between versions) | Sieges | Decompile `SiegeEvent`, `BesiegerCamp` |
 | 7 | Save compat with/without `NavalDLC` enabled | Persistence, RISK-13 | Empirical save/load matrix |
 | 8 | `MissionShip` authority model & physics determinism | Naval battles | Runtime experiment |
-| 9 | Actual installed version on the target machine | Version pinning | Run §1.4 procedure |
+| ~~9~~ | ~~Actual installed version on the target machine~~ | ~~Version pinning~~ | **RESOLVED 2026-09-16** — `v1.4.8` / `NavalDLC v1.2.8` / stable |
 | 10 | Official TaleWorlds War Sails modding documentation (not located this session) | Naval detail, scenes, prefabs | Locate and review; naval findings are currently assembly-derived only |
 
-**The single highest-value next action is obtaining a real Bannerlord + War Sails install**, which converts items 1–9 from blocked to testable.
+**Resolved 2026-09-16:** the install has been located and measured (`v1.4.8`, `NavalDLC v1.2.8`, stable public branch), and the audit's reference-assembly baseline matches it exactly. Items 1–8 are now *testable* rather than blocked, but still require a session running on that machine — several need method bodies (real IL) or a running game, neither of which a cloud session can reach.
 
 ---
 
@@ -690,9 +690,9 @@ Full detail with exit criteria in `docs/ROADMAP.md`. Order is chosen so that eac
 
 | Goal | Status |
 |---|---|
-| 1. Bannerlord version | ⚠ **Not answerable here** — no install. Version landscape + detection procedure delivered (§1) |
-| 2. War Sails version | ⚠ **Not answerable here** — no install. Detection API verified (§1.4) |
-| 3. Stable vs beta | ✅ Structurally answered via `ApplicationVersionType`; per-machine value pending (§1.2) |
+| 1. Bannerlord version | ✅ **`v1.4.8`** (changeset `119303`) — measured 2026-09-16, `docs/VERSION_SUPPORT.md` §6 |
+| 2. War Sails version | ✅ **`NavalDLC v1.2.8`**, installed — measured 2026-09-16 |
+| 3. Stable vs beta | ✅ **STABLE** — Steam public/live branch (`BetaKey "public"`), measured 2026-09-16 |
 | 4. Bannerlord assemblies | ✅ §2.1 |
 | 5. War Sails assemblies | ✅ §2.2 |
 | 6. APIs & metadata | ✅ Throughout; tooling in `tools/apiscan/` |

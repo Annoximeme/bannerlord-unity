@@ -12,7 +12,7 @@ Every risk names the evidence and its confidence, so nothing here is speculation
 | RISK-04 | Campaign non-determinism & event ordering | **20** | UNCONFIRMED |
 | RISK-05 | Version churn on bound APIs | **16** | VERIFIED |
 | RISK-06 | Internal/private members require publicizer or Harmony | 12 | VERIFIED |
-| RISK-07 | No install available for verification | **20** | VERIFIED |
+| ~~RISK-07~~ | ~~No install available for verification~~ | **RESOLVED** | Measured 2026-09-16 |
 | RISK-08 | Naval mission multiplayer may be impossible | 15 | UNKNOWN |
 | RISK-09 | Save-schema divergence across versions | 12 | LIKELY |
 | RISK-10 | Scale/bandwidth at 8+ players | 9 | UNCONFIRMED |
@@ -21,6 +21,7 @@ Every risk names the evidence and its confidence, so nothing here is speculation
 | RISK-13 | Save compatibility with/without War Sails | 12 | UNCONFIRMED |
 | RISK-14 | Scope: the requested feature set is very large | 16 | VERIFIED |
 | RISK-15 | Ship id stability rests on a `LIKELY` assumption | 12 | LIKELY |
+| RISK-16 | Third-party mods on the target install mutate campaign state | **16** | VERIFIED |
 
 ---
 
@@ -185,6 +186,32 @@ Option (c) deserves genuine consideration: upstream has 4,257 files of working c
 
 ---
 
+## RISK-16 — Third-party mods on the target install mutate campaign state · **Impact 4 × Likelihood 4 = 16**
+
+**Evidence (VERIFIED, measured on the install machine 2026-09-16):** 24 modules are installed — 9 official and **15 third-party**.
+
+| Category | Modules | Co-op implication |
+|---|---|---|
+| **Campaign-state mutating** | `Bannerlord.Diplomacy v1.5.2`, `ImprovedGarrisons v4.2.0.7`, `RaiseYourBanner v16.1.7`, `DisableCompanionDonations v1.0.0` | **High risk.** These add campaign behaviors and, where they register a `SaveableTypeDefiner`, **change the save schema**. Any divergence in the mod set between server and client produces campaign desync or a load failure. |
+| **Naval-adjacent** | `NoWaterEscape v1.0.0` | Touches water/movement behaviour — the exact area War Sails sync depends on. |
+| **Mission layer** | `RTSCamera v5.4.16`, `RTSCamera.CommandSystem v5.4.16`, `DismembermentPlus v2.0.8.8`, `UnblockableThrust v1.1.3` | Lower campaign risk; can still alter mission outcomes, which feed campaign consequences. |
+| **Infrastructure (benign / useful)** | `Bannerlord.Harmony v2.4.2.248`, `Bannerlord.ButterLib v2.12.0`, `Bannerlord.UIExtenderEx v2.13.3`, `Bannerlord.MBOptionScreen v5.12.3` | Standard modding infrastructure. **Harmony's presence confirms the RISK-06 mitigation path is available.** |
+| **Cosmetic** | `BannerFix v3.3.6`, `AchievementUnblocker v1.1.1` | Low risk. |
+
+**Why this matters beyond "mods might conflict":** our synchronization model assumes the server and every client compute campaign state from the *same* rules. A mod installed on one machine and not another breaks that assumption silently — which is RISK-04's failure mode with a concrete, already-present cause. Mods that register saveable types additionally alter the save of record, colliding with the schema-version discipline in `SAVE_FORMAT.md` §5.
+
+**Corroboration:** the incumbent co-op mod's README instructs users to "Disable all other mods" and warns that compatibility is not guaranteed (VERIFIED, public README).
+
+**Mitigation:**
+1. **Develop and test against a clean profile** — official modules plus `Bannerlord.Harmony` only. Use a separate Steam/launcher mod profile so the existing setup is not disturbed.
+2. **Enforce mod-set equality at handshake.** The protocol already negotiates `moduleSet` (`NETWORK_PROTOCOL.md` §5); extend it to hash the full module list with versions and reject mismatches.
+3. **Treat campaign-state mods as unsupported in Phase 1**, and say so plainly rather than allowing a silently-broken session.
+4. Revisit selectively later — Diplomacy in particular is popular enough to be worth explicit support eventually, but only once the core is stable.
+
+**Decision required from the project owner:** confirm a clean-profile baseline for development. The alternative — supporting an arbitrary mod set from day one — makes every desync investigation ambiguous.
+
+---
+
 ## Top Five (audit §14)
 
 1. **RISK-01** — `Ship` has no network identity
@@ -194,3 +221,5 @@ Option (c) deserves genuine consideration: upstream has 4,257 files of working c
 5. **RISK-05** — version churn on bound APIs
 
 RISK-00 sits above all of these but is a **legal/business decision, not a technical risk**, and is the owner's to make.
+
+**Update 2026-09-16:** RISK-07 (no install available) is **resolved** — the installation has been measured and the version pinned (`docs/VERSION_SUPPORT.md` §6). The audit turned out to have been conducted against exactly the right version. RISK-16 is new, and RISK-06's mitigation is confirmed available (Harmony is installed).
