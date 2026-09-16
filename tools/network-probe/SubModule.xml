@@ -1,0 +1,24 @@
+﻿<Module>
+  <Name value="Coop Network Probe"/>
+  <Id value="CoopNetworkProbe"/>
+  <Version value="v0.0.1"/>
+  <SingleplayerModule value="true"/>
+  <MultiplayerModule value="false"/>
+  <DependedModules>
+    <DependedModule Id="Native" DependentVersion="v1.4.8" />
+    <DependedModule Id="SandBoxCore" DependentVersion="v1.4.8" />
+    <DependedModule Id="Sandbox" DependentVersion="v1.4.8" />
+  </DependedModules>
+  <SubModules>
+    <SubModule>
+      <Name value="CoopNetworkProbe"/>
+      <DLLName value="CoopNetworkProbe.dll"/>
+      <SubModuleClassType value="CoopNetworkProbe.SubModule"/>
+      <Tags>
+        <Tag key="DedicatedServerType" value="none" />
+        <Tag key="IsNoRenderModeElement" value="false" />
+      </Tags>
+    </SubModule>
+  </SubModules>
+  <Xmls/>
+</Module>

@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Phase 1.4 / B3 — GameNetwork-in-campaign probe (docs/NETWORK_PROTOCOL.md §2, RISK-02).
+    Compiles against TaleWorlds' own published reference assemblies pinned to the
+    installation this project targets (docs/VERSION_SUPPORT.md), never against
+    game DLLs copied into the repo and never against any third-party mod source.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>CoopNetworkProbe</AssemblyName>
+    <RootNamespace>CoopNetworkProbe</RootNamespace>
+    <Nullable>disable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Pinned to the exact build this repo targets — see docs/VERSION_SUPPORT.md §6/§8. -->
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="1.4.8.119303" />
+  </ItemGroup>
+
+</Project>

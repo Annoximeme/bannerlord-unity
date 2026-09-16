@@ -45,16 +45,16 @@ If it disagrees with the table above, the game updated — **stop and re-pin** b
    python tools\apiscan\cli_meta.py surface "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord\Modules\SandBox\bin\Win64_Shipping_Client\..\..\..\..\Native\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll"
    ```
    (or just diff `docs/install-report/surface/TaleWorlds.CampaignSystem.dll.surface.txt` against the Phase 0 baseline).
-3. **Do not start Phase 1** until RISK-00 and RISK-16 are decided by the project owner.
+3. ~~**Do not start Phase 1** until RISK-00 and RISK-16 are decided by the project owner.~~ **Both decided 2026-09-17 — see below. Phase 1 is unblocked.**
 
 ---
 
-## Two decisions still pending (owner, not agent)
+## Two decisions made 2026-09-17 (owner)
 
 | ID | Decision |
 |---|---|
-| **RISK-00** | Licensing. The incumbent BannerlordCoop is source-available since 2026-06-17 and prohibits use of its source in a competing co-op mod. The audit derived everything from TaleWorlds' own API surface instead. Options: clean-room (status quo), seek permission, or contribute upstream. |
-| **RISK-16** | Third-party mod policy. 15 are installed; 4 mutate campaign state (`Bannerlord.Diplomacy`, `ImprovedGarrisons`, `RaiseYourBanner`, `DisableCompanionDonations`) and 1 is naval-adjacent (`NoWaterEscape`). Recommend a clean development profile: official modules + `Bannerlord.Harmony` only. |
+| **RISK-00** | **Clean-room.** Continue deriving architecture and implementation exclusively from TaleWorlds' own API surface; the incumbent BannerlordCoop project may be studied for public facts only, never for implementation detail to port or adapt. Seeking permission and contributing upstream were considered and declined. Full record: `docs/RISK_REGISTER.md` RISK-00. |
+| **RISK-16** | **Clean dev profile.** Development and testing use official modules + `Bannerlord.Harmony` only; `Bannerlord.Diplomacy`, `ImprovedGarrisons`, `RaiseYourBanner`, `DisableCompanionDonations`, and `NoWaterEscape` must be disabled in the build/test profile. Full record: `docs/RISK_REGISTER.md` RISK-16. |
 
 ---
 

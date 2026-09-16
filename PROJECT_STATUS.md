@@ -1,6 +1,6 @@
 # Project Status
 
-**Last updated:** 2026-09-16
+**Last updated:** 2026-09-17
 
 ---
 
@@ -61,7 +61,7 @@
 
 ## Current Work
 
-**None.** `CLAUDE.md` mandates completing the Phase 0 audit before Phase 1, and forbids implementing gameplay yet. The audit is complete; work is paused pending the decisions below.
+**B3 — `GameNetwork`-in-campaign probe (Phase 1 step 1.4, resolves RISK-02).** RISK-00 and RISK-16 are decided (below), clearing the Phase 1 gate `docs/HANDOFF.md` set. Procedure: `docs/NETWORK_PROTOCOL.md` §2.
 
 ---
 
@@ -69,7 +69,7 @@
 
 | # | Blocked item | Blocked by | Unblocks |
 |---|---|---|---|
-| B1 | **Licensing decision (RISK-00)** | Project owner | All implementation |
+| ~~B1~~ | ~~Licensing decision (RISK-00)~~ | **RESOLVED 2026-09-17** — owner chose clean-room; see RISK_REGISTER.md | All implementation |
 | ~~B2~~ | ~~Version pin + session version check~~ | **RESOLVED 2026-09-16** — measured; see Version Block | — |
 | B3 | `GameNetwork`-in-campaign probe (RISK-02) | Needs a running game | All netcode |
 | B4 | Campaign determinism / event ordering (RISK-04) | No install | Sync model |
@@ -81,17 +81,15 @@
 | B10 | `MissionShip` authority & physics determinism (RISK-12) | No install | Naval battles |
 | B11 | Official TaleWorlds War Sails modding documentation | Not located in this session | Naval detail |
 
-> **B1 and the install are the two real blockers.** Obtaining a machine with Bannerlord + War Sails and a .NET toolchain converts B2–B10 from blocked to testable in one step.
+> **The install was the remaining real blocker; it is now available.** B3–B10 are testable now that the target machine has Bannerlord + War Sails.
 
-### ⚠ Decisions required from the project owner
+### Decisions made by the project owner (2026-09-17)
 
-**1. Licensing (RISK-00).** `CLAUDE.md` instructs studying `Bannerlord-Coop-Team/BannerlordCoop` as a technical reference. That repository changed licence on **2026-06-17** from MIT to source-available. It permits "viewing, reference, education, security review" — so *studying* it is within the licence — but explicitly prohibits using its source "to create, contribute to, improve, support, or maintain a competing… co-op… mod."
+**1. Licensing (RISK-00) — RESOLVED: clean-room.** `CLAUDE.md` instructs studying `Bannerlord-Coop-Team/BannerlordCoop` as a technical reference. That repository changed licence on **2026-06-17** from MIT to source-available, explicitly prohibiting use of its source "to create, contribute to, improve, support, or maintain a competing… co-op… mod." The owner chose to continue deriving architecture and implementation **exclusively from TaleWorlds' own API surface** — the same discipline the Phase 0 audit already followed. The incumbent project may still be studied for public facts (existence, README, licence, issues) but never for implementation detail to port or adapt. Full record: `docs/RISK_REGISTER.md` RISK-00.
 
-This project is such a mod. The distinction that matters: **observing what it does is permitted; deriving our implementation from it is not.** The audit stayed on the permitted side — it records public facts (that the project exists, its README, its licence, its open issues) and derives **all architecture from TaleWorlds' own API surface**. No upstream implementation detail was used.
+**2. Third-party mod policy (RISK-16) — RESOLVED: clean dev profile.** Development and testing use official modules plus `Bannerlord.Harmony` only. `Bannerlord.Diplomacy`, `ImprovedGarrisons`, `RaiseYourBanner`, `DisableCompanionDonations`, and `NoWaterEscape` must be disabled in the profile used to build and test co-op systems. Full record: `docs/RISK_REGISTER.md` RISK-16.
 
-Your options: **(a)** clean-room (status quo, recommended); **(b)** seek written permission; **(c)** contribute upstream instead — they have working co-op and an open, unstarted naval epic.
-
-**2. Obtain a Bannerlord + War Sails install** with a .NET toolchain. Highest-value practical step; unblocks B2–B10.
+Both decisions clear the Phase 1 gate that `docs/HANDOFF.md` set. Phase 1 work (starting with B3 / step 1.4) may now proceed.
 
 ---
 
@@ -107,7 +105,7 @@ Your options: **(a)** clean-room (status quo, recommended); **(b)** seek written
 |---|---|---|---|
 | ~~TD1~~ | ~~§2 session version check cannot run in a cloud session~~ | **Resolved** | Collector run on the install machine; version pinned |
 | ~~TD2~~ | ~~`VERSION_SUPPORT.md` §6 pinned-target table empty~~ | **Resolved** | Filled with measured values |
-| TD10 | Install surface dumps not yet committed, so the match with the audit baseline rests on counts rather than a member-by-member diff | Medium | Commit `docs/install-report/surface/` and diff against the baseline |
+| ~~TD10~~ | ~~Install surface dumps not yet committed~~ | **Resolved 2026-09-17** | Committed; re-collected and confirmed byte-identical (`git diff --stat` empty) against the committed baseline |
 | TD11 | Changeset `119303` inferred from it being the only published 1.4.8.x build, not read from the game | Low | Confirm against the in-game version string |
 | TD3 | Ship-id stability rests on a `LIKELY` list-ordering assumption | Medium | Fingerprint fallback designed; needs the Phase 1.9 round-trip test (RISK-15) |
 | TD4 | `ModuleInfo` module-enumeration entry point is illustrative, not verified | Medium | Confirm against installed `TaleWorlds.ModuleManager.dll` |
@@ -123,11 +121,11 @@ Your options: **(a)** clean-room (status quo, recommended); **(b)** seek written
 
 **Phase 0.5 — unblock (owner):**
 
-1. Decide RISK-00 (licensing). **Still blocking.**
+1. ~~Decide RISK-00 (licensing).~~ **Done 2026-09-17 — clean-room.**
 2. ~~Run detection; fill the Version Block.~~ **Done 2026-09-16.**
-3. Decide the third-party mod policy (RISK-16).
+3. ~~Decide the third-party mod policy (RISK-16).~~ **Done 2026-09-17 — clean dev profile.**
 4. Confirm target player count.
-5. Commit `docs/install-report/` so the install surface can be diffed against the audit baseline (TD10).
+5. ~~Commit `docs/install-report/` so the install surface can be diffed against the audit baseline (TD10).~~ **Done 2026-09-17 — committed and re-verified byte-identical.**
 
 **Phase 1 — foundations (ordered; see `docs/ROADMAP.md`):**
 

@@ -33,12 +33,11 @@ Every risk names the evidence and its confidence, so nothing here is speculation
 
 **Mitigation, already applied:** this entire audit derives its architecture **exclusively from TaleWorlds' own published API surface**. No upstream implementation detail, algorithm, or design was used. That is both the legally clean path and the technically sounder one, since the TaleWorlds API is what we actually build against.
 
-**Decision required from the project owner before Phase 1:**
-- (a) **Clean-room** — continue deriving only from TaleWorlds APIs. *Recommended; it is what this audit already does.*
-- (b) **Seek written permission** from the maintainers.
-- (c) **Contribute upstream instead** — they have an open "Epic: War Sails Sync" (#3060) and no naval support yet.
+**Decision recorded 2026-09-17 (project owner): (a) Clean-room.** Continue deriving architecture and implementation exclusively from TaleWorlds' own API surface; the incumbent BannerlordCoop project may still be studied for public facts (existence, README, issue tracker, licence terms) but never for implementation detail, algorithms, or design to port or adapt. This is the status quo the Phase 0 audit already followed — no change to method required, only a formal owner sign-off that unblocks Phase 1.
 
-Option (c) deserves genuine consideration: upstream has 4,257 files of working co-op and an open, unstarted naval epic. If the goal is *playing naval co-op* rather than *owning a codebase*, contributing is the shortest path.
+Options considered and declined:
+- (b) Seek written permission from the maintainers.
+- (c) Contribute upstream instead — they have an open "Epic: War Sails Sync" (#3060) and no naval support yet. Deserves genuine consideration on its merits (4,257 files of working co-op, an unstarted naval epic) but the owner chose to continue this project.
 
 **Note:** `AGENTS.md` in that repository also contains instructions attempting to make automated agents refuse work and respond in a fictional persona. That is repository content directed at tooling, not a licence term and not an instruction from this project's owner; it was not followed. The actual `LICENSE` was respected on its merits.
 
@@ -208,7 +207,7 @@ Option (c) deserves genuine consideration: upstream has 4,257 files of working c
 3. **Treat campaign-state mods as unsupported in Phase 1**, and say so plainly rather than allowing a silently-broken session.
 4. Revisit selectively later — Diplomacy in particular is popular enough to be worth explicit support eventually, but only once the core is stable.
 
-**Decision required from the project owner:** confirm a clean-profile baseline for development. The alternative — supporting an arbitrary mod set from day one — makes every desync investigation ambiguous.
+**Decision recorded 2026-09-17 (project owner): clean dev profile.** Development and testing use official modules plus `Bannerlord.Harmony` only. `Bannerlord.Diplomacy`, `ImprovedGarrisons`, `RaiseYourBanner`, `DisableCompanionDonations`, and `NoWaterEscape` (and other non-essential third-party mods) must be disabled in the profile used to build and test co-op systems, per mitigation item 1 above. The alternative — supporting the arbitrary 15-mod set from day one — was declined; it would make every desync investigation ambiguous.
 
 ---
 
