@@ -61,7 +61,7 @@
 
 ## Current Work
 
-**None blocking.** Steps 1.1–1.4 of Phase 1 are done. Next: 1.5 (campaign event & determinism harness) or 1.6 (identity layer), or resume the decompiler-based B7/B8 audit work — owner's call.
+**Phase 1 step 1.5 — campaign event & determinism harness.** `tools/campaign-event-harness/` subscribes to all 277 `CampaignEvents` generically via reflection (each property uniformly exposes `AddNonSerializedListener(object, Action<...>)` for 0–7 generic args, verified against the real install rather than hand-picking a subset) and logs firing order, frequency, and re-entrancy to a file. Builds clean, deployed to the local install's `Modules\CampaignEventHarness\`. Passive observation only — doesn't touch `GameNetwork` or force any engine state, so no known crash risk. **Awaiting a play session** — 15–30 minutes of normal play (travel, enter a settlement, maybe a battle) is enough for a first pass; see `tools/campaign-event-harness/README.md`. Note: the original plan's "diff two machines" isn't possible with only one machine available — this gets real single-run ordering/frequency data instead, which is still progress on RISK-04.
 
 ### Recently resolved
 
@@ -147,7 +147,7 @@ No gameplay code has been written. One research tool is a known, reproducible en
 | ~~1.2~~ | ~~Module skeleton + hard version gate~~ — done, confirmed in-game |
 | ~~1.3~~ | ~~`tools/apiscan` API-drift CI gate~~ — done, exit criterion proven on real GitHub Actions runs (below) |
 | ~~1.4~~ | ~~`GameNetwork`-in-campaign probe (resolves RISK-02)~~ — **done**, `GameNetwork` ruled out |
-| 1.5 | Campaign event + determinism harness (resolves RISK-04) |
+| 1.5 | Campaign event + determinism harness (resolves RISK-04) — **built, deployed, awaiting a play session** (`tools/campaign-event-harness/README.md`) |
 | 1.6 | Identity layer: `MBGUID` registry + synthesized `CoopShipId` (mitigates RISK-01) |
 | 1.7 | Transport + wire protocol + idempotent consequence ledger — build on `TaleWorlds.Network.TcpSocket`, per 1.4's result |
 | 1.8 | First vertical slice: party position, two clients |

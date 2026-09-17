@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Phase 1.5 — campaign event & determinism harness (docs/ROADMAP.md, resolves RISK-04
+    from UNCONFIRMED to measured). Subscribes to every TaleWorlds.CampaignSystem.CampaignEvents
+    property generically via reflection (all 277, not a hand-picked subset — verified via
+    apiscan that every one exposes a uniform AddNonSerializedListener(object, Action<...>)
+    pattern up to 7 generic arguments) and logs firing order, frequency, and re-entrancy.
+    Compiles against TaleWorlds' own published reference assemblies pinned to the version
+    this repo targets, never against game DLLs copied into the repo.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>CampaignEventHarness</AssemblyName>
+    <RootNamespace>CampaignEventHarness</RootNamespace>
+    <Nullable>disable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Pinned to the exact build this repo targets — see docs/VERSION_SUPPORT.md §6/§8. -->
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="1.4.8.119303" />
+  </ItemGroup>
+
+</Project>

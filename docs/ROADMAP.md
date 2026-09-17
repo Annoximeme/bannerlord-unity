@@ -46,7 +46,12 @@ The four-step experiment in `NETWORK_PROTOCOL.md` §2, run 2026-09-17. Result: `
 **Exit:** documented, reproducible answer; transport implementation chosen. *Resolves RISK-02.*
 
 ### 1.5 Campaign event & determinism harness
-Subscribe to all 277 `CampaignEvents`; log ordering, frequency, re-entrancy. Run the same save on two machines and diff.
+`tools/campaign-event-harness` subscribes to all 277 `CampaignEvents` generically (reflection +
+runtime-built delegates, verified uniform `AddNonSerializedListener` pattern across all arities
+— not a hand-picked subset) and logs ordering, frequency, re-entrancy. Built, deployed,
+awaiting a play session. The "two machines" diff from the original plan isn't possible with
+only one machine available; single-run ordering/frequency data is still a real improvement
+over UNCONFIRMED.
 **Exit:** an ordering/determinism report. *Converts RISK-04 from UNCONFIRMED to measured.*
 
 ### 1.6 Identity layer
