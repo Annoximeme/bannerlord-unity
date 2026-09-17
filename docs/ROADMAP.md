@@ -55,8 +55,8 @@ over UNCONFIRMED.
 **Exit:** an ordering/determinism report. *Converts RISK-04 from UNCONFIRMED to measured.*
 
 ### 1.6 Identity layer
-`MBGUID` registry for `MBObjectBase` types **+ synthesized `CoopShipId`** with fingerprint fallback (`SYNCHRONIZATION_MODEL.md` §4). Decide publicizer vs Harmony for RISK-06.
-**Exit:** every relevant object addressable by a stable wire id. *Mitigates RISK-01.*
+`EngineObjectId` (adapts `MBGUID` for `MBObjectBase` types — no registry needed, the engine already guarantees it) **+ synthesized `CoopShipId`** via `CoopShipRegistry`, with `ShipIdentityRebinder`/`ShipFingerprint` implementing the fingerprint fallback (`SYNCHRONIZATION_MODEL.md` §4). RISK-06 decided: publicizer over Harmony, when the need arises — building this needed zero internal access, so nothing to publicize yet.
+**Exit:** every relevant object addressable by a stable wire id. *Mitigates RISK-01.* Demonstrated live via `ShipIdentityCampaignBehavior` (logs an id for every ship, every in-game day); cross-session persistence (`SyncData`) and the real save/load round-trip test are Phase 1.9.
 
 ### 1.7 Transport + wire protocol + idempotent consequence ledger
 Implement the chosen transport, channels C0–C5, framing, handshake with version/DLC negotiation. Generate the replicated-state manifest from `[Saveable*]`/`[CachedData]` metadata via `tools/apiscan`. Implement the `ConsequenceId` ledger (`ARCHITECTURE.md` §10) so a duplicated packet can never double-apply loot, gold, XP, casualties or ship changes.

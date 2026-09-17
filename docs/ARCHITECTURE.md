@@ -197,4 +197,4 @@ These are **not** settled and are not to be treated as assumptions:
 | A2 | Whether campaign AI ticks can run server-only with clients fully passive | UNCONFIRMED | Phase 1.5 harness |
 | A3 | Whether naval missions can host multiple players at all | UNKNOWN | Needs install + RISK-03 |
 | A4 | Interest management granularity (full world vs. spatial) | UNCONFIRMED | Phase 1.8 measurement |
-| A5 | Whether `PartyBase` needs a synthesized id like `Ship` does | LIKELY yes | Phase 1.6 |
+| ~~A5~~ | ~~Whether `PartyBase` needs a synthesized id like `Ship` does~~ | **RESOLVED, no** — `PartyBase` is always reachable from an identified `MobileParty` or `Settlement` owner, both already `MBObjectBase`-derived; addressed as `PartyBaseId = (ownerId, ownerKind)` instead of giving it an id of its own. Implemented, Phase 1.6: `Coop.Core.Identity.PartyBaseId`/`OwnerKind`, `Coop.GameInterface.Identity.PartyBaseIdAdapter`. |

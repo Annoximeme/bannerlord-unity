@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Coop.Core.Versioning;
 using Coop.GameInterface.CampaignBehaviors;
+using Coop.GameInterface.Identity;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -41,6 +42,7 @@ namespace Coop.GameInterface
             if (game.GameType is Campaign && gameStarterObject is CampaignGameStarter campaignGameStarter)
             {
                 campaignGameStarter.AddBehavior(new CoopStubCampaignBehavior());
+                campaignGameStarter.AddBehavior(new ShipIdentityCampaignBehavior());
             }
         }
 

@@ -51,7 +51,9 @@ Options considered and declined:
 
 **Mitigation:** synthesized `CoopShipId` registry, persisted through our own `SyncData`, positionally rebound on load with a content-fingerprint fallback. Design: `SYNCHRONIZATION_MODEL.md` §4.3. Ownership cross-check is available because `Ship._owner` **is** `[SaveableField]` (VERIFIED).
 
-**Residual:** the positional-rebinding assumption is `LIKELY`, not `VERIFIED` → tracked separately as RISK-15.
+**Implemented, Phase 1.6 (2026-09-17), for the running session.** `src/Coop.Core/Identity/` (`CoopShipId`, `CoopShipIdAllocator`, `ShipFingerprint`, `ShipIdentityRebinder` — all game-agnostic, unit-tested) and `src/Coop.GameInterface/Identity/` (`CoopShipRegistry` using a `ConditionalWeakTable<Ship, _>` so a destroyed ship doesn't leak just because it was once looked at; `ShipIdentityCampaignBehavior` assigning and logging an id for every ship on every `MobileParty` each in-game day, as a live exit-criterion demonstration). **Not yet done:** wiring `SyncData` so the id↔ship binding survives a save/load — that's Phase 1.9, where the positional-rebinding assumption below finally gets tested against a real save round-trip instead of just unit-tested against synthetic data.
+
+**Residual:** the positional-rebinding assumption is `LIKELY`, not `VERIFIED` → tracked separately as RISK-15. `ShipIdentityRebinder` (unit-tested: exact match, appended ship, removed ship, and — critically — the failure mode where the assumption turns out false, i.e. a fingerprint mismatch at a position) is ready for that test; it just hasn't been run against a real save yet.
 
 ---
 
@@ -116,7 +118,9 @@ Options considered and declined:
 
 **Evidence (VERIFIED):** `PartyBase.AddShipInternal(Ship)` / `RemoveShipInternal(Ship)` are `assembly`-visible. `MobileParty.Anchor` and `.IsTargetingPort` have private setters (though `SetAnchor` is public). Much required state is `private` with `[SaveableField]`.
 
-**Mitigation:** prefer public APIs where they exist (`ChangeShipOwnerAction` over `AddShipInternal`; `SetAnchor` over the setter). Where unavoidable, use a publicizer at build time — more stable than reflection and cheaper than Harmony. Decide in Phase 1.6.
+**Mitigation:** prefer public APIs where they exist (`ChangeShipOwnerAction` over `AddShipInternal`; `SetAnchor` over the setter). Where unavoidable, use a publicizer at build time — more stable than reflection and cheaper than Harmony.
+
+**Decided in Phase 1.6 (2026-09-17): publicizer, when the need actually arises — not yet.** Building the identity layer (`CoopShipRegistry`, `ShipIdentityCampaignBehavior`) turned out to need zero internal access: `PartyBase.Ships`/`.FlagShip`/`GetShipsVersion()` are all public, `MobileParty.All` is public, and every mutation the design calls for goes through public actions (`ChangeShipOwnerAction`, `EquipUpgradePiece`, `ChangeFigurehead`) rather than `AddShipInternal`/`RemoveShipInternal` directly. So there is nothing to publicize right now. The standing decision for *when* something unavoidable does show up: a build-time publicizer (e.g. `Bannerlord.BUTR.Publicizer` or `Krafs.Publicizer`, chosen at that point) over Harmony, per the reasoning already in the mitigation above — more stable than reflection, and unlike Harmony, doesn't patch the running game.
 
 ---
 
@@ -195,6 +199,8 @@ Options considered and declined:
 **Mitigation:** content-fingerprint fallback `(ShipHull.StringId, name, hitPoints, sailHitPoints, RandomValue)` — `RandomValue` is `[SaveableProperty]` and per-ship (VERIFIED). Ships are session-scoped only until the Phase 1.9 round-trip test passes.
 
 **Note (B6, 2026-09-17):** this is a different fingerprint from TaleWorlds' own `Ship.VersionNo` hash (`ShipHull.Id` + upgrade pieces + `Figurehead` + `CustomSailPatternId`, decompiled and documented in `SYNCHRONIZATION_MODEL.md` §4.3) — `VersionNo` is a change-detection hint recomputed on mutation, not a stable identity fingerprint, and volatile fields like `hitPoints` make it unsuitable for our purpose anyway. Don't conflate the two.
+
+**Note (1.6, 2026-09-17):** the rebinding algorithm itself (`Coop.Core.Identity.ShipIdentityRebinder`) is built and unit-tested against synthetic data for exactly this failure mode — a fingerprint mismatch at a position is flagged, never silently trusted. That's necessary but not sufficient: this risk stays open until it's run against an actual save → load round-trip (Phase 1.9), which is the only thing that can move `LIKELY` to `VERIFIED` or `FALSE`.
 
 ---
 

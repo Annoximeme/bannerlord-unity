@@ -61,7 +61,11 @@
 
 ## Current Work
 
-**Phase 1 step 1.5 — campaign event & determinism harness.** `tools/campaign-event-harness/` subscribes to all 277 `CampaignEvents` generically via reflection (each property uniformly exposes `AddNonSerializedListener(object, Action<...>)` for 0–7 generic args, verified against the real install rather than hand-picking a subset) and logs firing order, frequency, and re-entrancy to a file. Builds clean, deployed to the local install's `Modules\CampaignEventHarness\`. Passive observation only — doesn't touch `GameNetwork` or force any engine state, so no known crash risk. **Awaiting a play session** — 15–30 minutes of normal play (travel, enter a settlement, maybe a battle) is enough for a first pass; see `tools/campaign-event-harness/README.md`. Note: the original plan's "diff two machines" isn't possible with only one machine available — this gets real single-run ordering/frequency data instead, which is still progress on RISK-04.
+**Phase 1 step 1.6 — identity layer (mitigates RISK-01, the largest unresolved technical risk; resolves ARCHITECTURE.md A5).** `src/Coop.Core/Identity/` — `EngineObjectId` (game-agnostic MBGUID adapter shape), `CoopShipId`, `CoopShipIdAllocator` (monotonic, never reused, fast-forwardable past a persisted value), `ShipFingerprint`, `ShipIdentityRebinder` (the positional-rebind-with-fingerprint-cross-check algorithm from `SYNCHRONIZATION_MODEL.md` §4.3), and `PartyBaseId`/`OwnerKind` (§4.4 — `PartyBase` addressed via its owner instead of a synthesized id of its own) — all unit-tested, 23 new tests (37 total). `src/Coop.GameInterface/Identity/` adapts these to real `Ship`/`MBObjectBase`/`PartyBase` instances: `CoopShipRegistry` (backed by `ConditionalWeakTable`, so a destroyed ship doesn't leak), wired into a new `ShipIdentityCampaignBehavior` that assigns and logs an id for every ship on every `MobileParty`, once per in-game day. RISK-06 (publicizer vs Harmony) decided: publicizer, when actually needed — this layer needed zero internal-member access. Builds clean, redeployed to `Modules\BannerlordUnity\`. **Awaiting a live verification run** — same as 1.2, reaching the main menu confirms nothing broke; owning/acquiring a ship and playing a couple of in-game days confirms the same ship keeps the same id across ticks (check `Documents\Mount and Blade II Bannerlord\Coop.GameInterface\ship-identity.log`). Cross-session persistence (`SyncData`) and the real save/load round-trip test (which is what actually resolves RISK-15's `LIKELY`-not-`VERIFIED` gap) are Phase 1.9, not this step.
+
+### Recently resolved
+
+**1.5 — campaign event & determinism harness. Built, deployed, awaiting a play session (unchanged since last update).** `tools/campaign-event-harness/` subscribes to all 277 `CampaignEvents` generically via reflection and logs firing order, frequency, and re-entrancy. Passive observation only, no known crash risk. See `tools/campaign-event-harness/README.md`.
 
 ### Recently resolved
 
@@ -148,7 +152,7 @@ No gameplay code has been written. One research tool is a known, reproducible en
 | ~~1.3~~ | ~~`tools/apiscan` API-drift CI gate~~ — done, exit criterion proven on real GitHub Actions runs (below) |
 | ~~1.4~~ | ~~`GameNetwork`-in-campaign probe (resolves RISK-02)~~ — **done**, `GameNetwork` ruled out |
 | 1.5 | Campaign event + determinism harness (resolves RISK-04) — **built, deployed, awaiting a play session** (`tools/campaign-event-harness/README.md`) |
-| 1.6 | Identity layer: `MBGUID` registry + synthesized `CoopShipId` (mitigates RISK-01) |
+| 1.6 | Identity layer: `MBGUID` registry + synthesized `CoopShipId` (mitigates RISK-01) — **built, unit-tested, deployed for a live verification run** |
 | 1.7 | Transport + wire protocol + idempotent consequence ledger — build on `TaleWorlds.Network.TcpSocket`, per 1.4's result |
 | 1.8 | First vertical slice: party position, two clients |
 | 1.9 | Persistence, reconnect, server restart, save-safety layer |
