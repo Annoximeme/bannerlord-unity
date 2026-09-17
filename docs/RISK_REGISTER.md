@@ -180,7 +180,9 @@ Options considered and declined:
 
 **Evidence:** naval types live in the base assembly (VERIFIED), so the *types* always exist; whether a War-Sails-created save loads without the DLC is **UNCONFIRMED**.
 
-**Mitigation:** Phase 1 requires matching DLC state on server and client, enforced at handshake (`NETWORK_PROTOCOL.md` §5). Run the §6 compatibility matrix in `SAVE_FORMAT.md` once an install exists.
+**Mitigation:** Phase 1 requires matching DLC state on server and client, enforced at handshake (`NETWORK_PROTOCOL.md` §5, implemented and tested Phase 1.7 — `HandshakeValidator`). Run the §6 compatibility matrix in `SAVE_FORMAT.md` once an install exists.
+
+**Note (1.9, 2026-09-17):** an install has existed since Phase 0.5, and still nobody has run the §6 matrix — it needs many manual save/reload cycles toggling `NavalDLC` on and off, which is real time at the keyboard, not something Phase 1.9's coding work could substitute for. Still open.
 
 ---
 
@@ -201,6 +203,8 @@ Options considered and declined:
 **Note (B6, 2026-09-17):** this is a different fingerprint from TaleWorlds' own `Ship.VersionNo` hash (`ShipHull.Id` + upgrade pieces + `Figurehead` + `CustomSailPatternId`, decompiled and documented in `SYNCHRONIZATION_MODEL.md` §4.3) — `VersionNo` is a change-detection hint recomputed on mutation, not a stable identity fingerprint, and volatile fields like `hitPoints` make it unsuitable for our purpose anyway. Don't conflate the two.
 
 **Note (1.6, 2026-09-17):** the rebinding algorithm itself (`Coop.Core.Identity.ShipIdentityRebinder`) is built and unit-tested against synthetic data for exactly this failure mode — a fingerprint mismatch at a position is flagged, never silently trusted. That's necessary but not sufficient: this risk stays open until it's run against an actual save → load round-trip (Phase 1.9), which is the only thing that can move `LIKELY` to `VERIFIED` or `FALSE`.
+
+**Note (1.9, 2026-09-17):** the round-trip test itself is now built and deployed, not just designed. `ShipIdentityCampaignBehavior.SyncData` persists every ship's `(CoopShipId, fingerprint)` per owner through the engine's real `IDataStore`; `OnGameLoadFinishedEvent` re-locates each owner via `MBObjectManager.GetObject(MBGUID)` and reruns `ShipIdentityRebinder` against the just-reloaded `PartyBase.Ships`, logging `FingerprintMismatches`/`UnmatchedPersistedShips` counts to `Documents\Mount and Blade II Bannerlord\Coop.GameInterface\ship-identity.log`. **Still open:** nobody has actually saved and reloaded a campaign with this running yet. Zero mismatches on a real run is what moves this from `LIKELY` to `VERIFIED`; any mismatch moves it to `FALSE` (in which case the already-built fingerprint fallback is what carries the design, not a redesign).
 
 ---
 

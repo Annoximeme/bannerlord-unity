@@ -61,7 +61,11 @@
 
 ## Current Work
 
-**None blocking.** Steps 1.1–1.7 of Phase 1 are done. Next: 1.8 (first vertical slice — party position, two clients) needs two machines and is partly blocked on that; 1.9 (persistence, reconnect, save-safety) is code-heavy and doesn't need a second machine, and is also where RISK-15's `LIKELY`-not-`VERIFIED` gap finally gets a real test. Owner's call, same as before.
+**Phase 1 step 1.9 — persistence, reconnect & save safety. Core built; awaiting a live save/reload to close RISK-15.** `src/Coop.Core/Persistence/`: `SaveGenerationStore` (atomic write-then-rename, SHA-256 checksum, corrupted-generation fallback, N-generation pruning) and `SchemaMigrationChain` (`vN → vN+1`, refuses an unknown-newer schema) implement `CLAUDE.md` §7 / `SAVE_FORMAT.md` §5, fully unit-tested against a real temp directory — 23 new tests, 94 total, all passing. `CoopStateSnapshot`/`CoopStateBlobCodecV1` hand-encode the ship-identity state.
+
+`src/Coop.GameInterface/Identity/ShipIdentityCampaignBehavior.SyncData` now actually persists the ship registry through the real `IDataStore` (a Base64 blob of the codec's bytes), and on load defers applying it until `OnGameLoadFinishedEvent`, where it re-locates each owner by `MBGUID` and reruns `ShipIdentityRebinder` against the just-reloaded ships — logging mismatches to `Documents\Mount and Blade II Bannerlord\Coop.GameInterface\ship-identity.log`. **This is the actual RISK-15 round-trip test, wired and deployed** — what's missing is someone saving and reloading a real campaign with a ship. Builds clean (net472 and net8.0), redeployed to `Modules\BannerlordUnity\`.
+
+**Deferred on purpose, not silently dropped:** `SaveGenerationStore` has no live save trigger yet — that needs a dedicated-server host, which is Phase 1.8. Player-identity bindings have a tested codec path but nothing to populate them — no join flow exists before a real second client can connect (also 1.8, and your friend being available soon is exactly what unblocks that). The full `SAVE_FORMAT.md` §6 save-compatibility matrix (toggling `NavalDLC` on/off across saves, cross-version, vanilla↔our-save) needs many manual save/reload cycles and hasn't been run — RISK-13 stays open until it is.
 
 ### Recently resolved
 
@@ -159,7 +163,7 @@ No gameplay code has been written. One research tool is a known, reproducible en
 | 1.6 | Identity layer: `MBGUID` registry + synthesized `CoopShipId` (mitigates RISK-01) — **built, unit-tested, deployed for a live verification run** |
 | ~~1.7~~ | ~~Transport + wire protocol + idempotent consequence ledger~~ — done, proven with real sockets |
 | 1.8 | First vertical slice: party position, two clients |
-| 1.9 | Persistence, reconnect, server restart, save-safety layer |
+| 1.9 | Persistence, reconnect, server restart, save-safety layer — **core built and unit-tested; live round-trip awaiting a real save/reload** |
 | 1.10 | Naval **campaign** state (ships, ownership, at-sea flags) — no naval missions |
 
 Each step requires unit, integration, network and save/load tests per `CLAUDE.md`; major systems additionally require end-to-end tests.

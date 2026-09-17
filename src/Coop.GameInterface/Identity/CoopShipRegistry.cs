@@ -33,6 +33,9 @@ namespace Coop.GameInterface.Identity
             _allocator = allocator ?? new CoopShipIdAllocator();
         }
 
+        /// <summary>The next id the allocator will hand out — persist this so a restart never reuses one (docs/SAVE_FORMAT.md §3.2).</summary>
+        public ulong NextIdForPersistence => _allocator.NextValue;
+
         /// <summary>Fast-forwards the allocator past a persisted "next id" — call this before allocating anything, on load.</summary>
         public void ObservePersistedNextId(ulong persistedNextId) => _allocator.ObserveMinimumNext(persistedNextId);
 
