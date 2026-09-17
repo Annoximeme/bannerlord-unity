@@ -99,20 +99,45 @@ The two identity holes — `PartyBase` and `Ship` — are the structural reason 
 
 ## 6. Battle / Mission Flow
 
+**B7, resolved (2026-09-17, `ilspycmd` against the real install, VERIFIED — not the reference assembly, which has no method bodies).** The actual trigger is a game-menu consequence, `Helpers.MenuHelper.EncounterAttackConsequence(MenuCallbackArgs)` — the "Attack" option's callback — not a bare campaign-layer dispatch:
+
 ```
 Server: EncounterManager.StartPartyEncounter(PartyBase, PartyBase)
           └─> MapEvent created            [CampaignEvents.MapEventStarted]
-                ├─ MapEvent.IsNavalMapEvent ? naval : land
-                ├─ MapEvent.BattleTypes: FieldBattle | Siege | SallyOut | Raid
-                │                        | BlockadeBattle | BlockadeSallyOutBattle
-                └─> Server decides: simulate, or instantiate a Mission
-                      ├─ land:  PlayerEncounter.StartBattle() / StartAttackMission()
-                      └─ naval: NavalMissions.OpenNavalBattleMission(MissionInitializerRecord)
-                                NavalMissions.OpenNavalRaidMission(TroopRoster, BattleSideEnum, List<Ship>)
+          └─> player picks "Attack" in the encounter menu
+                └─> MenuHelper.EncounterAttackConsequence(args)
+                      ├─ BeHostileAction.ApplyEncounterHostileAction(...)
+                      ├─ settlement fortification, siege ambush/assault/sally-out/blockade
+                      │     → PlayerEncounter.StartSiegeAmbushMission() / PlayerSiege.Start*
+                      ├─ settlement is a village, raid in progress
+                      │     → MapEventHelper.GetRaidContext(...) classifies sea/land
+                      │       presence on each side (purely MobileParty.IsCurrentlyAtSea,
+                      │       no mission-layer state) → StartSeaRaidMission(...) or
+                      │       PlayerEncounter.StartVillageBattleMission(), or — when both
+                      │       sides are sea-only — CampaignMission.OpenNavalBattleMission
+                      │       directly
+                      ├─ settlement is a hideout
+                      │     → CampaignMission.OpenHideoutBattleMission("sea_bandit_a", ...)
+                      └─ general field battle (no settlement)
+                            ├─ PlayerEncounter.IsNavalEncounter() (= MapEvent.IsNavalMapEvent)
+                            │     → true:  CampaignMission.OpenNavalBattleMission(rec)
+                            ├─ caravan/village-defender on the far side
+                            │     → CampaignMission.OpenCaravanBattleMission(rec, ...)
+                            └─ else
+                                  → CampaignMission.OpenBattleMission(rec)
+                └─> CampaignMission.Open*(...) routes through Campaign.Current.CampaignMissionManager
+                      — the base SandBox.CampaignMissionManager, or NavalDLC's decorating
+                      NavalMissionManager for the three naval methods (RISK-03 decorator
+                      seam, already documented below) — into NavalDLC.Missions.NavalMissions
+                      for the naval cases.
+                └─> PlayerEncounter.StartAttackMission() (resets CampaignBattleResult)
+                └─> MapEvent.PlayerMapEvent.BeginWait()
           <─ outcome ─ CampaignBattleResult
           └─> Server applies: casualties, loot, ChangeShipOwnerAction, DestroyShipAction
                              [CampaignEvents.MapEventEnded]
 ```
+
+`StartSeaRaidMission` (also in `MenuHelper`) is worth noting on its own: when the player is on the raiding side, it opens a troop-and-ship selection UI (`MenuContext.OpenNavalTroopSelection`, capped at 3 ships by shallow-draft/crew-capacity) and only calls `CampaignMission.OpenNavalRaidMission(troops, navalSide, selectedShips)` from that UI's completion callback — the mission doesn't open until the player has chosen which ships go.
 
 **The mission layer is a subordinate simulation.** Its result is reported to the server, which alone commits campaign consequences. No client may apply a campaign mutation from a mission outcome.
 

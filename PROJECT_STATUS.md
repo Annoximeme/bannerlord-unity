@@ -61,6 +61,12 @@
 
 ## Current Work
 
+**B8 — siege stage transition sequence.** Picking this up now with the same `ilspycmd` method (no game session needed), while 1.9's live verification and 1.5's play session wait on the owner. Next: decompile `SiegeEvent`/`MapEvent`'s siege-stage code in the real install and trace the transition sequence, same rigor as B6/B7.
+
+### Recently resolved
+
+**B7 — `MapEvent` → naval mission launch path. Fully resolved.** The earlier partial pass had searched five assemblies and found the decorator seam but not the actual trigger; it turned out to be in a file not yet checked, `TaleWorlds.CampaignSystem.Helpers.MenuHelper`. `MenuHelper.EncounterAttackConsequence` — the "Attack" game-menu option's consequence callback — is where naval-vs-land is actually decided, branching on `PlayerEncounter.IsNavalEncounter()` for field battles and `MapEventHelper.GetRaidContext`'s per-side sea/land classification for village raids. Real consequence for our own design: this decision lives in a client-local menu handler, not a server-side campaign event — our own naval-battle-hosting logic (Phase 4) will need to hook or reimplement at this layer. Full chain in `ARCHITECTURE.md` §6, decision record in `RISK_REGISTER.md` RISK-03.
+
 **Phase 1 step 1.9 — persistence, reconnect & save safety. Core built; awaiting a live save/reload to close RISK-15.** `src/Coop.Core/Persistence/`: `SaveGenerationStore` (atomic write-then-rename, SHA-256 checksum, corrupted-generation fallback, N-generation pruning) and `SchemaMigrationChain` (`vN → vN+1`, refuses an unknown-newer schema) implement `CLAUDE.md` §7 / `SAVE_FORMAT.md` §5, fully unit-tested against a real temp directory — 23 new tests, 94 total, all passing. `CoopStateSnapshot`/`CoopStateBlobCodecV1` hand-encode the ship-identity state.
 
 `src/Coop.GameInterface/Identity/ShipIdentityCampaignBehavior.SyncData` now actually persists the ship registry through the real `IDataStore` (a Base64 blob of the codec's bytes), and on load defers applying it until `OnGameLoadFinishedEvent`, where it re-locates each owner by `MBGUID` and reruns `ShipIdentityRebinder` against the just-reloaded ships — logging mismatches to `Documents\Mount and Blade II Bannerlord\Coop.GameInterface\ship-identity.log`. **This is the actual RISK-15 round-trip test, wired and deployed** — what's missing is someone saving and reloading a real campaign with a ship. Builds clean (net472 and net8.0), redeployed to `Modules\BannerlordUnity\`.
@@ -99,7 +105,7 @@
 | B4 | Campaign determinism / event ordering (RISK-04) | No install | Sync model |
 | B5 | `Ship` ↔ `MissionShip` binding lifetime (RISK-03) | No install | Naval capture |
 | ~~B6~~ | ~~Which mutations bump `Ship.VersionNo`~~ | **RESOLVED 2026-09-17** — `ilspycmd` against the real install; see `SYNCHRONIZATION_MODEL.md` §4.3 | — |
-| B7 | `MapEvent` → naval mission launch path | **Partially resolved 2026-09-17** — decorator seam confirmed (`RISK_REGISTER.md` RISK-03), exact trigger call site still unfound | Naval battles |
+| ~~B7~~ | ~~`MapEvent` → naval mission launch path~~ | **RESOLVED 2026-09-17** — full chain found in `Helpers.MenuHelper.EncounterAttackConsequence`; see `ARCHITECTURE.md` §6, `RISK_REGISTER.md` RISK-03 | — |
 | B8 | Siege stage transition sequence | Method bodies — same `ilspycmd` path as B6, not yet run | Sieges |
 | B9 | Save compat with/without War Sails (RISK-13) | No install | Persistence |
 | B10 | `MissionShip` authority & physics determinism (RISK-12) | No install | Naval battles |

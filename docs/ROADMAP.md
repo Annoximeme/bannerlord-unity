@@ -123,7 +123,7 @@ Quests (RISK-11) · War Sails storyline · hideouts · persistent progression ·
 | I2 | Campaign tick determinism & event ordering | Sync model | RISK-04 |
 | I3 | `Ship` ↔ `MissionShip` binding lifetime | Naval capture | RISK-03 |
 | ~~I4~~ | ~~Which mutations bump `Ship.VersionNo`~~ | Change detection | **RESOLVED** |
-| I5 | `MapEvent` → naval mission launch path (partial — decorator seam found, trigger site not) | Naval battles | RISK-08 |
+| ~~I5~~ | ~~`MapEvent` → naval mission launch path~~ | Naval battles | **RESOLVED — `MenuHelper.EncounterAttackConsequence`, see `ARCHITECTURE.md` §6** |
 | I6 | Siege stage transitions (refactored across versions) | Sieges | RISK-05 |
 | I7 | Save compat with/without War Sails | Persistence | RISK-13 |
 | I8 | `MissionShip` authority & physics determinism | Naval battles | RISK-12 |
