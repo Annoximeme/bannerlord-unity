@@ -72,8 +72,8 @@ claude doctor        # read-only diagnostics: install health, settings validatio
 
 ```powershell
 cd C:\dev                         # or wherever you keep projects
-git clone https://github.com/Annoximeme/bannerlordcoop.git
-cd bannerlordcoop
+git clone https://github.com/Annoximeme/bannerlord-unity.git
+cd bannerlord-unity
 git checkout claude/inspiring-mayer-mqd8zl
 claude
 ```
@@ -82,7 +82,7 @@ claude
 
 ## 6. Pushing to GitHub — yes, this is easy
 
-You own `Annoximeme/bannerlordcoop`, so you already have write access. Nothing Claude-Code-specific is required.
+You own `Annoximeme/bannerlord-unity`, so you already have write access. Nothing Claude-Code-specific is required.
 
 **First push:** Git Credential Manager (bundled with Git for Windows) opens a browser window, you authorise once, and the credential is cached in Windows Credential Manager. Every later push is silent.
 
