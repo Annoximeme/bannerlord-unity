@@ -61,11 +61,11 @@
 
 ## Current Work
 
-**Phase 1 step 1.2 — module skeleton + hard version gate.** `src/` now holds the real mod: `Coop.Core` (game-agnostic `GameVersion`/`VersionGate`, unit-tested — 14 tests passing) and `Coop.GameInterface` (the actual `BannerlordUnity` Bannerlord module: `SubModule` with the version gate wired to `ModuleHelper.GetActiveModules()`, a `SaveableTypeDefiner` stub, a stub `CampaignBehaviorBase` proving behavior registration). Builds clean.
-
-**First deploy attempt crashed the game at the loading screen (2026-09-17).** Cause: the deploy step copied only `Coop.GameInterface.dll`, not its dependency `Coop.Core.dll` — a `SubModule` that can't resolve a referenced assembly fails before the game can show any error UI, which surfaced as a native crash rather than a clean message. Confirmed by checking the deployed folder (the file was genuinely missing) and cross-checked the version-gate logic itself is sound by decompiling `ModuleHelper`/`ModuleInfo` — the active-module list is populated before any `SubModule.OnSubModuleLoad()` runs, so that part isn't the issue. Fixed: redeployed with both DLLs; `src/README.md`'s deploy snippet now copies the whole output folder instead of one file at a time. **Awaiting a clean in-game verification run** — reaching the main menu is enough, no campaign needed, nothing here touches `GameNetwork`.
+**Phase 1 step 1.3 — API-drift CI gate.** `tools/apiscan/check_api_drift.py` diffs the pinned assemblies' surface (from the same `Bannerlord.ReferenceAssemblies.Core` package `Coop.GameInterface.csproj` restores) against a committed baseline (`docs/evidence/api-baseline/`), scoped to the six assemblies `Coop.GameInterface` currently references. Fails on any removed member; additions are informational. Verified locally both ways — passes clean, and fails with a clear report when a member is deliberately removed from the baseline. Wired into `.github/workflows/ci.yml` alongside build+test. **Being verified for real on GitHub Actions** — a local pass/fail isn't the same as CI actually enforcing it on every push.
 
 ### Recently resolved
+
+**1.2 — module skeleton + hard version gate. Confirmed in-game.** `src/Coop.Core` (game-agnostic `GameVersion`/`VersionGate`, unit-tested — 14 tests) and `src/Coop.GameInterface` (`BannerlordUnity` Bannerlord module: version gate wired to `ModuleHelper.GetActiveModules()`, `SaveableTypeDefiner` stub, stub `CampaignBehaviorBase`). First deploy crashed the game at the loading screen — cause was a missing dependency DLL in the deploy step (`Coop.Core.dll`), not the version-gate logic itself (checked by decompiling `ModuleHelper`/`ModuleInfo`). Fixed, redeployed, confirmed reaching the main menu cleanly on the pinned version. `src/README.md`'s deploy snippet now copies the whole build output folder to prevent a repeat.
 
 **B3 — `GameNetwork`-in-campaign probe. Run, and it crashed the game.** `tools/network-probe/CoopNetworkProbe` was launched on the real install (clean profile, no third-party mods). Every `GameNetwork` call succeeded (`Initialize`, `PreStartMultiplayerOnServer`, `StartMultiplayerOnServer`, message handlers, loopback broadcast — all `STEP OK`, `IsSessionActive`/`IsMultiplayer`/`IsServer` all flipped `true`), the campaign kept ticking for 15+ seconds, and then the game crashed with a native access violation (`0xc0000005`, Windows Application Error, no managed exception, no BUTR report). **RISK-02 is resolved: `GameNetwork` cannot be used to retrofit multiplayer onto a running singleplayer campaign — it destabilizes the engine.** The project builds its own transport (`TaleWorlds.Network.TcpSocket` / raw sockets), which is what `NETWORK_PROTOCOL.md`'s `ICoopTransport` abstraction already assumed. No save was at risk (crash predated any autosave). Full evidence: `docs/RISK_REGISTER.md` RISK-02, `docs/NETWORK_PROTOCOL.md` §2.
 
@@ -123,7 +123,7 @@ No gameplay code has been written. One research tool is a known, reproducible en
 | TD5 | Official TaleWorlds War Sails modding docs not consulted | Medium | Naval findings are assembly-derived only; B11 |
 | ~~TD6~~ | ~~Reference assemblies lack method bodies~~ | **Resolved 2026-09-17** | `ilspycmd 8.2.0.7535` decompiles the real install's assemblies with full method bodies (`dotnet tool install -g ilspycmd --version 8.2.0.7535` — later releases 9.x–11.x fail to install, bad `DotnetToolSettings.xml` in the package as of this writing). Ordering/flow claims are now answerable, not inherently UNCONFIRMED; only claims nobody has actually decompiled yet stay UNCONFIRMED. **Decompiled output is never committed** — it reproduces TaleWorlds' own source, a different and stricter concern than the metadata-only surface dumps in `docs/evidence/`. Extract findings into our own words in the docs; `.gitignore` now blocks `*.decompiled.cs` and `/decompiled/` as a backstop. |
 | TD7 | `docs/evidence/` diffs are large and uncompressed | Low | Acceptable; they are the audit trail |
-| TD8 | No build, test, or CI infrastructure yet | Medium | Partially resolved — `src/` builds and `dotnet test` runs locally (Phase 1.2). Automated CI (a pipeline that runs this on every push, plus the API-drift gate) is still Phase 1.3. |
+| ~~TD8~~ | ~~No build, test, or CI infrastructure yet~~ | **Resolved 2026-09-17** | `.github/workflows/ci.yml` builds `src/`, runs `Coop.Core.Tests`, and runs the API-drift gate on every push/PR. |
 
 ---
 
@@ -142,8 +142,8 @@ No gameplay code has been written. One research tool is a known, reproducible en
 | Step | Task |
 |---|---|
 | ~~1.1~~ | ~~Environment capture and version pin~~ — done |
-| 1.2 | Module skeleton + hard version gate — **in progress, built and deployed, awaiting an in-game verification run** (`src/README.md`) |
-| 1.3 | `tools/apiscan` API-drift CI gate |
+| ~~1.2~~ | ~~Module skeleton + hard version gate~~ — done, confirmed in-game |
+| 1.3 | `tools/apiscan` API-drift CI gate — **built, being verified for real on GitHub Actions** |
 | ~~1.4~~ | ~~`GameNetwork`-in-campaign probe (resolves RISK-02)~~ — **done**, `GameNetwork` ruled out |
 | 1.5 | Campaign event + determinism harness (resolves RISK-04) |
 | 1.6 | Identity layer: `MBGUID` registry + synthesized `CoopShipId` (mitigates RISK-01) |

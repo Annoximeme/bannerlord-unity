@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    name: Build & test (Coop.Core, Coop.GameInterface)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Restore
+        run: dotnet restore src/BannerlordUnity.sln
+
+      - name: Build
+        run: dotnet build src/BannerlordUnity.sln --no-restore --configuration Release
+
+      - name: Test (Coop.Core — the only project with game-agnostic logic so far)
+        run: dotnet test src/Coop.Core.Tests/Coop.Core.Tests.csproj --no-build --configuration Release
+
+  api-drift:
+    name: API-drift gate (RISK-05, docs/ROADMAP.md 1.3)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Restore Coop.GameInterface (pulls the pinned TaleWorlds reference assemblies)
+        run: dotnet restore src/Coop.GameInterface/Coop.GameInterface.csproj
+
+      - name: Locate the pinned reference assemblies
+        id: pinned
+        run: |
+          dir=$(find "$HOME/.nuget/packages/bannerlord.referenceassemblies.core" -maxdepth 3 -type d -name net472 | head -1)
+          if [ -z "$dir" ]; then
+            echo "Could not locate the restored Bannerlord.ReferenceAssemblies.Core package" >&2
+            exit 1
+          fi
+          echo "dir=$dir" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Check API surface against the committed baseline
+        run: python3 tools/apiscan/check_api_drift.py "${{ steps.pinned.outputs.dir }}"

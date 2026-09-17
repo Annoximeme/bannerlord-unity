@@ -38,7 +38,7 @@ Run the §5 detection; record exact version, `ApplicationVersionType`, module se
 **Exit:** module loads in-game; wrong version refuses cleanly.
 
 ### 1.3 API-drift CI gate
-`cli_meta.py surface` against pinned assemblies, diff vs committed baseline, fail on removal of anything we bind to.
+`tools/apiscan/check_api_drift.py` runs `cli_meta.py surface` against the pinned reference assemblies (the same package `Coop.GameInterface.csproj` restores) and diffs against a committed baseline (`docs/evidence/api-baseline/`), scoped to the assemblies `Coop.GameInterface` references. Fails on any removal. Wired into `.github/workflows/ci.yml`.
 **Exit:** CI fails on a deliberately introduced baseline change. *Mitigates RISK-05.*
 
 ### 1.4 ✅ `GameNetwork`-in-campaign probe — done
