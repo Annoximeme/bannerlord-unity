@@ -97,6 +97,19 @@ Persistence (survives save/load AND server restart):
 
 `Ship.VersionNo` / `UpdateVersionNo()` / `PartyBase.GetShipsVersion()` are useful **change hints** (VERIFIED they exist), but `_versionNo` is **not** `[SaveableField]` (VERIFIED) — it resets on load, so it must never be used as an identity or as a cross-session baseline.
 
+**B6 resolved — decompiled from the real install (`ilspycmd` against the pinned `TaleWorlds.CampaignSystem.dll`, VERIFIED, not the reference assembly, which has no method bodies).** `VersionNo` is not an incrementing counter; it is a lazily-recomputed content hash, cached behind a private `_isVersionDirty` flag:
+
+```
+VersionNo = ShipHull.Id.InternalValue
+          + hash(_shipPieces values, folded with * 31 ^ Id.InternalValue)
+          ^ Figurehead.Id.InternalValue        (if a figurehead is equipped)
+          ^ hash(CustomSailPatternId)           (folded in the same pass)
+```
+
+recomputed only when `_isVersionDirty` is set, and that happens at exactly two call sites in `Ship` itself: `ChangeFigurehead(Figurehead)` and the private `SetPieceAtSlot` behind `EquipUpgradePiece(string, ShipUpgradePiece)`. A whole-assembly search of both `TaleWorlds.CampaignSystem.dll` and `NavalDLC.dll` (every quest, storyline mission controller, and campaign behavior that touches a `Ship`) found no other caller of `UpdateVersionNo()` on a `Ship` — every content mutation in the shipped game funnels through `EquipUpgradePiece`/`ChangeFigurehead`.
+
+**Gap found in the process:** `CustomSailPatternId` is a plain auto-property (`{ get; set; }`) with no invalidation call. `NavalDLCHelpers.cs` sets it directly (`ship.CustomSailPatternId = sailId;`) without ever calling `UpdateVersionNo()`. A sail-pattern-only change therefore does **not** by itself bump `VersionNo` — the stale cached hash only catches up the next time a piece or figurehead change forces a recompute (which then folds in whatever `CustomSailPatternId` holds *at that moment*). **Implication for us:** `VersionNo` cannot be trusted alone to detect a cosmetic sail-pattern change; if that needs syncing, subscribe to the setter's call site directly (or wrap `CustomSailPatternId` behind our own tracked property) rather than polling `VersionNo`.
+
 ### 4.4 `PartyBase` identity
 
 `PartyBase` has no id but is always reachable from an identified owner (`MobileParty.Party`, or a `Settlement`). Address it as `(ownerMBGUID, ownerKind)` rather than giving it an id of its own.

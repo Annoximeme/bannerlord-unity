@@ -61,7 +61,9 @@
 
 ## Current Work
 
-**B3 — `GameNetwork`-in-campaign probe (Phase 1 step 1.4, resolves RISK-02).** RISK-00 and RISK-16 are decided (below), clearing the Phase 1 gate `docs/HANDOFF.md` set. Procedure: `docs/NETWORK_PROTOCOL.md` §2.
+**B3 — `GameNetwork`-in-campaign probe (Phase 1 step 1.4, resolves RISK-02). Deployed, awaiting a manual run.** `tools/network-probe/` is built and deployed to the local install's `Modules/` folder; it needs a human to launch the game with the RISK-16 clean profile, start or load a campaign, and let it run ~30s. See `tools/network-probe/README.md`. Once `Documents\Mount and Blade II Bannerlord\CoopNetworkProbe\network-probe.log` exists, its contents resolve RISK-02.
+
+**B6 resolved, B7 partially advanced, while waiting on B3.** `ilspycmd` is now installed and verified against the real install. `Ship.VersionNo`'s exact mechanism is decompiled and documented (`SYNCHRONIZATION_MODEL.md` §4.3, `WARSAILS_ARCHITECTURE.md`). For B7, traced the campaign→mission naval launch path as far as confirming it's a decorator (`NavalMissionManager` wrapping `Campaign.Current.CampaignMissionManager`, installed in `OnAfterGameInitializationFinished`) — a clean seam for our own mod — but the exact call site that decides "this encounter is naval" is still unfound across five searched assemblies (`RISK_REGISTER.md` RISK-03). B8 (siege stage transitions) hasn't been started yet; same tool, same method, doesn't need the game running.
 
 ---
 
@@ -74,9 +76,9 @@
 | B3 | `GameNetwork`-in-campaign probe (RISK-02) | Needs a running game | All netcode |
 | B4 | Campaign determinism / event ordering (RISK-04) | No install | Sync model |
 | B5 | `Ship` ↔ `MissionShip` binding lifetime (RISK-03) | No install | Naval capture |
-| B6 | Which mutations bump `Ship.VersionNo` | No install (method bodies) | Change detection |
-| B7 | `MapEvent` → naval mission launch path | No install (method bodies) | Naval battles |
-| B8 | Siege stage transition sequence | No install (method bodies) | Sieges |
+| ~~B6~~ | ~~Which mutations bump `Ship.VersionNo`~~ | **RESOLVED 2026-09-17** — `ilspycmd` against the real install; see `SYNCHRONIZATION_MODEL.md` §4.3 | — |
+| B7 | `MapEvent` → naval mission launch path | **Partially resolved 2026-09-17** — decorator seam confirmed (`RISK_REGISTER.md` RISK-03), exact trigger call site still unfound | Naval battles |
+| B8 | Siege stage transition sequence | Method bodies — same `ilspycmd` path as B6, not yet run | Sieges |
 | B9 | Save compat with/without War Sails (RISK-13) | No install | Persistence |
 | B10 | `MissionShip` authority & physics determinism (RISK-12) | No install | Naval battles |
 | B11 | Official TaleWorlds War Sails modding documentation | Not located in this session | Naval detail |
@@ -111,7 +113,7 @@ Both decisions clear the Phase 1 gate that `docs/HANDOFF.md` set. Phase 1 work (
 | TD4 | `ModuleInfo` module-enumeration entry point is illustrative, not verified | Medium | Confirm against installed `TaleWorlds.ModuleManager.dll` |
 | TD9 | Collector misclassified `BetaKey "public"` as a beta opt-in | **Fixed** | Found by real output from the install machine; `PUBLIC_BRANCH_KEYS` now excludes `public`/`none`/`default`/empty. Regression-tested for public-key, genuine-beta and no-key cases. |
 | TD5 | Official TaleWorlds War Sails modding docs not consulted | Medium | Naval findings are assembly-derived only; B11 |
-| TD6 | Reference assemblies lack method bodies | Medium | Inherent; all ordering/flow claims are UNCONFIRMED by construction |
+| ~~TD6~~ | ~~Reference assemblies lack method bodies~~ | **Resolved 2026-09-17** | `ilspycmd 8.2.0.7535` decompiles the real install's assemblies with full method bodies (`dotnet tool install -g ilspycmd --version 8.2.0.7535` — later releases 9.x–11.x fail to install, bad `DotnetToolSettings.xml` in the package as of this writing). Ordering/flow claims are now answerable, not inherently UNCONFIRMED; only claims nobody has actually decompiled yet stay UNCONFIRMED. **Decompiled output is never committed** — it reproduces TaleWorlds' own source, a different and stricter concern than the metadata-only surface dumps in `docs/evidence/`. Extract findings into our own words in the docs; `.gitignore` now blocks `*.decompiled.cs` and `/decompiled/` as a backstop. |
 | TD7 | `docs/evidence/` diffs are large and uncompressed | Low | Acceptable; they are the audit trail |
 | TD8 | No build, test, or CI infrastructure yet | Medium | Phase 1.2–1.3 |
 

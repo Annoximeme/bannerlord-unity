@@ -48,6 +48,8 @@
 
 `_versionNo` (uint), `_isVersionDirty` (bool), `CustomSailPatternId` (string property, no Saveable attribute).
 
+**B6, resolved from the real install's IL (VERIFIED, `ilspycmd` against `TaleWorlds.CampaignSystem.dll` — reference assemblies carry no method bodies to check this against):** `VersionNo` is a cached content hash of `ShipHull.Id`, every slot in `_shipPieces`, `Figurehead.Id`, and `CustomSailPatternId` — not a counter. The cache invalidates only from `ChangeFigurehead()` and `EquipUpgradePiece()`; nothing else in `TaleWorlds.CampaignSystem.dll` or `NavalDLC.dll` calls `UpdateVersionNo()` on a `Ship`. `CustomSailPatternId`'s setter does *not* invalidate it — `NavalDLCHelpers.cs` sets it directly — so a sail-pattern-only change is invisible to `VersionNo` until some other mutation forces a recompute. Detail and implication: `SYNCHRONIZATION_MODEL.md` §4.3.
+
 ### Mutable surface
 
 `Owner` (public set) · `HitPoints` (public set) · `SailHitPoints` (public set) · `IsInvulnerable`/`IsTradeable`/`IsUsedByQuest` (public set) · `SetName(TextObject)` · `ChangeFigurehead(Figurehead)` · `EquipUpgradePiece(string, ShipUpgradePiece)` · `OnShipDamaged(float, IShipOrigin, ref float)` · `UpdateVersionNo()`.

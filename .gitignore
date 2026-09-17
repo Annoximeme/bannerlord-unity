@@ -8,6 +8,12 @@ obj/
 /refasm/
 *.nupkg
 
+# Decompiled TaleWorlds source (ilspycmd output, method bodies) — legally
+# distinct from the metadata-only surface dumps in docs/evidence/. Never
+# commit reproduced game logic; extract findings into our own words instead.
+*.decompiled.cs
+/decompiled/
+
 # OS
 .DS_Store
 Thumbs.db

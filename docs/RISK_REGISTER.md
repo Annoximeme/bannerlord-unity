@@ -77,6 +77,10 @@ Options considered and declined:
 
 **Resolution:** requires an install. Naval *missions* are explicitly out of Phase 1 scope for this reason; naval *campaign* state is in scope because it does not cross the seam.
 
+**B7, partial progress (2026-09-17, `ilspycmd` against the real install — VERIFIED for what's stated, still open for what isn't):** the launch path from a campaign `MapEvent` into an actual naval `Mission` is a **decorator seam**, not a type check buried in one place. `TaleWorlds.CampaignSystem.CampaignMission` is a thin static forwarder to an injected `Campaign.Current.CampaignMissionManager : ICampaignMissionManager`. The base implementation, `SandBox.CampaignMissionManager`, stubs `OpenNavalBattleMission` / `OpenNavalRaidMission` / `OpenNavalSetPieceBattleMission` to `return null` — the base game cannot launch a naval mission on its own. `NavalDLC.NavalDLCSubModule.OnAfterGameInitializationFinished` wraps it at runtime: `campaign.CampaignMissionManager = new NavalMissionManager(campaign.CampaignMissionManager)`. `NavalMissionManager` implements the three naval methods itself (via `NavalDLC.Missions.NavalMissions`) and forwards every other method to the wrapped base manager unchanged. **This is a clean, public seam for us too** — a coop-aware decorator installed the same way (`OnAfterGameInitializationFinished`, no Harmony needed) can observe or intercept every mission launch, naval or not, without touching TaleWorlds' dispatch logic.
+
+**Still open:** which caller actually decides "this `MapEvent` is naval" and invokes `CampaignMission.OpenNavalBattleMission(...)` — not found in `TaleWorlds.CampaignSystem.dll`, `SandBox.dll`, `SandBox.View.dll`, `NavalDLC.dll`, or `NavalDLC.View.dll`. Likely in `SandBox.GauntletUI.dll`, a `GameStateManager`/`MissionState` transition in `TaleWorlds.MountAndBlade.dll`, or driven by menu-consequence data rather than a direct call. Next step if resumed: search those, or set a breakpoint/log in the deployed `NavalMissionManager.OpenNavalBattleMission` override via a Harmony prefix and trigger a real naval encounter.
+
 ---
 
 ## RISK-04 — Campaign non-determinism & event ordering · **Impact 4 × Likelihood 5 = 20**
@@ -182,6 +186,8 @@ Options considered and declined:
 **Evidence:** the `CoopShipId` design rebinds ids positionally from `PartyBase.Ships` after load. That `MBList<Ship>` preserves order through save/load is **LIKELY** (it is a `[SaveableField]` ordered container) but **not runtime-verified**.
 
 **Mitigation:** content-fingerprint fallback `(ShipHull.StringId, name, hitPoints, sailHitPoints, RandomValue)` — `RandomValue` is `[SaveableProperty]` and per-ship (VERIFIED). Ships are session-scoped only until the Phase 1.9 round-trip test passes.
+
+**Note (B6, 2026-09-17):** this is a different fingerprint from TaleWorlds' own `Ship.VersionNo` hash (`ShipHull.Id` + upgrade pieces + `Figurehead` + `CustomSailPatternId`, decompiled and documented in `SYNCHRONIZATION_MODEL.md` §4.3) — `VersionNo` is a change-detection hint recomputed on mutation, not a stable identity fingerprint, and volatile fields like `hitPoints` make it unsuitable for our purpose anyway. Don't conflate the two.
 
 ---
 

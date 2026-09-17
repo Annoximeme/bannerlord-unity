@@ -117,7 +117,15 @@ This fills in the version block that Phase 0 could not determine (see `docs/VERS
 | B3 — `GameNetwork`-in-campaign probe (RISK-02) | Needs a running game | ✅ Requires launching Bannerlord |
 | B9 — save compat with/without War Sails | Needs a running game | ✅ |
 
-For IL-level work (B6–B8), a decompiler helps: [ILSpy](https://github.com/icsharpcode/ILSpy) or `dotnet tool install -g ilspycmd`. `tools/apiscan/cli_meta.py` reads type and member metadata but deliberately does not decode method bodies.
+For IL-level work (B7, B8 — B6 is done), a decompiler helps: [ILSpy](https://github.com/icsharpcode/ILSpy) or `ilspycmd`. `tools/apiscan/cli_meta.py` reads type and member metadata but deliberately does not decode method bodies.
+
+`dotnet tool install -g ilspycmd` pulls the latest release, which as of 2026-09-17 fails to install (`DotnetToolSettings.xml was not found in the package`). Pin an older release instead: `dotnet tool install -g ilspycmd --version 8.2.0.7535`. Point it at the real installed assemblies (not the reference-assembly NuGet packages, which have no method bodies), e.g.:
+
+```powershell
+ilspycmd -t "TaleWorlds.CampaignSystem.Naval.Ship" -r "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client" "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord\bin\Win64_Shipping_Client\TaleWorlds.CampaignSystem.dll"
+```
+
+**Never commit decompiled output.** It reproduces TaleWorlds' own source with real method bodies — legally a stricter case than the metadata-only surface dumps in `docs/evidence/`. Write findings from it into the docs in our own words instead; `.gitignore` blocks `*.decompiled.cs` and `/decompiled/` as a backstop.
 
 ## 9. Notes
 
