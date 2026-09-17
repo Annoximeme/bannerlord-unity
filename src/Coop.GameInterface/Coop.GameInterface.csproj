@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Bannerlord adapter layer (ARCHITECTURE.md §9). Every raw TaleWorlds.* call in this
+    project is deliberate — that is this assembly's whole job. Compiles against
+    TaleWorlds' own published reference assemblies pinned to the version this repo
+    targets (docs/VERSION_SUPPORT.md), never against game DLLs copied into the repo.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>Coop.GameInterface</AssemblyName>
+    <RootNamespace>Coop.GameInterface</RootNamespace>
+    <Nullable>disable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Pinned to the exact build this repo targets — see docs/VERSION_SUPPORT.md §6/§8. -->
+    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="1.4.8.119303" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Coop.Core\Coop.Core.csproj" />
+  </ItemGroup>
+
+</Project>

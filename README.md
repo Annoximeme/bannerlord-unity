@@ -6,7 +6,7 @@ By Annoximeme (Gianni).
 
 ## Status
 
-**Phase 0 — Technical Audit: complete. No gameplay code has been written yet, by design.**
+**Phase 0 — Technical Audit: complete. Phase 1 — Foundations: in progress (module skeleton, no gameplay features yet).**
 
 Start with **[`PROJECT_STATUS.md`](PROJECT_STATUS.md)**.
 
@@ -32,9 +32,15 @@ Multiple independent player parties · shared persistent campaign world · PvP �
 | [`docs/HANDOFF.md`](docs/HANDOFF.md) | **Start here if picking this up in a new session** |
 | [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md) | Local dev environment setup on Windows; GitHub push setup |
 
+## Source
+
+[`src/`](src/) — the mod itself: `Coop.Core` (game-agnostic logic, unit-tested), `Coop.GameInterface` (the Bannerlord module). See [`src/README.md`](src/README.md) to build, test, and deploy it locally.
+
 ## Tooling
 
 [`tools/apiscan/`](tools/apiscan/) — a dependency-free ECMA-335 metadata reader used to verify every API claim in the docs directly against shipped TaleWorlds assemblies, with no .NET toolchain or game install required.
+
+[`tools/network-probe/`](tools/network-probe/) — the (now-resolved) RISK-02 experiment; kept as a record.
 
 ## Note on the existing BannerlordCoop project
 

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Game-agnostic layer (ARCHITECTURE.md §9). No TaleWorlds.* reference is
+    permitted here, ever — that is the whole point of this assembly's
+    existence. Bannerlord-specific adapters live in Coop.GameInterface.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Coop.Core</RootNamespace>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+</Project>

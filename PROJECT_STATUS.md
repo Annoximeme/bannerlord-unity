@@ -16,8 +16,8 @@
 | Steam `buildid` | `24573425` | VERIFIED |
 | Install path | `G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord` | VERIFIED |
 | Modules installed | 24 — 9 official, **15 third-party** | VERIFIED |
-| **Mod version** | `0.0.0` (pre-implementation; no code yet) | VERIFIED |
-| **Current phase** | **Phase 0 — Technical Audit: COMPLETE** | VERIFIED |
+| **Mod version** | `v0.0.1` (`BannerlordUnity` module skeleton; no gameplay features) | VERIFIED |
+| **Current phase** | **Phase 1 — Foundations: step 1.2 in progress** | VERIFIED |
 | Audit conducted against | `1.4.8.119303` reference assemblies — **matches the install exactly** | VERIFIED |
 
 ✅ **The Phase 0 audit targeted the correct version.** Type and API-surface counts from the real installed assemblies match the audit baseline across all 11 assemblies (`TaleWorlds.CampaignSystem.dll` 44,655 surface entries; `NavalDLC.dll` 13,779 — both exact). Every `VERIFIED` audit finding applies to this installation. Detail in `docs/VERSION_SUPPORT.md` §6.
@@ -61,9 +61,9 @@
 
 ## Current Work
 
-**None blocking.** B3 resolved (below); Phase 1 foundations (§ Next Tasks) are next, or B7/B8 if continuing the decompiler-based audit work first.
+**Phase 1 step 1.2 — module skeleton + hard version gate.** `src/` now holds the real mod: `Coop.Core` (game-agnostic `GameVersion`/`VersionGate`, unit-tested — 14 tests passing) and `Coop.GameInterface` (the actual `BannerlordUnity` Bannerlord module: `SubModule` with the version gate wired to `ModuleHelper.GetActiveModules()`, a `SaveableTypeDefiner` stub, a stub `CampaignBehaviorBase` proving behavior registration). Builds clean, deployed to the local install's `Modules\BannerlordUnity\`. **Awaiting an in-game verification run** — unlike the network probe, this only needs the main menu to load, not a full campaign; see `src/README.md` for the exact exit criterion (a refusal message and no behavior registration on a version mismatch, silent normal operation on the pinned version).
 
-### Just resolved
+### Recently resolved
 
 **B3 — `GameNetwork`-in-campaign probe. Run, and it crashed the game.** `tools/network-probe/CoopNetworkProbe` was launched on the real install (clean profile, no third-party mods). Every `GameNetwork` call succeeded (`Initialize`, `PreStartMultiplayerOnServer`, `StartMultiplayerOnServer`, message handlers, loopback broadcast — all `STEP OK`, `IsSessionActive`/`IsMultiplayer`/`IsServer` all flipped `true`), the campaign kept ticking for 15+ seconds, and then the game crashed with a native access violation (`0xc0000005`, Windows Application Error, no managed exception, no BUTR report). **RISK-02 is resolved: `GameNetwork` cannot be used to retrofit multiplayer onto a running singleplayer campaign — it destabilizes the engine.** The project builds its own transport (`TaleWorlds.Network.TcpSocket` / raw sockets), which is what `NETWORK_PROTOCOL.md`'s `ICoopTransport` abstraction already assumed. No save was at risk (crash predated any autosave). Full evidence: `docs/RISK_REGISTER.md` RISK-02, `docs/NETWORK_PROTOCOL.md` §2.
 
@@ -121,7 +121,7 @@ No gameplay code has been written. One research tool is a known, reproducible en
 | TD5 | Official TaleWorlds War Sails modding docs not consulted | Medium | Naval findings are assembly-derived only; B11 |
 | ~~TD6~~ | ~~Reference assemblies lack method bodies~~ | **Resolved 2026-09-17** | `ilspycmd 8.2.0.7535` decompiles the real install's assemblies with full method bodies (`dotnet tool install -g ilspycmd --version 8.2.0.7535` — later releases 9.x–11.x fail to install, bad `DotnetToolSettings.xml` in the package as of this writing). Ordering/flow claims are now answerable, not inherently UNCONFIRMED; only claims nobody has actually decompiled yet stay UNCONFIRMED. **Decompiled output is never committed** — it reproduces TaleWorlds' own source, a different and stricter concern than the metadata-only surface dumps in `docs/evidence/`. Extract findings into our own words in the docs; `.gitignore` now blocks `*.decompiled.cs` and `/decompiled/` as a backstop. |
 | TD7 | `docs/evidence/` diffs are large and uncompressed | Low | Acceptable; they are the audit trail |
-| TD8 | No build, test, or CI infrastructure yet | Medium | Phase 1.2–1.3 |
+| TD8 | No build, test, or CI infrastructure yet | Medium | Partially resolved — `src/` builds and `dotnet test` runs locally (Phase 1.2). Automated CI (a pipeline that runs this on every push, plus the API-drift gate) is still Phase 1.3. |
 
 ---
 
@@ -139,8 +139,8 @@ No gameplay code has been written. One research tool is a known, reproducible en
 
 | Step | Task |
 |---|---|
-| 1.1 | Environment capture and version pin |
-| 1.2 | Module skeleton + hard version gate |
+| ~~1.1~~ | ~~Environment capture and version pin~~ — done |
+| 1.2 | Module skeleton + hard version gate — **in progress, built and deployed, awaiting an in-game verification run** (`src/README.md`) |
 | 1.3 | `tools/apiscan` API-drift CI gate |
 | ~~1.4~~ | ~~`GameNetwork`-in-campaign probe (resolves RISK-02)~~ — **done**, `GameNetwork` ruled out |
 | 1.5 | Campaign event + determinism harness (resolves RISK-04) |
@@ -166,4 +166,4 @@ Three things worth stating plainly:
 - **Naval battles are the genuinely unknown part.** Naval *campaign* state is well understood and buildable now. Naval *missions* sit behind two unresolved risks with no prior art anywhere.
 - **The licensing question is real and is yours.** It is not an engineering problem.
 
-**Per `CLAUDE.md` §10: no functionality is claimed to work. No code exists. Nothing below `VERIFIED` has been turned into an implementation assumption anywhere in these documents.**
+**Per `CLAUDE.md` §10: no gameplay functionality is claimed to work.** `src/` now exists (the Phase 1.2 module skeleton and version gate — no gameplay feature), and it is stated plainly as untested-in-game until the verification run in `src/README.md` actually happens. Nothing below `VERIFIED` has been turned into an implementation assumption anywhere in these documents.
