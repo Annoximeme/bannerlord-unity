@@ -32,6 +32,7 @@ PINNED_ASSEMBLIES = [
     "TaleWorlds.Library.dll",
     "TaleWorlds.ModuleManager.dll",
     "TaleWorlds.MountAndBlade.dll",
+    "TaleWorlds.ObjectSystem.dll",  # MBObjectBase — added Phase 1.6, EngineObjectIdAdapter
     "TaleWorlds.SaveSystem.dll",
 ]
 
