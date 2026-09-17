@@ -61,9 +61,11 @@
 
 ## Current Work
 
-**B8 — siege stage transition sequence.** Picking this up now with the same `ilspycmd` method (no game session needed), while 1.9's live verification and 1.5's play session wait on the owner. Next: decompile `SiegeEvent`/`MapEvent`'s siege-stage code in the real install and trace the transition sequence, same rigor as B6/B7.
+**None blocking.** B6, B7, B8 are all resolved — that was the whole "decompiler work, no game needed" backlog. Everything left needs either you (1.5's play session, 1.9's live save/reload, RISK-13's compatibility matrix) or your friend's machine (1.8). Say when either is ready, or if you'd rather I look at something else.
 
 ### Recently resolved
+
+**B8 — siege stage transition sequence. Resolved — there is no stage state machine.** `MapEvent.CheckSiegeStageChange()`, the method the Phase 0 audit assumed was central to this, turns out to be dead code in v1.4.8 — it computes a value and does nothing with it, which is why removing it entirely in 1.5.3-beta broke nothing. What actually stands in for "stage" is `SiegeEvent.GetCurrentBattleType()`, read live off whichever `MapEvent.EventType` currently exists (or plain `Siege` if none does) — not a stored state, and not a machine that transitions on its own. Transitions are just new `MapEvent`s getting created, triggered the same way B7's naval decision is: player menu consequences (`MenuHelper`) or AI decision loops (`AiPartyThinkBehavior`). Full finding: `ARCHITECTURE.md` §6, `VERSION_SUPPORT.md` §4.2.
 
 **B7 — `MapEvent` → naval mission launch path. Fully resolved.** The earlier partial pass had searched five assemblies and found the decorator seam but not the actual trigger; it turned out to be in a file not yet checked, `TaleWorlds.CampaignSystem.Helpers.MenuHelper`. `MenuHelper.EncounterAttackConsequence` — the "Attack" game-menu option's consequence callback — is where naval-vs-land is actually decided, branching on `PlayerEncounter.IsNavalEncounter()` for field battles and `MapEventHelper.GetRaidContext`'s per-side sea/land classification for village raids. Real consequence for our own design: this decision lives in a client-local menu handler, not a server-side campaign event — our own naval-battle-hosting logic (Phase 4) will need to hook or reimplement at this layer. Full chain in `ARCHITECTURE.md` §6, decision record in `RISK_REGISTER.md` RISK-03.
 
@@ -106,7 +108,7 @@
 | B5 | `Ship` ↔ `MissionShip` binding lifetime (RISK-03) | No install | Naval capture |
 | ~~B6~~ | ~~Which mutations bump `Ship.VersionNo`~~ | **RESOLVED 2026-09-17** — `ilspycmd` against the real install; see `SYNCHRONIZATION_MODEL.md` §4.3 | — |
 | ~~B7~~ | ~~`MapEvent` → naval mission launch path~~ | **RESOLVED 2026-09-17** — full chain found in `Helpers.MenuHelper.EncounterAttackConsequence`; see `ARCHITECTURE.md` §6, `RISK_REGISTER.md` RISK-03 | — |
-| B8 | Siege stage transition sequence | Method bodies — same `ilspycmd` path as B6, not yet run | Sieges |
+| ~~B8~~ | ~~Siege stage transition sequence~~ | **RESOLVED 2026-09-17** — no stage state machine exists; see `ARCHITECTURE.md` §6 | — |
 | B9 | Save compat with/without War Sails (RISK-13) | No install | Persistence |
 | B10 | `MissionShip` authority & physics determinism (RISK-12) | No install | Naval battles |
 | B11 | Official TaleWorlds War Sails modding documentation | Not located in this session | Naval detail |

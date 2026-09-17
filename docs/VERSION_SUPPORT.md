@@ -80,6 +80,8 @@ Produced by `tools/apiscan/cli_meta.py surface` + set diff. Raw data in `docs/ev
 
 Removed in beta: `_mapEventType` field · `MapEventSettlement` property + backing field + setter · `Initialize(PartyBase, PartyBase, MapEventComponent, BattleTypes)` · `CheckSiegeStageChange()` · `FinishBattleAndKeepSiegeEvent()` · `_keepSiegeEvent` · `AddInsideSettlementParties(Settlement)` · `GetEventDirection(BattleSideEnum, out float)` · `SetPartyBaseEventLocalPosition(...)` · `SetPositionAfterMapChange(CampaignVec2)` · `OverrideMapEventSettlementForRaidToFieldBattleSwitch(...)` · `LootDefeatedPartyShips(list, list)`.
 
+**B8, resolved (2026-09-17):** `CheckSiegeStageChange()` removal isn't a functional regression — decompiling it in 1.4.8 shows an empty method body (computes a value, does nothing with it). It was already dead code before this line removed it. `ARCHITECTURE.md` §6 has the full finding: "siege stage" was never a stored state to begin with, just `SiegeEvent.GetCurrentBattleType()` reading whichever `MapEvent.EventType` happens to be active.
+
 Added in beta: `Initialize(PartyBase, PartyBase, MapEventComponent)` (**arity change**) · `LootDefeatedPartyShips(list, list, bool)` (**signature change**) · `SetPositionAfterMapChange(CampaignVec2, CampaignVec2)` (**signature change**) · `Sides` property (`MapEventSide[]`) · `DoVisualAdjustmentsOfParties()`.
 
 ⇒ **Battle and siege coupling was restructured between the lines.** Any direct binding to `MapEvent`'s 1.4.8 shape breaks on 1.5.x.
