@@ -41,7 +41,7 @@
 | `docs/RISK_REGISTER.md` | 16 scored risks with evidence and confidence |
 | `docs/VERSION_SUPPORT.md` | Version landscape, measured API churn, detection procedure |
 | `docs/ROADMAP.md` | Phases 0.5 → 5 with exit criteria |
-| `docs/LOCAL_SETUP.md` | Running Claude Code locally; unblocks B2, B6–B9 |
+| `docs/LOCAL_SETUP.md` | Local dev environment setup; unblocks B2, B6–B9 |
 | `docs/HANDOFF.md` | Cloud → local session handoff; start here in a new session |
 | `tools/apiscan/` | ECMA-335 metadata reader — makes every API claim reproducible |
 | `docs/evidence/` | Raw API dumps and cross-version diffs |

@@ -90,7 +90,7 @@ The cloud session ran in an isolated Linux VM with no access to `G:\`. These wer
 | `docs/RISK_REGISTER.md` | 17 scored risks |
 | `docs/VERSION_SUPPORT.md` | Pinned target, measured API churn, detection |
 | `docs/ROADMAP.md` | Phases 0.5 → 5 with exit criteria |
-| `docs/LOCAL_SETUP.md` | Local Claude Code setup |
+| `docs/LOCAL_SETUP.md` | Local dev environment setup |
 | `tools/apiscan/` | ECMA-335 metadata reader + install collector |
 | `docs/evidence/` | Raw API diffs, 1.4.8-stable vs 1.5.3-beta |
 
@@ -110,7 +110,7 @@ Not required (baselines are committed in `docs/evidence/`), but if needed — `d
 
 ## Conventions
 
-- Branch: **`claude/inspiring-mayer-mqd8zl`**. Keep using it so history stays linear.
+- Branch: **`main`**. Keep using it so history stays linear.
 - **Never commit game DLLs** — `.gitignore` excludes `*.dll`; leave that rule.
 - Confidence discipline (`CLAUDE.md`): `VERIFIED` / `LIKELY` / `UNCONFIRMED` / `UNKNOWN`. Nothing below `VERIFIED` may become an implementation assumption.
 - Keep `PROJECT_STATUS.md` current — `CLAUDE.md` mandates its fields.
