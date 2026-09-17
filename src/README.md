@@ -55,8 +55,16 @@ tests arrive with the systems they test (1.7, 1.9).
 $modDir = "G:\SteamLibrary\steamapps\common\Mount & Blade II Bannerlord\Modules\BannerlordUnity"
 New-Item -ItemType Directory -Force "$modDir\bin\Win64_Shipping_Client" | Out-Null
 Copy-Item Coop.GameInterface\SubModule.xml "$modDir\SubModule.xml"
-Copy-Item Coop.GameInterface\bin\Debug\Coop.GameInterface.dll "$modDir\bin\Win64_Shipping_Client\Coop.GameInterface.dll"
+Copy-Item Coop.GameInterface\bin\Debug\*.dll "$modDir\bin\Win64_Shipping_Client\"
 ```
+
+**Copy the whole output folder, not just `Coop.GameInterface.dll`.** `Coop.Core.dll` lands right
+next to it in `bin\Debug\` (the SDK copies project-reference outputs there automatically) and
+the module needs both — a `SubModule` that references a missing dependency assembly fails at
+module-load time, before the game can show any error UI, and that has surfaced as a native
+crash on the loading screen rather than a clean error message. If more projects get added as
+dependencies later, the wildcard copy above keeps working; a one-file-at-a-time copy silently
+stops.
 
 Select `BannerlordUnity` in the launcher alongside the official modules (RISK-16 clean
 profile) and start the game. Unlike `tools/network-probe`, **reaching the main menu is
