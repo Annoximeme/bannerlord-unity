@@ -1,6 +1,8 @@
-# Bannerlord Cooperative Campaign Mod (working title)
+# Bannerlord: Unity
 
 A cooperative multiplayer campaign mod for **Mount & Blade II: Bannerlord**, with first-class support for the **War Sails (NavalDLC)** expansion.
+
+By Annoximeme (Gianni).
 
 ## Status
 
@@ -28,7 +30,7 @@ Multiple independent player parties · shared persistent campaign world · PvP �
 | [`docs/ROADMAP.md`](docs/ROADMAP.md) | Phased plan |
 | [`CLAUDE.md`](CLAUDE.md) | **Project engineering instructions — authoritative** |
 | [`docs/HANDOFF.md`](docs/HANDOFF.md) | **Start here if picking this up in a new session** |
-| [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md) | Running Claude Code locally on Windows; GitHub push setup |
+| [`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md) | Local dev environment setup on Windows; GitHub push setup |
 
 ## Tooling
 

@@ -1,5 +1,5 @@
-# Bannerlord Cooperative Campaign
-# Claude Code Project Instructions
+# Bannerlord: Unity
+# Project Engineering Instructions
 
 You are the lead engineer for a serious multiplayer campaign modification for
 Mount & Blade II: Bannerlord with full War Sails support.
