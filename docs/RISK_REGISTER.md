@@ -22,7 +22,7 @@ Every risk names the evidence and its confidence, so nothing here is speculation
 | RISK-14 | Scope: the requested feature set is very large | 16 | VERIFIED |
 | RISK-15 | Ship id stability rests on a `LIKELY` assumption | 12 | LIKELY |
 | RISK-16 | Third-party mods on the target install mutate campaign state | **16** | VERIFIED |
-| RISK-17 | Real save became unloadable during Phase 1.9 live testing | **20** (if base-game) | UNCONFIRMED root cause |
+| RISK-17 | Real save became unloadable during Phase 1.9 live testing | N/A — not our defect | LIKELY base-game, not `Coop.GameInterface` |
 
 ---
 
@@ -249,11 +249,11 @@ This world's naval content is large: the save's own module-report data showed **
 
 **Consequence:** the owner's in-progress session (ship purchase, recruitment, settlement visit) is currently stuck behind an unloadable save. The underlying save file itself is intact on disk (untouched since a clean write) — this is a *load*-time failure, not file corruption or data loss at the filesystem level.
 
-**Current assessment, held with appropriate uncertainty:** more consistent with a base-game/War-Sails engine issue triggered by scale than with anything in `Coop.GameInterface` — the failure predates any behavior code running, and it reproduced identically whether `BannerlordUnity` was active or not (though the second attempt's module mismatch is itself a confound, so this isn't fully conclusive). **Not ruled out.** No further isolation has been possible without more detail than a generic error dialog provides.
+**Current assessment: LIKELY not `Coop.GameInterface`.** A follow-up test loading an unrelated, much older save (`Best.sav`, 2026-09-10, predates `BannerlordUnity`/`CampaignEventHarness` entirely) succeeded both with our mods deselected **and** with them enabled — and separately succeeded despite a *large* mismatch against many other mods that save was originally created with. This is direct evidence that (a) the load pipeline on this install is healthy right now, and (b) a module-list mismatch, even a significant one, does not by itself break a load here. That weakens the "the deselect-test was confounded by a module mismatch" concern from the first round of testing — mismatches are evidently well-tolerated — and correspondingly strengthens the original result (`save016.sav` failed identically with `BannerlordUnity` both present and absent) as real evidence against our mod being the cause. Combined with the failure happening before any behavior code runs at all and the save's genuinely unusual scale (977 ships, 337 parties), the most likely explanation is a base-game/War-Sails bug specific to `save016`'s content, triggered by its naval scale — not something in this project's code.
 
 **Mitigation applied regardless of root cause:** `ShipIdentityCampaignBehavior.SyncData`'s load path is now wrapped end-to-end in try/catch, not just its decode step — a real gap found via code review during this incident (the engine's own `IDataStore.SyncData<T>` retrieval call was previously unprotected). Whatever the cause of this specific incident, our own code must never be able to block someone's entire campaign from loading.
 
-**Open:** whether this reproduces on a fresh save with a similarly large naval world and no mods at all (would confirm base-game scale bug, out of this project's ability to fix); whether it reproduces with our mods removed *and* a matching module-list save (not yet possible — no such save exists to test against). If reproducible, worth reporting upstream to TaleWorlds/the War Sails team as a genuine bug report.
+**Open:** `save016.sav` itself remains unloadable and is very likely unrecoverable through anything this project can fix — it's the owner's call whether to fall back to an earlier save/autosave or pursue this further (e.g. reporting to TaleWorlds/the War Sails team with the repro: a very naval-heavy world, buy+sail a ship, enter a settlement, recruit, save, reload). Not pursued further here — no practical means to inspect the exact engine-level failure from outside a closed-source load pipeline.
 
 ---
 

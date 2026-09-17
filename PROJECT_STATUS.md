@@ -61,7 +61,7 @@
 
 ## Current Work
 
-**RISK-17 — a real save became unloadable, root cause unconfirmed.** See `RISK_REGISTER.md` RISK-17 and Known Bugs above for the full evidence. Fixed a real defensive gap in `ShipIdentityCampaignBehavior.SyncData` regardless of cause (its load path wasn't fully exception-safe) and redeployed. Current best assessment leans toward a base-game/War-Sails scale issue (977 ships in this world) rather than our mod, but two confounded load attempts aren't conclusive proof. Open pending more evidence from the owner or a cleaner repro.
+**RISK-17 — a real save became unloadable. LIKELY not our mod, follow-up test with `Best.sav`.** Loading an unrelated, much older save worked fine both with `BannerlordUnity`/`CampaignEventHarness` enabled and disabled, and separately tolerated a large mismatch against several other mods that save was originally made with — showing the load pipeline is healthy and module mismatches aren't what break a load here. That makes `save016.sav`'s identical failure with our mod both present and absent real evidence against it being the cause, not confounded evidence. Current best explanation: a base-game/War-Sails bug specific to that save's unusually large naval content (977 ships, 337 parties). `save016.sav` itself is very likely unrecoverable through anything this project can fix. Fixed a real defensive gap in `ShipIdentityCampaignBehavior.SyncData` regardless (its load path wasn't fully exception-safe) and redeployed. Full evidence: `RISK_REGISTER.md` RISK-17.
 
 ### Recently resolved
 
@@ -129,7 +129,7 @@ Both decisions clear the Phase 1 gate that `docs/HANDOFF.md` set. Phase 1 work (
 
 No gameplay code has been written. One research tool is a known, reproducible engine crash **by design**: `tools/network-probe/CoopNetworkProbe` forces `GameNetwork` into multiplayer mode inside a live singleplayer campaign specifically to test whether that's safe — it isn't (RISK-02). If `Modules\CoopNetworkProbe\` is still deployed on any install, remove it; do not re-enable it expecting a different result.
 
-**Open, unresolved:** a real save (`save016.sav`, 2026-09-17) became unloadable during the first live Phase 1.9 test — see `RISK_REGISTER.md` RISK-17. Root cause UNCONFIRMED; current evidence leans toward a base-game/War-Sails scale issue (977 ships in the world) rather than our own code, but this is not proven. A real robustness gap was found and fixed regardless (`ShipIdentityCampaignBehavior.SyncData`'s load path wasn't fully exception-safe).
+**Not our bug, but worth knowing about:** a real save (`save016.sav`, 2026-09-17) became unloadable during the first live Phase 1.9 test — see `RISK_REGISTER.md` RISK-17. Follow-up testing (an unrelated older save loads fine both with and without our mods, and tolerates other module mismatches) points at a base-game/War-Sails bug specific to that save's huge naval content (977 ships), not `Coop.GameInterface`. A real robustness gap was found and fixed regardless (`ShipIdentityCampaignBehavior.SyncData`'s load path wasn't fully exception-safe).
 
 ---
 
