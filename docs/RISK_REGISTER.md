@@ -22,6 +22,7 @@ Every risk names the evidence and its confidence, so nothing here is speculation
 | RISK-14 | Scope: the requested feature set is very large | 16 | VERIFIED |
 | RISK-15 | Ship id stability rests on a `LIKELY` assumption | 12 | LIKELY |
 | RISK-16 | Third-party mods on the target install mutate campaign state | **16** | VERIFIED |
+| RISK-17 | Real save became unloadable during Phase 1.9 live testing | **20** (if base-game) | UNCONFIRMED root cause |
 
 ---
 
@@ -235,6 +236,24 @@ Options considered and declined:
 4. Revisit selectively later — Diplomacy in particular is popular enough to be worth explicit support eventually, but only once the core is stable.
 
 **Decision recorded 2026-09-17 (project owner): clean dev profile.** Development and testing use official modules plus `Bannerlord.Harmony` only. `Bannerlord.Diplomacy`, `ImprovedGarrisons`, `RaiseYourBanner`, `DisableCompanionDonations`, and `NoWaterEscape` (and other non-essential third-party mods) must be disabled in the profile used to build and test co-op systems, per mitigation item 1 above. The alternative — supporting the arbitrary 15-mod set from day one — was declined; it would make every desync investigation ambiguous.
+
+---
+
+## RISK-17 — Real save became unloadable during Phase 1.9 live testing · **Impact 5 × Likelihood UNCONFIRMED**
+
+**Evidence (VERIFIED symptom, UNCONFIRMED root cause):** during the first live test of Phase 1.9's ship-identity persistence (2026-09-17), the owner saved a campaign (`save016.sav`, 5.6MB) after buying a ship, sailing it, entering a settlement, and recruiting units — the save's own recorded metadata (`MainPartyShipCount: 1`) and `tools/campaign-event-harness`' log (`OnSaveOverEvent(true, "save016")`) both confirm the save completed cleanly. Loading it back then failed with a generic, choice-less "an error has occurred" — no crash, no Windows Application Error event, no BUTR report.
+
+Two load attempts were made: (1) with the exact module set recorded in the save (`Native;SandBoxCore;Sandbox;CustomBattle;NavalDLC;BirthAndDeath;FastMode;BannerlordUnity;CampaignEventHarness`) — failed; (2) with `BannerlordUnity` deselected (a module-list mismatch from what the save expects) — also failed, identically. In **both** attempts, `CampaignEventHarness`'s log (which tracks all 277 `CampaignEvents`) recorded **zero events** — not even `OnGameLoadedEvent` — meaning the failure happens before any campaign-behavior code, ours or the base game's, gets control at all.
+
+This world's naval content is large: the save's own module-report data showed **977 ships across 337 parties** at save time (`ship-identity.log`).
+
+**Consequence:** the owner's in-progress session (ship purchase, recruitment, settlement visit) is currently stuck behind an unloadable save. The underlying save file itself is intact on disk (untouched since a clean write) — this is a *load*-time failure, not file corruption or data loss at the filesystem level.
+
+**Current assessment, held with appropriate uncertainty:** more consistent with a base-game/War-Sails engine issue triggered by scale than with anything in `Coop.GameInterface` — the failure predates any behavior code running, and it reproduced identically whether `BannerlordUnity` was active or not (though the second attempt's module mismatch is itself a confound, so this isn't fully conclusive). **Not ruled out.** No further isolation has been possible without more detail than a generic error dialog provides.
+
+**Mitigation applied regardless of root cause:** `ShipIdentityCampaignBehavior.SyncData`'s load path is now wrapped end-to-end in try/catch, not just its decode step — a real gap found via code review during this incident (the engine's own `IDataStore.SyncData<T>` retrieval call was previously unprotected). Whatever the cause of this specific incident, our own code must never be able to block someone's entire campaign from loading.
+
+**Open:** whether this reproduces on a fresh save with a similarly large naval world and no mods at all (would confirm base-game scale bug, out of this project's ability to fix); whether it reproduces with our mods removed *and* a matching module-list save (not yet possible — no such save exists to test against). If reproducible, worth reporting upstream to TaleWorlds/the War Sails team as a genuine bug report.
 
 ---
 

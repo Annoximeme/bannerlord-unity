@@ -61,7 +61,7 @@
 
 ## Current Work
 
-**None blocking.** B6, B7, B8 are all resolved — that was the whole "decompiler work, no game needed" backlog. Everything left needs either you (1.5's play session, 1.9's live save/reload, RISK-13's compatibility matrix) or your friend's machine (1.8). Say when either is ready, or if you'd rather I look at something else.
+**RISK-17 — a real save became unloadable, root cause unconfirmed.** See `RISK_REGISTER.md` RISK-17 and Known Bugs above for the full evidence. Fixed a real defensive gap in `ShipIdentityCampaignBehavior.SyncData` regardless of cause (its load path wasn't fully exception-safe) and redeployed. Current best assessment leans toward a base-game/War-Sails scale issue (977 ships in this world) rather than our mod, but two confounded load attempts aren't conclusive proof. Open pending more evidence from the owner or a cleaner repro.
 
 ### Recently resolved
 
@@ -128,6 +128,8 @@ Both decisions clear the Phase 1 gate that `docs/HANDOFF.md` set. Phase 1 work (
 ## Known Bugs
 
 No gameplay code has been written. One research tool is a known, reproducible engine crash **by design**: `tools/network-probe/CoopNetworkProbe` forces `GameNetwork` into multiplayer mode inside a live singleplayer campaign specifically to test whether that's safe — it isn't (RISK-02). If `Modules\CoopNetworkProbe\` is still deployed on any install, remove it; do not re-enable it expecting a different result.
+
+**Open, unresolved:** a real save (`save016.sav`, 2026-09-17) became unloadable during the first live Phase 1.9 test — see `RISK_REGISTER.md` RISK-17. Root cause UNCONFIRMED; current evidence leans toward a base-game/War-Sails scale issue (977 ships in the world) rather than our own code, but this is not proven. A real robustness gap was found and fixed regardless (`ShipIdentityCampaignBehavior.SyncData`'s load path wasn't fully exception-safe).
 
 ---
 

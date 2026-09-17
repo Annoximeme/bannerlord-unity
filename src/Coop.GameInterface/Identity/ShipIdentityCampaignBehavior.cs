@@ -58,16 +58,23 @@ namespace Coop.GameInterface.Identity
             // behaviors consistently defer this kind of work to OnGameLoadFinishedEvent, so
             // we do the same rather than risk it (LIKELY, not independently decompiled for
             // this exact ordering guarantee).
-            string loadedBlob = null;
-            bool found = dataStore.SyncData(BlobKey, ref loadedBlob);
-            if (!found || string.IsNullOrEmpty(loadedBlob))
-            {
-                Log("SyncData(loading): no persisted Coop.ShipIdentity.State found — first load, or a save from before this behavior existed.");
-                return;
-            }
-
+            //
+            // The whole block is wrapped, not just the decode step: dataStore.SyncData(...)
+            // itself is engine code we don't control, and a real-world load failure on
+            // 2026-09-17 exposed that a throw there — from any cause — was previously
+            // uncaught and could take the whole load down with it. Never again: our own
+            // optional data must not be able to block someone's entire campaign from
+            // loading (SAVE_FORMAT.md §5 "fail loudly" means log clearly, not crash).
             try
             {
+                string loadedBlob = null;
+                bool found = dataStore.SyncData(BlobKey, ref loadedBlob);
+                if (!found || string.IsNullOrEmpty(loadedBlob))
+                {
+                    Log("SyncData(loading): no persisted Coop.ShipIdentity.State found — first load, or a save from before this behavior existed.");
+                    return;
+                }
+
                 byte[] raw = Convert.FromBase64String(loadedBlob);
                 uint version = CoopStateBlobCodecV1.PeekSchemaVersion(raw);
                 byte[] current = _migrationChain.MigrateTo(version, raw, CoopStateBlobCodecV1.SchemaVersion);
@@ -76,10 +83,9 @@ namespace Coop.GameInterface.Identity
             }
             catch (Exception ex)
             {
-                // Fail loudly, never silently (SAVE_FORMAT.md §5) — but don't crash the whole
-                // load over our own optional data; log clearly and continue without it. Every
-                // ship will simply get a fresh id next time it's observed.
-                Log($"SyncData(loading): FAILED to decode persisted state — {ex.GetType().Name}: {ex.Message}. Ship ids will NOT be stable across this load.");
+                // Every ship will simply get a fresh id next time it's observed instead of
+                // rebinding — a real degradation, but never a reason to block the load.
+                Log($"SyncData(loading): FAILED — {ex.GetType().Name}: {ex.Message}. Ship ids will NOT be stable across this load.");
             }
         }
 
