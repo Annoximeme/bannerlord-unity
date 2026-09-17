@@ -54,7 +54,7 @@ Clients never mutate shared campaign state directly. They send **intent**; the s
 | **L5 Mission bridge** | Campaign ↔ battle handoff, incl. naval | `PlayerEncounter`, `MapEvent`, `Mission`, `NavalMissions` |
 | **L6 Persistence** | Save of record, reconnect, restart | `SaveableTypeDefiner`, `IDataStore.SyncData` |
 
-**L2 is deliberately an abstraction.** RISK-02 (is `GameNetwork` usable in a campaign session?) is UNCONFIRMED. The architecture must not depend on the answer, so L3–L6 talk only to an interface.
+**L2 is deliberately an abstraction.** RISK-02 (is `GameNetwork` usable in a campaign session?) is **RESOLVED — no**, it crashes the engine (Phase 1.4). Keeping L3–L6 talking only to `ICoopTransport` paid off exactly as planned: `TcpCoopTransport` (Phase 1.7) slotted in with no rework needed elsewhere.
 
 ## 4. Authority Rules
 
@@ -193,7 +193,7 @@ These are **not** settled and are not to be treated as assumptions:
 
 | # | Question | Confidence | Gate |
 |---|---|---|---|
-| A1 | Transport: `GameNetwork` module events vs. our own socket | UNCONFIRMED | RISK-02 probe (Phase 1.4) |
+| ~~A1~~ | ~~Transport: `GameNetwork` module events vs. our own socket~~ | **RESOLVED — our own socket.** `GameNetwork` crashes the engine (RISK-02, Phase 1.4). `Coop.Core.Network.TcpCoopTransport` (plain `System.Net.Sockets`) implemented and proven with real sockets, Phase 1.7. |
 | A2 | Whether campaign AI ticks can run server-only with clients fully passive | UNCONFIRMED | Phase 1.5 harness |
 | A3 | Whether naval missions can host multiple players at all | UNKNOWN | Needs install + RISK-03 |
 | A4 | Interest management granularity (full world vs. spatial) | UNCONFIRMED | Phase 1.8 measurement |

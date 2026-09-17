@@ -566,7 +566,42 @@ def main():
             for x in range(f0,f1):
                 r=a.row(0x04,x)
                 if r: print('F %s::%s:%s'%(fn,r['Name'],a.fieldsig(a.blob(r['Signature']))))
+    elif cmd=='manifest':
+        # Replicated-state manifest (docs/SYNCHRONIZATION_MODEL.md §3, ROADMAP.md 1.7):
+        # classify every field/property as REPLICATE ([SaveableField]/[SaveableProperty]),
+        # NEVER ([CachedData]), or INVESTIGATE (no attribute — do not assume). Skips fields
+        # carrying [CompilerGenerated] (auto-property backing fields) since the property
+        # itself already carries the authoritative attribute — inspect that instead.
+        a=load(sys.argv[2])
+        for nm in sys.argv[3:]:
+            rid=a.byname.get(nm)
+            if rid is None:
+                cand=[k for k in a.byname if k.split('.')[-1]==nm or k.endswith('.'+nm)]
+                if len(cand)>=1: rid=a.byname[cand[0]]
+            if rid is None: print('NOT FOUND: '+nm); continue
+            fn=a.typename[rid]
+            print('TYPE %s'%fn)
+            (f0,f1),(m0,m1)=a.type_members(rid)
+            p0,p1=a.type_props(rid)
+            def short_names(ats): return set(n.split('.')[-1] for n in ats)
+            def classify(ats):
+                s=short_names(ats)
+                if 'SaveableFieldAttribute' in s or 'SaveablePropertyAttribute' in s: return 'REPLICATE'
+                if 'CachedDataAttribute' in s: return 'NEVER'
+                return 'INVESTIGATE'
+            for fr in range(f0,f1):
+                r=a.row(0x04,fr)
+                if not r: continue
+                ats=a.ca_names((0x04,fr))
+                if 'CompilerGeneratedAttribute' in short_names(ats): continue
+                print('  %-11s FIELD %s %s'%(classify(ats),a.fieldsig(a.blob(r['Signature'])),r['Name']))
+            for pr in range(p0,p1):
+                r=a.row(0x17,pr)
+                if not r: continue
+                ats=a.ca_names((0x17,pr))
+                print('  %-11s PROP  %s %s'%(classify(ats),a.propsig(a.blob(r['Type'])),r['Name']))
+            print()
     else:
-        print('usage: types|type|grep|attrs|asmattrs|asminfo|refs|surface')
+        print('usage: types|type|grep|attrs|asmattrs|asminfo|refs|surface|manifest')
 
 if __name__=='__main__': main()

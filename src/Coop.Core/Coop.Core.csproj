@@ -21,4 +21,11 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <!-- ReadOnlySpan<T> (ICoopTransport) isn't in the net472 BCL on its own — this is the
+         standard Microsoft compatibility package for it, not an extra runtime dependency
+         beyond what .NET Framework itself already ships. -->
+    <PackageReference Include="System.Memory" Version="4.5.5" />
+  </ItemGroup>
+
 </Project>
