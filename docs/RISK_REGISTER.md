@@ -7,7 +7,7 @@ Every risk names the evidence and its confidence, so nothing here is speculation
 |---|---|---|---|
 | RISK-00 | Upstream licence prohibits competing co-op mods | **25** | VERIFIED |
 | RISK-01 | `Ship` has no network identity | **25** | VERIFIED |
-| RISK-02 | `GameNetwork` may not work in a campaign session | **20** | UNCONFIRMED |
+| ~~RISK-02~~ | ~~`GameNetwork` may not work in a campaign session~~ | **RESOLVED** | Crashes the engine when retrofitted onto a live singleplayer campaign — VERIFIED 2026-09-17, own transport required |
 | RISK-03 | Campaign↔mission naval seam | **20** | VERIFIED (split) / UNCONFIRMED (binding) |
 | RISK-04 | Campaign non-determinism & event ordering | **20** | UNCONFIRMED |
 | RISK-05 | Version churn on bound APIs | **16** | VERIFIED |
@@ -55,15 +55,22 @@ Options considered and declined:
 
 ---
 
-## RISK-02 — `GameNetwork` may not work in a campaign session · **Impact 5 × Likelihood 4 = 20**
+## RISK-02 — `GameNetwork` may not work in a campaign session · **RESOLVED, was Impact 5 × Likelihood 4 = 20**
 
-**Evidence:** `TaleWorlds.MountAndBlade.GameNetwork` exposes a complete client/server + module-event messaging API (VERIFIED, full member list in `NETWORK_PROTOCOL.md` §1). Whether it initializes inside a singleplayer `Campaign` is **UNCONFIRMED** — that answer lives in method bodies and native code, which reference assemblies do not carry. The existence of `GameNetwork.MultiplayerDisabled` indicates the engine gates this; its semantics are unverified.
+**Evidence:** `TaleWorlds.MountAndBlade.GameNetwork` exposes a complete client/server + module-event messaging API (VERIFIED, full member list in `NETWORK_PROTOCOL.md` §1).
 
-**Consequence if it fails:** the entire transport layer must be built on `TaleWorlds.Network.TcpSocket` or raw sockets, changing timelines but not the architecture.
+**RESOLVED 2026-09-17 — B3 ran on the real install.** `tools/network-probe/CoopNetworkProbe` ran inside a live singleplayer campaign (official modules + `NavalDLC` only, no third-party mods, not even Harmony). Result, from `network-probe.log` (VERIFIED, direct observation):
 
-**Mitigation:** the `ICoopTransport` abstraction (`NETWORK_PROTOCOL.md` §2) makes this a one-implementation swap. Phase 1 ships a loopback transport so all higher layers are testable before the answer is known.
+1. Every experiment step logged `STEP OK` — `GameNetwork.Initialize`, `PreStartMultiplayerOnServer`, `StartMultiplayerOnServer(7773)`, `AddRemoveMessageHandlers`, and the loopback broadcast all ran with **no exception**.
+2. `IsSessionActive`, `IsMultiplayer`, and `IsServer` all flipped to `true` immediately after `StartMultiplayerOnServer` — the multiplayer session genuinely activated inside the campaign.
+3. The campaign kept ticking normally for at least 15 seconds afterward (`Campaign.Current != null: True`, `CampaignTime` unchanged and stable across three tick checks — consistent with the game being paused on the map screen, not stalled).
+4. **The game then crashed** with a native access violation (Windows Application Error, exception code `0xc0000005`, faulting module reported as `unknown`/`0.0.0.0`, faulting process `TaleWorlds.MountAndBlade.Launcher.exe`) roughly 15–40 seconds after the multiplayer session was forced on. No managed exception, no BUTR crash report — this is an engine-level memory-safety crash, not a caught error. No autosave occurred in that window (confirmed from `Game Saves\` timestamps), so no save was put at risk.
 
-**Resolution:** Phase 1.4 experiment, four steps, specified in `NETWORK_PROTOCOL.md` §2. **This is the highest-leverage unknown in the project.**
+**Verdict: neither of the two outcomes `NETWORK_PROTOCOL.md` §2 was framed around.** It isn't "works cleanly" (Outcome A) or "throws/no-ops" (Outcome B) — the managed API reports success and the flags flip correctly, but forcing `GameNetwork` into multiplayer mode *retrofitted onto an already-running singleplayer `Campaign`* destabilizes the engine and crashes it within tens of seconds. **Decision: build our own transport.** `GameNetwork` must not be used to add co-op to an existing singleplayer session — that is exactly this project's premise, so this closes the question rather than leaving it open. `TaleWorlds.Network.TcpSocket` / the `MessageContract` machinery (VERIFIED plain managed types, `NETWORK_PROTOCOL.md` §1) or raw `System.Net.Sockets` are the path forward; the `ICoopTransport` abstraction already assumed this outcome so no architecture rework is needed, only implementing it.
+
+**Not established (UNKNOWN, not tested):** whether a `Campaign` created from the start knowing it will be multiplayer (rather than retrofitted mid-session, which is what was tested) would avoid this. Not pursued — a mid-session retrofit onto a normal singleplayer campaign is what "cooperative mod for an existing game" requires, so the untested path isn't this project's use case anyway.
+
+**Housekeeping:** the probe never called `GameNetwork.EndMultiplayer()`/`TerminateClientSide()` to tear the session back down — that's a gap in the probe, not evidence about teardown safety. `tools/network-probe/` should be removed from the local install now that it's answered its question (its own README already says so).
 
 ---
 
@@ -217,14 +224,16 @@ Options considered and declined:
 
 ---
 
-## Top Five (audit §14)
+## Top Five (audit §14, superseded — see update below)
 
 1. **RISK-01** — `Ship` has no network identity
-2. **RISK-02** — `GameNetwork` in a campaign session is unverified
+2. ~~RISK-02~~ — resolved 2026-09-17, own transport required
 3. **RISK-03** — campaign↔mission naval seam
 4. **RISK-04** — campaign non-determinism & event ordering
 5. **RISK-05** — version churn on bound APIs
 
-RISK-00 sits above all of these but is a **legal/business decision, not a technical risk**, and is the owner's to make.
+RISK-00 sits above all of these but is a **legal/business decision, not a technical risk**, and was decided by the owner 2026-09-17 (clean-room).
 
 **Update 2026-09-16:** RISK-07 (no install available) is **resolved** — the installation has been measured and the version pinned (`docs/VERSION_SUPPORT.md` §6). The audit turned out to have been conducted against exactly the right version. RISK-16 is new, and RISK-06's mitigation is confirmed available (Harmony is installed).
+
+**Update 2026-09-17:** RISK-00 and RISK-16 decided by the owner; RISK-02 resolved by running the B3 probe on the real install — `GameNetwork` crashes the engine when forced into multiplayer mode inside an already-running singleplayer campaign, so the project builds its own transport rather than adopting `GameNetwork`. B6 (`Ship.VersionNo` mechanism) also resolved. Current top unresolved risk is **RISK-01**.

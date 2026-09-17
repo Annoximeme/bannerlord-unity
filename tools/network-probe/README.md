@@ -1,9 +1,18 @@
 # CoopNetworkProbe
 
-**Purpose:** answer RISK-02 — is `TaleWorlds.MountAndBlade.GameNetwork` usable from inside a
+**RESOLVED 2026-09-17 — do not redeploy this expecting a different result.** Run on the real
+install: every `GameNetwork` call succeeded and the multiplayer session genuinely activated
+(`IsSessionActive`/`IsMultiplayer`/`IsServer` all `true`), the campaign ticked normally for
+15+ seconds, and then the game crashed with a native access violation (`0xc0000005`). Forcing
+`GameNetwork` into multiplayer mode inside a live singleplayer campaign destabilizes the
+engine. The project builds its own transport instead. Full evidence: `docs/RISK_REGISTER.md`
+RISK-02, `docs/NETWORK_PROTOCOL.md` §2. This module has been removed from the local install;
+the rest of this file is kept as a record of what was run and why.
+
+**Original purpose:** answer RISK-02 — is `TaleWorlds.MountAndBlade.GameNetwork` usable from inside a
 running singleplayer `Campaign`, or does this project need to build its own transport
 (`TaleWorlds.Network.TcpSocket` / raw sockets)? Procedure specified in
-`docs/NETWORK_PROTOCOL.md` §2; this is Phase 1 step 1.4 / Blocked-item B3 in
+`docs/NETWORK_PROTOCOL.md` §2; this was Phase 1 step 1.4 / Blocked-item B3 in
 `PROJECT_STATUS.md`.
 
 This is a **research probe, not a game feature**. It does not persist state, does not touch

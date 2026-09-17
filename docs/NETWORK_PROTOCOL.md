@@ -24,25 +24,28 @@
 
 `TcpSocket`/`TcpStatus`/`TcpMessageReceiverDelegate`/`TcpCloseDelegate` · `NetworkSession`/`ClientsideSession`/`ServersideSession`/`ServersideSessionManager` · `MessageBuffer`, `MessageId`, `MessageContract`, `MessageContractCreator<T>`, `MessageContractHandler<T>`, `MessageContractHandlerManager` · `NetworkMessage`, `INetworkMessageWriter`, `INetworkMessageReader`, `INetworkSerializable` · `MessageProxy`, `MessageServiceConnection`, `ConnectionState` · `RESTClient`, `ClientWebSocketHandler`, `JsonSocketMessage`, `Authorize`, `PostBoxId` · `CoroutineManager` and friends.
 
-## 2. ⚠ The Blocking Unknown (RISK-02)
+## 2. RESOLVED (RISK-02) — `GameNetwork` is not usable for this
 
 | Question | Confidence |
 |---|---|
-| Is `GameNetwork` usable inside a singleplayer `Campaign` session? | **UNCONFIRMED** |
+| Is `GameNetwork` usable inside a singleplayer `Campaign` session? | **RESOLVED — no, it crashes the engine** |
 
-The API exists and is complete. Whether the native transport initializes when the game is in campaign mode rather than a multiplayer game mode **cannot be answered from metadata** — that logic is in method bodies and native code. `GameNetwork.MultiplayerDisabled` shows the engine gates this somehow; its exact semantics are unverified.
+### The experiment, as run (Phase 1.4, `tools/network-probe/CoopNetworkProbe`, 2026-09-17)
 
-### The experiment (Phase 1.4, requires a real install)
+Ran on the real install (official modules + `NavalDLC` only — no third-party mods, Harmony included, per the RISK-16 clean profile). All four steps from the original plan executed:
 
-1. Start a campaign. Log `GameNetwork.IsSessionActive`, `.IsMultiplayer`, `.MultiplayerDisabled`, `.IsServer`, `.IsClient`.
-2. From a `MBSubModuleBase`, attempt `GameNetwork.Initialize(...)` + `PreStartMultiplayerOnServer()` + `StartMultiplayerOnServer(port)` while a `Campaign` is active. Record outcome (success / exception / silent no-op).
-3. Register a trivial module event via `AddRemoveMessageHandlers` and attempt a loopback send with `BeginBroadcastModuleEvent()` / `EndBroadcastModuleEvent(...)`.
-4. Record whether `Campaign` continues ticking normally afterwards.
+1. Logged `GameNetwork.IsSessionActive`/`.IsMultiplayer`/`.MultiplayerDisabled`/`.IsServer`/`.IsClient` on `OnCampaignStart` — all `false`, as expected for a singleplayer session.
+2. `GameNetwork.Initialize(...)`, `PreStartMultiplayerOnServer()`, `StartMultiplayerOnServer(7773)` — **all three logged `STEP OK`, no exception.** `IsSessionActive`/`IsMultiplayer`/`IsServer` flipped to `true` immediately after.
+3. `AddRemoveMessageHandlers(RegisterMode.Add)` and a loopback `BeginBroadcastModuleEvent()`/`EndBroadcastModuleEvent(...)` — both `STEP OK`.
+4. The campaign kept ticking normally for at least 15 seconds afterward (`Campaign.Current` valid, `CampaignTime` stable across three checks).
 
-**Outcome A — it works:** adopt `GameNetwork` module events (native, already integrated, handles peers/disconnects).
-**Outcome B — it does not:** implement our own transport. `TaleWorlds.Network.TcpSocket` and the `MessageContract` machinery are available and are plain managed types (VERIFIED), or we use `System.Net.Sockets` directly.
+**Then the game crashed** — a native access violation (`0xc0000005`, Windows Application Error, faulting module reported `unknown`), roughly 15–40 seconds after `StartMultiplayerOnServer`. Not a managed exception; no BUTR crash report. Full evidence and reasoning: `docs/RISK_REGISTER.md` RISK-02.
 
-**Until resolved, no code may bind to `GameNetwork` directly.** Everything goes through:
+**Outcome: neither "works" nor "throws."** The managed calls all report success and the flags flip correctly, but forcing a live singleplayer `Campaign` into multiplayer mode destabilizes the engine and crashes it shortly after. **Decision: `GameNetwork` is not used.** The project builds its own transport. `TaleWorlds.Network.TcpSocket` and the `MessageContract` machinery are available and are plain managed types (VERIFIED), or `System.Net.Sockets` directly.
+
+Whether a `Campaign` created multiplayer-aware *from the start* (rather than retrofitted mid-session, which is what was tested) would avoid this is **UNKNOWN and not pursued** — it isn't this project's use case, which is adding co-op to an otherwise-normal singleplayer campaign.
+
+**`GameNetwork` must never be bound to directly.** Everything goes through:
 
 ```csharp
 interface ICoopTransport {
@@ -57,7 +60,7 @@ interface ICoopTransport {
 enum DeliveryMode { ReliableOrdered, Unreliable }
 ```
 
-Phase 1 ships a **loopback** implementation so L3–L6 are testable before the answer is known.
+Phase 1 ships a **loopback** implementation first so higher layers are testable while the real (`TcpSocket`-backed) implementation is built.
 
 ## 3. Channels
 

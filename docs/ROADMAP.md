@@ -41,8 +41,8 @@ Run the §5 detection; record exact version, `ApplicationVersionType`, module se
 `cli_meta.py surface` against pinned assemblies, diff vs committed baseline, fail on removal of anything we bind to.
 **Exit:** CI fails on a deliberately introduced baseline change. *Mitigates RISK-05.*
 
-### 1.4 ⚠ `GameNetwork`-in-campaign probe
-The four-step experiment in `NETWORK_PROTOCOL.md` §2, behind `ICoopTransport`.
+### 1.4 ✅ `GameNetwork`-in-campaign probe — done
+The four-step experiment in `NETWORK_PROTOCOL.md` §2, run 2026-09-17. Result: `GameNetwork` activates without error but crashes the engine (native access violation) within ~15–40s when forced into multiplayer mode inside a live singleplayer campaign. Transport implementation chosen: `TaleWorlds.Network.TcpSocket` behind `ICoopTransport`, not `GameNetwork`.
 **Exit:** documented, reproducible answer; transport implementation chosen. *Resolves RISK-02.*
 
 ### 1.5 Campaign event & determinism harness
@@ -110,11 +110,11 @@ Quests (RISK-11) · War Sails storyline · hideouts · persistent progression ·
 
 | # | Question | Unblocks | Risk |
 |---|---|---|---|
-| I1 | `GameNetwork` in a campaign session? | All netcode | RISK-02 |
+| ~~I1~~ | ~~`GameNetwork` in a campaign session?~~ | All netcode | **RESOLVED — no, own transport** |
 | I2 | Campaign tick determinism & event ordering | Sync model | RISK-04 |
 | I3 | `Ship` ↔ `MissionShip` binding lifetime | Naval capture | RISK-03 |
-| I4 | Which mutations bump `Ship.VersionNo` | Change detection | RISK-01 |
-| I5 | `MapEvent` → naval mission launch path | Naval battles | RISK-08 |
+| ~~I4~~ | ~~Which mutations bump `Ship.VersionNo`~~ | Change detection | **RESOLVED** |
+| I5 | `MapEvent` → naval mission launch path (partial — decorator seam found, trigger site not) | Naval battles | RISK-08 |
 | I6 | Siege stage transitions (refactored across versions) | Sieges | RISK-05 |
 | I7 | Save compat with/without War Sails | Persistence | RISK-13 |
 | I8 | `MissionShip` authority & physics determinism | Naval battles | RISK-12 |

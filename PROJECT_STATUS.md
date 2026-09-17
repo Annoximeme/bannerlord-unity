@@ -61,9 +61,15 @@
 
 ## Current Work
 
-**B3 — `GameNetwork`-in-campaign probe (Phase 1 step 1.4, resolves RISK-02). Deployed, awaiting a manual run.** `tools/network-probe/` is built and deployed to the local install's `Modules/` folder; it needs a human to launch the game with the RISK-16 clean profile, start or load a campaign, and let it run ~30s. See `tools/network-probe/README.md`. Once `Documents\Mount and Blade II Bannerlord\CoopNetworkProbe\network-probe.log` exists, its contents resolve RISK-02.
+**None blocking.** B3 resolved (below); Phase 1 foundations (§ Next Tasks) are next, or B7/B8 if continuing the decompiler-based audit work first.
 
-**B6 resolved, B7 partially advanced, while waiting on B3.** `ilspycmd` is now installed and verified against the real install. `Ship.VersionNo`'s exact mechanism is decompiled and documented (`SYNCHRONIZATION_MODEL.md` §4.3, `WARSAILS_ARCHITECTURE.md`). For B7, traced the campaign→mission naval launch path as far as confirming it's a decorator (`NavalMissionManager` wrapping `Campaign.Current.CampaignMissionManager`, installed in `OnAfterGameInitializationFinished`) — a clean seam for our own mod — but the exact call site that decides "this encounter is naval" is still unfound across five searched assemblies (`RISK_REGISTER.md` RISK-03). B8 (siege stage transitions) hasn't been started yet; same tool, same method, doesn't need the game running.
+### Just resolved
+
+**B3 — `GameNetwork`-in-campaign probe. Run, and it crashed the game.** `tools/network-probe/CoopNetworkProbe` was launched on the real install (clean profile, no third-party mods). Every `GameNetwork` call succeeded (`Initialize`, `PreStartMultiplayerOnServer`, `StartMultiplayerOnServer`, message handlers, loopback broadcast — all `STEP OK`, `IsSessionActive`/`IsMultiplayer`/`IsServer` all flipped `true`), the campaign kept ticking for 15+ seconds, and then the game crashed with a native access violation (`0xc0000005`, Windows Application Error, no managed exception, no BUTR report). **RISK-02 is resolved: `GameNetwork` cannot be used to retrofit multiplayer onto a running singleplayer campaign — it destabilizes the engine.** The project builds its own transport (`TaleWorlds.Network.TcpSocket` / raw sockets), which is what `NETWORK_PROTOCOL.md`'s `ICoopTransport` abstraction already assumed. No save was at risk (crash predated any autosave). Full evidence: `docs/RISK_REGISTER.md` RISK-02, `docs/NETWORK_PROTOCOL.md` §2.
+
+**Action needed:** remove `Modules\CoopNetworkProbe\` from the local install — its job is done and it forces the exact crash above every time it runs, so it must not stay enabled.
+
+**B6 resolved, B7 partially advanced** (same session, while B3 was pending a run). `ilspycmd` is now installed and verified against the real install. `Ship.VersionNo`'s exact mechanism is decompiled and documented (`SYNCHRONIZATION_MODEL.md` §4.3, `WARSAILS_ARCHITECTURE.md`). For B7, traced the campaign→mission naval launch path as far as confirming it's a decorator (`NavalMissionManager` wrapping `Campaign.Current.CampaignMissionManager`, installed in `OnAfterGameInitializationFinished`) — a clean seam for our own mod — but the exact call site that decides "this encounter is naval" is still unfound across five searched assemblies (`RISK_REGISTER.md` RISK-03). B8 (siege stage transitions) hasn't been started yet; same tool, same method, doesn't need the game running.
 
 ---
 
@@ -73,7 +79,7 @@
 |---|---|---|---|
 | ~~B1~~ | ~~Licensing decision (RISK-00)~~ | **RESOLVED 2026-09-17** — owner chose clean-room; see RISK_REGISTER.md | All implementation |
 | ~~B2~~ | ~~Version pin + session version check~~ | **RESOLVED 2026-09-16** — measured; see Version Block | — |
-| B3 | `GameNetwork`-in-campaign probe (RISK-02) | Needs a running game | All netcode |
+| ~~B3~~ | ~~`GameNetwork`-in-campaign probe (RISK-02)~~ | **RESOLVED 2026-09-17** — crashes the engine; own transport required. See Current Work above and `RISK_REGISTER.md` RISK-02 | — |
 | B4 | Campaign determinism / event ordering (RISK-04) | No install | Sync model |
 | B5 | `Ship` ↔ `MissionShip` binding lifetime (RISK-03) | No install | Naval capture |
 | ~~B6~~ | ~~Which mutations bump `Ship.VersionNo`~~ | **RESOLVED 2026-09-17** — `ilspycmd` against the real install; see `SYNCHRONIZATION_MODEL.md` §4.3 | — |
@@ -97,7 +103,7 @@ Both decisions clear the Phase 1 gate that `docs/HANDOFF.md` set. Phase 1 work (
 
 ## Known Bugs
 
-**None.** No code has been written.
+No gameplay code has been written. One research tool is a known, reproducible engine crash **by design**: `tools/network-probe/CoopNetworkProbe` forces `GameNetwork` into multiplayer mode inside a live singleplayer campaign specifically to test whether that's safe — it isn't (RISK-02). If `Modules\CoopNetworkProbe\` is still deployed on any install, remove it; do not re-enable it expecting a different result.
 
 ---
 
@@ -136,10 +142,10 @@ Both decisions clear the Phase 1 gate that `docs/HANDOFF.md` set. Phase 1 work (
 | 1.1 | Environment capture and version pin |
 | 1.2 | Module skeleton + hard version gate |
 | 1.3 | `tools/apiscan` API-drift CI gate |
-| 1.4 | ⚠ `GameNetwork`-in-campaign probe (resolves RISK-02) |
+| ~~1.4~~ | ~~`GameNetwork`-in-campaign probe (resolves RISK-02)~~ — **done**, `GameNetwork` ruled out |
 | 1.5 | Campaign event + determinism harness (resolves RISK-04) |
 | 1.6 | Identity layer: `MBGUID` registry + synthesized `CoopShipId` (mitigates RISK-01) |
-| 1.7 | Transport + wire protocol + idempotent consequence ledger |
+| 1.7 | Transport + wire protocol + idempotent consequence ledger — build on `TaleWorlds.Network.TcpSocket`, per 1.4's result |
 | 1.8 | First vertical slice: party position, two clients |
 | 1.9 | Persistence, reconnect, server restart, save-safety layer |
 | 1.10 | Naval **campaign** state (ships, ownership, at-sea flags) — no naval missions |
