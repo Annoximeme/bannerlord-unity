@@ -30776,3 +30776,4 @@ T TaleWorlds.MountAndBlade.WedgeFormation
 T TaleWorlds.MountAndBlade.WhisperMessageReceivedDelegate
 T TaleWorlds.MountAndBlade.WhisperMessageSentDelegate
 T TaleWorlds.MountAndBlade.WindMill
+M TaleWorlds.MountAndBlade.GameNetwork::TotallyMadeUpMethodThatWillNeverExist():System.Void
