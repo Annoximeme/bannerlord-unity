@@ -1,7 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <!-- net8.0, not net472: runs natively in CI without needing Mono. Tests the
+         net8.0 build of Coop.Core, which shares identical source with the net472
+         build that actually ships in the game. -->
+    <TargetFramework>net8.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>

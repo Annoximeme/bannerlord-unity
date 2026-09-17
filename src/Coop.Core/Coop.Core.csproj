@@ -7,7 +7,14 @@
   -->
 
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <!--
+      net472 is the real target — this assembly ships inside the game next to
+      Coop.GameInterface and must be loadable by a .NET Framework 4.7.2 process.
+      net8.0 is added purely so `dotnet test` can run Coop.Core.Tests natively
+      in CI (Linux runners don't have Mono, which net472 test execution needs)
+      — same source, same behavior, just a second build target for testing.
+    -->
+    <TargetFrameworks>net472;net8.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <RootNamespace>Coop.Core</RootNamespace>
     <Nullable>disable</Nullable>
